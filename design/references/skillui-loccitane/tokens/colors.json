@@ -1,0 +1,15 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "core": {
+    "background": {
+      "value": "#000000",
+      "role": "background"
+    }
+  },
+  "status": {},
+  "extended": {},
+  "meta": {
+    "theme": "dark",
+    "extracted": "2026-09-15"
+  }
+}

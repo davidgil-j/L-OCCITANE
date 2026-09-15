@@ -1,6 +1,8 @@
 {
-  "_comment": "Placeholder. Sustituir por los valores reales extraidos con SkillUI (skillui --url https://www.loccitane.es).",
-  "brand": "#2F4F3F",
-  "brandLight": "#5C7A6A",
-  "brandDark": "#1A2E24"
+  "_comment": "Aproximado. Estimado visualmente a partir de capturas reales de es.loccitane.com, no extraido de CSS/computed styles (el crawl automatico de SkillUI fue bloqueado por la proteccion anti-bot del sitio). Pendiente de confirmar con guia de marca oficial.",
+  "background": "#F7F3EA",
+  "surface": "#EFE6D5",
+  "brand": "#3B2B23",
+  "text": "#2E2620",
+  "textMuted": "#6B625A"
 }

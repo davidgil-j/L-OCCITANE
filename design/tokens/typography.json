@@ -1,5 +1,5 @@
 {
-  "_comment": "Placeholder. Sustituir por la tipografia real de marca extraida con SkillUI.",
-  "sans": "system-ui, sans-serif",
-  "serif": "Georgia, serif"
+  "_comment": "Aproximado. La fuente real de marca no se pudo confirmar (el crawl automatico de SkillUI fue bloqueado por la proteccion anti-bot del sitio). Se usan near-equivalentes de Google Fonts hasta confirmar las fuentes oficiales con guia de marca.",
+  "serif": "'Playfair Display', Georgia, serif",
+  "sans": "Inter, system-ui, sans-serif"
 }
