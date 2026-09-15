@@ -12,5 +12,5 @@ html {
 }
 
 body {
-  @apply bg-white text-neutral-900;
+  @apply bg-background text-text;
 }
