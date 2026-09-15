@@ -40,4 +40,4 @@ Esqueleto técnico funcional con contenido placeholder (todo a `null` en
 - [ ] Tokens de color/tipografía definitivos — extracción con SkillUI
       sobre `loccitane.es` (`skillui --url https://www.loccitane.es`)
 - [ ] Imágenes de producto finales (Axel)
-- [ ] Copy definitivo de cada sección
+- [ ] Copy definitivo de cada sección .
