@@ -3,6 +3,8 @@ export default function Button({ href = '#', children, variant = 'primary' }) {
   const variants = {
     primary: 'bg-brand text-background',
     ghost: 'border border-brand text-brand',
+    // Para usar sobre fondos oscuros/foto -- boton solido claro, texto oscuro.
+    inverted: 'bg-background text-brand',
   };
 
   return (
