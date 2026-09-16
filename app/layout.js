@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
+import { MotionConfig } from 'framer-motion';
 import './globals.css';
 
 const sans = Inter({
@@ -52,7 +53,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${sans.variable} ${heading.variable} ${body.variable}`}>
-      <body>{children}</body>
+      <body>
+        {/* reducedMotion="user" respeta prefers-reduced-motion del SO para
+            todas las animaciones tween/spring de Framer Motion en la app,
+            sin tener que comprobarlo componente a componente. */}
+        <MotionConfig reducedMotion="user">{children}</MotionConfig>
+      </body>
     </html>
   );
 }

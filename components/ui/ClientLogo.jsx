@@ -15,7 +15,6 @@ export default function ClientLogo({ className = '' }) {
         width={320}
         height={80}
         className="mx-auto h-auto w-40 md:w-48"
-        priority
       />
     </div>
   );
