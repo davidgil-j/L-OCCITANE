@@ -1,5 +1,7 @@
 {
-  "_comment": "Aproximado. La fuente real de marca no se pudo confirmar (el crawl automatico de SkillUI fue bloqueado por la proteccion anti-bot del sitio). Se usan near-equivalentes de Google Fonts hasta confirmar las fuentes oficiales con guia de marca.",
+  "_comment": "La tipografia real de L'Occitane (Loccitane Serif / Loccitane Serif Condensed / Loccitane Sans) es propietaria, disenada por Neville Brody -- no tenemos los archivos de fuente, solo se pueden pedir a Vanster/Yasmina. Mientras tanto usamos sustitutos visuales.",
   "serif": "'Playfair Display', Georgia, serif",
-  "sans": "Inter, system-ui, sans-serif"
+  "serifUsage": "Sustituto de Loccitane Serif Condensed Medium Caps, que la guia recomienda para titulos con angulo emocional/de marca como regalos y campanas -- coincide con nuestro caso.",
+  "sans": "Inter, system-ui, sans-serif",
+  "sansUsage": "Sustituto de Loccitane Sans Light."
 }

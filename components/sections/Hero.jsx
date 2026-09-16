@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
+import ClientLogo from '@/components/ui/ClientLogo';
 
 export default function Hero({ content }) {
   return (
@@ -12,6 +13,7 @@ export default function Hero({ content }) {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="mx-auto max-w-2xl text-center"
       >
+        <ClientLogo className="mb-10" />
         <h1 className="font-serif text-4xl leading-[1.1] text-text md:text-6xl">
           {content?.title ?? 'Título pendiente de contenido de Yasmina'}
         </h1>

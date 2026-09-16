@@ -11,9 +11,16 @@ export default function ProductShowcase({ items = [] }) {
                 className={`aspect-[4/3] bg-surface ${i % 2 === 1 ? 'md:order-2' : ''}`}
               />
               <div>
-                <span className="font-serif text-sm text-textMuted">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="font-serif text-sm text-textMuted">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {item.audience && (
+                    <span className="text-xs uppercase tracking-wide text-textMuted">
+                      {item.audience}
+                    </span>
+                  )}
+                </div>
                 <h3 className="mt-2 font-serif text-2xl text-text">{item.name}</h3>
                 <p className="mt-3 text-textMuted">{item.description}</p>
               </div>

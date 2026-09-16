@@ -1,8 +1,11 @@
 {
-  "_comment": "Aproximado. Estimado visualmente a partir de capturas reales de es.loccitane.com, no extraido de CSS/computed styles (el crawl automatico de SkillUI fue bloqueado por la proteccion anti-bot del sitio). Pendiente de confirmar con guia de marca oficial.",
-  "background": "#F7F3EA",
-  "surface": "#EFE6D5",
-  "brand": "#3B2B23",
-  "text": "#2E2620",
-  "textMuted": "#6B625A"
+  "_comment": "Valores OFICIALES de la guia de marca de L'Occitane (2024 Fundamentals & Basics Brand Guidelines). Mismos nombres de clave que antes para no romper las clases de Tailwind ya usadas en los componentes.",
+  "background": "#FBF9F6",
+  "backgroundAlt": "#F9F5F0",
+  "surface": "#F2E9DB",
+  "brand": "#3F2B2E",
+  "text": "#3F2B2E",
+  "textMuted": "#A58671",
+  "accent": "#FFC700",
+  "accentUsage": "Soleil Jaune Iconique. Uso muy restringido segun la guia: solo toques pequenos y refinados, o elementos que deban ir enteramente en amarillo (cajas, bolsas, sets de regalo). No usar como fondo de UI ni de botones."
 }

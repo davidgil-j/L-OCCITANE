@@ -1,22 +1,47 @@
 /**
  * Contenido de la landing de L'Occitane.
- * TODO: sustituir por los textos y datos reales una vez Yasmina
- * envíe los materiales de branding y Axel las referencias de producto.
+ * Copy de borrador redactado por el equipo, pendiente de validación
+ * final por Yasmina/David C. antes de publicar.
  */
 export const loccitane = {
   hero: {
-    title: null,
-    subtitle: null,
+    title: "Una propuesta a medida para L'Occitane en Provence",
+    subtitle:
+      'Vänster presenta una selección de merchandising corporativo para tiendas, equipo y clientes, con la calidez artesanal de Provenza en cada detalle.',
   },
   products: [
-    { id: 'agendas', name: 'Agendas', description: null },
-    { id: 'calendarios', name: 'Calendarios', description: null },
-    { id: 'bidon', name: 'Bidón de agua premium', description: null },
-    { id: 'merchandising', name: 'Merchandising general', description: null },
+    {
+      id: 'agendas',
+      name: 'Agendas 2027',
+      audience: 'Tiendas y trabajadores',
+      description:
+        "Una agenda anual pensada para el día a día en tienda o en oficina, con acabados que evocan los tonos cálidos y los materiales naturales de Provenza. Personalizable con el logotipo de L'Occitane.",
+    },
+    {
+      id: 'calendarios',
+      name: 'Calendarios de sobremesa',
+      audience: 'Tiendas y trabajadores',
+      description:
+        'Un calendario de mesa o pared para acompañar el espacio de trabajo durante todo el año, con un diseño sobrio que refleja la identidad de la Maison.',
+    },
+    {
+      id: 'bidon',
+      name: 'Bidón de agua premium',
+      audience: 'Trabajadores',
+      description:
+        'Un bidón térmico de calidad, pensado como detalle diario para el equipo: funcional, duradero, con el logotipo de la marca en un acabado discreto y elegante.',
+    },
+    {
+      id: 'merchandising',
+      name: 'Merchandising para clientes',
+      audience: 'Clientes',
+      description:
+        'Una selección de artículos de regalo pensados para acompañar la experiencia de compra y fidelizar a los clientes, con el mismo cuidado en los materiales que define a la Maison.',
+    },
   ],
   cta: {
-    title: null,
-    buttonLabel: null,
-    href: null,
+    title: '¿Hablamos de los próximos pasos?',
+    buttonLabel: 'Hablemos',
+    href: '#',
   },
 };

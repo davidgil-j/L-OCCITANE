@@ -13,10 +13,28 @@ const serif = Playfair_Display({
   display: 'swap',
 });
 
+const title = "L'Occitane × Vänster — Propuesta de merchandising corporativo";
+const description =
+  "Propuesta de Vänster para L'Occitane: agendas, calendarios, bidón de agua premium y merchandising personalizados para tiendas, trabajadores y clientes.";
+
 export const metadata = {
-  title: "L'Occitane × Vänster — Propuesta de merchandising corporativo",
-  description:
-    "Propuesta de Vänster para L'Occitane: agendas, calendarios y bidones de agua personalizados para tiendas, trabajadores y clientes.",
+  title,
+  description,
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title,
+    description,
+    images: ['/images/brand/loccitane-logo-black.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: ['/images/brand/loccitane-logo-black.png'],
+  },
 };
 
 export default function RootLayout({ children }) {
