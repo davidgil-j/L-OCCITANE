@@ -14,7 +14,7 @@ export default function Hero({ content }) {
         className="mx-auto max-w-2xl text-center"
       >
         <ClientLogo className="mb-10" />
-        <h1 className="font-serif text-4xl leading-[1.1] text-text md:text-6xl">
+        <h1 className="font-serif text-4xl uppercase leading-[1.1] tracking-tight text-text md:text-6xl">
           {content?.title ?? 'Título pendiente de contenido de Yasmina'}
         </h1>
         <motion.span

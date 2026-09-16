@@ -4,3 +4,6 @@ node_modules/
 *.log
 .env
 .env.local
+
+# Guías de marca oficiales (PDFs pesados, no distribuibles)
+design/guias-marca/

@@ -23,8 +23,12 @@ module.exports = {
                                   // No usar como fondo de UI ni de botones.
       },
       fontFamily: {
+        // Inter -- solo etiquetas pequenas, creditos y metadatos (ver RESUMEN.md).
         sans: ['var(--font-sans)', 'sans-serif'],
-        serif: ['var(--font-serif)', 'serif'],
+        // Gambetta -- tipografia de cuerpo (parrafos, subtitulos).
+        body: ['var(--font-body)', 'serif'],
+        // Gambarino -- titulares de campana, siempre en mayusculas.
+        serif: ['var(--font-heading)', 'serif'],
       },
     },
   },

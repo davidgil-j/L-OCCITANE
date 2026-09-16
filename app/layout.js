@@ -1,4 +1,5 @@
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
 const sans = Inter({
@@ -7,9 +8,20 @@ const sans = Inter({
   display: 'swap',
 });
 
-const serif = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-serif',
+const heading = localFont({
+  src: '../public/fonts/gambarino/Gambarino-Regular.woff2',
+  variable: '--font-heading',
+  display: 'swap',
+});
+
+const body = localFont({
+  src: [
+    { path: '../public/fonts/gambetta/Gambetta-Light.woff2', weight: '300', style: 'normal' },
+    { path: '../public/fonts/gambetta/Gambetta-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/gambetta/Gambetta-Italic.woff2', weight: '400', style: 'italic' },
+    { path: '../public/fonts/gambetta/Gambetta-Medium.woff2', weight: '500', style: 'normal' },
+  ],
+  variable: '--font-body',
   display: 'swap',
 });
 
@@ -39,7 +51,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="es" className={`${sans.variable} ${heading.variable} ${body.variable}`}>
       <body>{children}</body>
     </html>
   );
