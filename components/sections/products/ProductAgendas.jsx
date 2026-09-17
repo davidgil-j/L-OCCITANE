@@ -24,7 +24,7 @@ export default function ProductAgendas({ item, index, imageSrc, id }) {
           </FadeIn>
           <MaskReveal
             as="h3"
-            className="relative z-10 mt-8 font-serif text-[clamp(2.6rem,7vw,7rem)] uppercase leading-[0.9] tracking-tight text-text md:col-start-5 md:col-end-13 md:row-start-1 md:mt-0 md:self-end md:pb-12"
+            className="relative z-10 mt-8 font-serif text-[clamp(2.6rem,6vw,6rem)] uppercase leading-[0.9] tracking-tight text-text md:col-start-7 md:col-end-13 md:row-start-1 md:mt-0 md:self-end md:pb-16"
           >
             {item.name}
           </MaskReveal>

@@ -9,7 +9,14 @@ import Image from 'next/image';
  * producto recortado, no fotografia de ambiente; recortarlas partiria el
  * objeto. Cuando lleguen fotos de ambiente reales, `fit="cover"`.
  */
-export default function ArchImage({ src, alt, sizes = '100vw', className = '', fit = 'contain' }) {
+export default function ArchImage({
+  src,
+  alt,
+  sizes = '100vw',
+  className = '',
+  fit = 'contain',
+  children,
+}) {
   return (
     <div
       className={`relative overflow-hidden bg-backgroundAlt ${className}`}
@@ -28,6 +35,8 @@ export default function ArchImage({ src, alt, sizes = '100vw', className = '', f
           Foto pendiente
         </span>
       )}
+      {/* Capas que deban ir recortadas por el arco (p.ej. un velo). */}
+      {children}
     </div>
   );
 }

@@ -12,7 +12,7 @@ import MaskReveal from '@/components/animations/MaskReveal';
  */
 export default function ProductMerchandising({ item, index, imageSrc }) {
   return (
-    <section className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-surface px-6 py-24">
+    <section className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-brand px-6 py-24">
       <FadeIn>
         <ArchImage
           src={imageSrc}
@@ -20,10 +20,13 @@ export default function ProductMerchandising({ item, index, imageSrc }) {
           sizes="(min-width: 768px) 640px, 90vw"
           fit="cover"
           className="aspect-[4/5] w-[min(90vw,40rem)]"
-        />
+        >
+          {/* Velo plano dentro del arco: rebaja la foto para que el titular
+              en Blanc Brule se lea, y deja el arco recortado contra el
+              Noir des Terres de la seccion. */}
+          <div className="absolute inset-0 bg-brand/45" />
+        </ArchImage>
       </FadeIn>
-
-      <div className="absolute inset-0 bg-brand/50" />
 
       <MaskReveal
         as="h3"
