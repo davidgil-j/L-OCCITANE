@@ -5,7 +5,7 @@
  */
 export const loccitane = {
   hero: {
-    title: "Una propuesta a medida para L'Occitane en Provence",
+    title: "Una propuesta a medida para L'Occitane",
     // Fragmento del titular que se compone en cursiva de Gambetta como
     // acento editorial. Debe aparecer literalmente dentro de `title`.
     titleAccent: 'a medida',
@@ -47,6 +47,6 @@ export const loccitane = {
   cta: {
     title: '¿Hablamos de los próximos pasos?',
     buttonLabel: 'Hablemos',
-    href: '#',
+    // Sin href propio: el CTA escribe al email de Vanster (content/vanster.js).
   },
 };
