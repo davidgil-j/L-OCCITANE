@@ -15,8 +15,15 @@ const OVERSCAN_EXTRA = 20;
 
 /**
  * Imagen de producto recortada con el arco provenzal (una de las 5 formas
- * iconicas de la marca). El fondo es Blanc Brule Moyen porque la guia lo
- * reserva justamente para packshots.
+ * iconicas de la marca). El arco es Beige Travertin, que la guia recomienda
+ * para fondos de foto de producto: asi se lee como marco tambien cuando aun
+ * no hay foto.
+ *
+ * Las fotos van en modo multiplicar sobre ese beige: los packshots traen su
+ * fondo horneado (blanco puro la agenda, crema la mochila) y sin fundirlo se
+ * veia un recorte de otro color dentro del arco. El beige esta tambien en la
+ * capa del parallax porque la mezcla solo ve el fondo de su propio contexto
+ * de apilamiento, y el transform de esa capa crea uno nuevo.
  *
  * Lleva las dos animaciones de la familia de la pagina:
  *  - reveal con clip-path desde abajo, dentro de la silueta del arco (el
@@ -57,7 +64,7 @@ export default function ArchImage({
   return (
     <div
       ref={ref}
-      className={`relative overflow-hidden bg-backgroundAlt ${className}`}
+      className={`relative overflow-hidden bg-surface ${className}`}
       style={{ clipPath: 'url(#provencal-arch)', WebkitClipPath: 'url(#provencal-arch)' }}
     >
       <motion.div
@@ -68,7 +75,7 @@ export default function ArchImage({
       >
         {src ? (
           <motion.div
-            className="absolute inset-x-0"
+            className="absolute inset-x-0 bg-surface"
             style={{ top: -overscan, bottom: -overscan, ...(parallaxOn ? { y } : null) }}
           >
             <Image
@@ -76,7 +83,7 @@ export default function ArchImage({
               alt={alt}
               fill
               sizes={sizes}
-              className={fit === 'cover' ? 'object-cover' : 'object-contain p-10 md:p-16'}
+              className={`mix-blend-multiply ${fit === 'cover' ? 'object-cover' : 'object-contain p-10 md:p-16'}`}
             />
           </motion.div>
         ) : (

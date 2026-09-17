@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { vanster } from '@/content/vanster';
 
 /** Trazados de los iconos; las URL viven en content/vanster.js. */
@@ -18,27 +17,17 @@ const ICONS = [
 ];
 
 /**
- * Banda de cierre de Vanster: la agencia que firma la propuesta.
- *
- * Replica la franja de marmol que Vanster usa en su propio pie (ver
- * design/guias-marca/VÄNSTER_aplicacions.pdf). La textura es el asset
- * original extraido de ese PDF, no una recreacion.
+ * Pie de Vanster, la agencia que firma la propuesta. No lleva fondo propio:
+ * va sobre la MarbleSurface que comparte con el CTA, separado de el por un
+ * filete, para que el marmol sea una sola pieza continua hasta el final.
  */
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative isolate overflow-hidden">
-      <Image
-        src="/images/brand/vanster-marmol.jpg"
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="100vw"
-        className="object-cover"
-      />
-      <div className="relative flex items-center justify-between gap-6 px-6 py-8 md:px-12">
-        <p className="font-sans text-xs tracking-[0.02em] text-white md:text-sm">
+    <footer className="px-6 md:px-12">
+      <div className="flex items-center justify-between gap-6 border-t border-background/20 py-7">
+        <p className="font-sans text-xs tracking-[0.02em] text-background md:text-sm">
           © 2010-{year} Vänster
         </p>
         <ul className="flex items-center gap-4 md:gap-5">
@@ -49,9 +38,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Vänster en ${s.name}`}
-                className="block text-white transition-opacity duration-300 hover:opacity-70"
+                className="block text-background transition-opacity duration-300 hover:opacity-70"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 md:h-6 md:w-6">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
                   <path d={ICONS.find((i) => i.name === s.name).path} />
                 </svg>
               </a>

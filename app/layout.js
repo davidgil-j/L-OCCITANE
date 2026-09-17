@@ -26,7 +26,7 @@ const body = localFont({
   display: 'swap',
 });
 
-const title = "L'Occitane × Vänster — Propuesta de merchandising corporativo";
+const title = "Propuesta de merchandising corporativo para L'Occitane | Vänster";
 const description =
   "Propuesta de Vänster para L'Occitane: agendas, calendarios, bidón de agua premium y merchandising personalizados para tiendas, trabajadores y clientes.";
 

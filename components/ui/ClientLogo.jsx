@@ -19,6 +19,8 @@ export default function ClientLogo({ className = '', invert = false }) {
         alt="L'Occitane en Provence"
         width={320}
         height={80}
+        // Solo se usa en el hero, siempre visible al cargar: se precarga.
+        priority
         className={`mx-auto h-auto w-40 md:w-48 ${invert ? 'brightness-0 invert' : ''}`}
       />
     </div>

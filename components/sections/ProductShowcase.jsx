@@ -1,9 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import ProductAgendas from '@/components/sections/products/ProductAgendas';
-import ProductCalendarios from '@/components/sections/products/ProductCalendarios';
-import ProductBidon from '@/components/sections/products/ProductBidon';
-import ProductMerchandising from '@/components/sections/products/ProductMerchandising';
+import ProductFeature from '@/components/sections/products/ProductFeature';
 
 const PRODUCT_IMAGES = {
   agendas: '/images/agendas/agenda.png',
@@ -11,14 +8,6 @@ const PRODUCT_IMAGES = {
   // llevaban branding de otros clientes de Vänster). Sin imagen, ArchImage
   // pinta el arco vacio con la nota "Foto pendiente".
   merchandising: '/images/merchandising/merchandising.png',
-};
-
-/** Cada producto tiene su propia composicion: son cuatro paginas de la misma revista. */
-const COMPOSITIONS = {
-  agendas: ProductAgendas,
-  calendarios: ProductCalendarios,
-  bidon: ProductBidon,
-  merchandising: ProductMerchandising,
 };
 
 function resolveImageSrc(id) {
@@ -31,20 +20,16 @@ function resolveImageSrc(id) {
 export default function ProductShowcase({ items = [] }) {
   return (
     <>
-      {items.map((item, i) => {
-        const Composition = COMPOSITIONS[item.id];
-        if (!Composition) return null;
-
-        return (
-          <Composition
-            key={item.id}
-            item={item}
-            index={i}
-            imageSrc={resolveImageSrc(item.id)}
-            id={item.id}
-          />
-        );
-      })}
+      {items.map((item, i) => (
+        <ProductFeature
+          key={item.id}
+          item={item}
+          index={i}
+          imageSrc={resolveImageSrc(item.id)}
+          id={item.id}
+          reverse={i % 2 === 1}
+        />
+      ))}
     </>
   );
 }
