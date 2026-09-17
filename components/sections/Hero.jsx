@@ -1,28 +1,25 @@
 'use client';
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import Button from '@/components/ui/Button';
 import ClientLogo from '@/components/ui/ClientLogo';
 import FadeIn from '@/components/animations/FadeIn';
 import MaskReveal from '@/components/animations/MaskReveal';
 import Parallax from '@/components/animations/Parallax';
+import HeroMedia from '@/components/sections/HeroMedia';
 
 export default function Hero({ content }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="relative isolate flex min-h-[92vh] items-center overflow-hidden px-6 py-28 md:py-40">
       <Parallax offset={20}>
-        <Image
-          src="/images/hero.jpeg"
-          alt="Campo de lavanda al atardecer en Haute-Provence"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        <HeroMedia reduceMotion={shouldReduceMotion} />
       </Parallax>
-      {/* Velo plano (un unico efecto, sin gradiente) para que el texto claro sea legible sobre la foto */}
-      <div className="absolute inset-0 bg-brand/45" />
+      {/* Gradiente (reemplaza el velo plano anterior): oscurece el borde
+          superior e inferior para legibilidad y deja el centro del vídeo
+          casi sin tapar, para que se vea el color natural de la lavanda. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-brand/60 via-brand/15 to-brand/65" />
 
       <div className="relative mx-auto max-w-2xl text-center">
         <FadeIn>
