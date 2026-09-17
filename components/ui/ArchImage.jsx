@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { EASE } from '@/components/animations/easing';
 
 /**
@@ -49,6 +49,11 @@ export default function ArchImage({
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], [-parallax, parallax]);
 
+  // El observador va en el contenedor y no en la capa del reveal: esa capa se
+  // recorta a si misma con inset(100%), de modo que su area visible es cero y
+  // nunca llegaria a cruzar el umbral del IntersectionObserver.
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
     <div
       ref={ref}
@@ -58,8 +63,7 @@ export default function ArchImage({
       <motion.div
         className="absolute inset-0"
         initial={{ clipPath: 'inset(100% 0 0 0)' }}
-        whileInView={{ clipPath: 'inset(0% 0 0 0)' }}
-        viewport={{ once: true, margin: '-80px' }}
+        animate={inView ? { clipPath: 'inset(0% 0 0 0)' } : undefined}
         transition={{ duration: 0.9, ease: EASE }}
       >
         {src ? (
