@@ -6,6 +6,9 @@
 export const loccitane = {
   hero: {
     title: "Una propuesta a medida para L'Occitane en Provence",
+    // Fragmento del titular que se compone en cursiva de Gambetta como
+    // acento editorial. Debe aparecer literalmente dentro de `title`.
+    titleAccent: 'a medida',
     subtitle:
       'Vänster presenta una selección de merchandising corporativo para tiendas, equipo y clientes, con la calidez artesanal de Provenza en cada detalle.',
   },

@@ -59,7 +59,7 @@ export default function ProductShowcase({ items = [] }) {
                   <span>
                     {String(i + 1).padStart(2, '0')} — {item.audience}
                   </span>
-                  <span>Vänster per a L&apos;Occitane · 2027</span>
+                  <span>Vänster para L&apos;Occitane · 2027</span>
                 </div>
               </article>
             </FadeIn>

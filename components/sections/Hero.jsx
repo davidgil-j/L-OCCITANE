@@ -9,29 +9,33 @@ import HeroMedia from '@/components/sections/HeroMedia';
 
 export default function Hero({ content }) {
   const shouldReduceMotion = useReducedMotion();
+  const title = content?.title ?? 'Título pendiente de contenido de Yasmina';
+  const accent = content?.titleAccent;
+  const [titleStart, titleEnd] = accent ? title.split(accent) : [title, ''];
 
   return (
-    <section className="relative isolate flex min-h-dvh items-center overflow-hidden px-6 py-20 md:py-24">
+    <section className="relative isolate flex min-h-dvh items-center overflow-hidden px-6 py-16 md:py-24">
       {/* Sin Parallax: un transform ligado al scroll necesita un margen de
           desbordamiento "suficientemente grande" que nunca esta garantizado
           (zoom del navegador, rebote de scroll en iOS...). Anclado con
           inset-0 es geometricamente imposible que deje un hueco. */}
-      <HeroMedia reduceMotion={shouldReduceMotion} />
-      {/* Gradiente (reemplaza el velo plano anterior): oscurece el borde
-          superior e inferior para legibilidad y deja el centro del vídeo
-          casi sin tapar, para que se vea el color natural de la lavanda. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand/60 via-brand/15 to-brand/65" />
+      <HeroMedia />
+      {/* Velo plano de Noir des Terres, sin gradiente (guia de marca), para
+          que el texto en Blanc Brule se lea sobre el video. */}
+      <div className="absolute inset-0 bg-brand/40" />
 
-      <div className="relative mx-auto max-w-2xl text-center">
+      <div className="relative mx-auto max-w-6xl text-center">
         <FadeIn>
           <ClientLogo invert className="mb-10" />
         </FadeIn>
         <MaskReveal
           as="h1"
           delay={0.1}
-          className="font-serif text-4xl uppercase leading-[1.1] tracking-tight text-background md:text-6xl"
+          className="font-serif text-[clamp(2.8rem,6.4vw,6rem)] uppercase leading-[0.95] tracking-tight text-background"
         >
-          {content?.title ?? 'Título pendiente de contenido de Yasmina'}
+          {titleStart}
+          {accent && <em className="whitespace-nowrap font-body normal-case italic">{accent}</em>}
+          {titleEnd}
         </MaskReveal>
         <motion.span
           initial={{ scaleX: 0 }}
@@ -51,6 +55,22 @@ export default function Hero({ content }) {
             </Button>
           </div>
         </FadeIn>
+      </div>
+
+      {/* Indicador de scroll: linea de 40px cuyo trazo recorre el raíl en
+          bucle. Estatico si el usuario pide movimiento reducido. */}
+      <div className="absolute inset-x-0 bottom-10 flex justify-center">
+        <div className="h-10 w-px overflow-hidden bg-background/25">
+          <motion.div
+            className="h-full w-full bg-background"
+            animate={shouldReduceMotion ? { y: 0 } : { y: ['-100%', '100%'] }}
+            transition={
+              shouldReduceMotion
+                ? undefined
+                : { duration: 2.4, ease: [0.22, 1, 0.36, 1], repeat: Infinity, repeatDelay: 0.4 }
+            }
+          />
+        </div>
       </div>
     </section>
   );
