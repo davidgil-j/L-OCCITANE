@@ -5,7 +5,6 @@ import Button from '@/components/ui/Button';
 import ClientLogo from '@/components/ui/ClientLogo';
 import FadeIn from '@/components/animations/FadeIn';
 import MaskReveal from '@/components/animations/MaskReveal';
-import Parallax from '@/components/animations/Parallax';
 import HeroMedia from '@/components/sections/HeroMedia';
 
 export default function Hero({ content }) {
@@ -13,9 +12,11 @@ export default function Hero({ content }) {
 
   return (
     <section className="relative isolate flex min-h-[92vh] items-center overflow-hidden px-6 py-28 md:py-40">
-      <Parallax offset={20}>
-        <HeroMedia reduceMotion={shouldReduceMotion} />
-      </Parallax>
+      {/* Sin Parallax: un transform ligado al scroll necesita un margen de
+          desbordamiento "suficientemente grande" que nunca esta garantizado
+          (zoom del navegador, rebote de scroll en iOS...). Anclado con
+          inset-0 es geometricamente imposible que deje un hueco. */}
+      <HeroMedia reduceMotion={shouldReduceMotion} />
       {/* Gradiente (reemplaza el velo plano anterior): oscurece el borde
           superior e inferior para legibilidad y deja el centro del vídeo
           casi sin tapar, para que se vea el color natural de la lavanda. */}
