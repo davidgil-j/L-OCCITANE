@@ -21,9 +21,17 @@ export default function Parallax({ children, offset = 16 }) {
   });
   const range = shouldReduceMotion ? [0, 0] : [-offset, offset];
   const y = useTransform(scrollYProgress, [0, 1], range);
+  // El desbordamiento vertical debe superar siempre el desplazamiento maximo
+  // del parallax (`offset`), o el fondo deja un hueco visible en los bordes
+  // cuando `y` llega a su extremo (p.ej. en el rebote de scroll de iOS).
+  const overscan = offset + 32;
 
   return (
-    <motion.div ref={ref} style={{ y }} className="absolute -inset-y-6 inset-x-0">
+    <motion.div
+      ref={ref}
+      style={{ y, top: -overscan, bottom: -overscan }}
+      className="absolute inset-x-0"
+    >
       {children}
     </motion.div>
   );
