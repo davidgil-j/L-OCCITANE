@@ -20,14 +20,12 @@ export default function Hero({ content }) {
           (zoom del navegador, rebote de scroll en iOS...). Anclado con
           inset-0 es geometricamente imposible que deje un hueco. */}
       <HeroMedia />
-      {/* Dos velos planos, sin gradiente: el magenta de Vanster firma la
-          escena y el Noir des Terres aporta la densidad que hace legible el
-          titular. Separarlos permite bajar el magenta hasta que la lavanda
-          conserva su color en lugar de quedar en un lavado rosa.
+      {/* Velo neutro y plano, solo para que el titular se lea sobre el
+          marmol. Nada de magenta aqui: la firma de Vanster ya esta en el
+          cielo del video, y un velo magenta tenia tambien la lavanda.
           Las opacidades van de cinco en cinco: la escala de Tailwind no
           genera CSS para valores intermedios y la capa quedaria invisible. */}
-      <div className="absolute inset-0 bg-vanster/35" />
-      <div className="absolute inset-0 bg-brand/15" />
+      <div className="absolute inset-0 bg-brand/40" />
 
       <div className="relative mx-auto max-w-6xl text-center">
         <FadeIn>

@@ -32,14 +32,14 @@ export default function HeroMedia() {
     <video
       ref={ref}
       className="absolute inset-0 h-full w-full object-cover object-[28%_center] md:object-center"
-      poster="/images/hero-video-poster.jpg"
+      poster="/images/hero-marmol-poster.jpg"
       muted
       loop
       playsInline
       preload="metadata"
       aria-hidden="true"
     >
-      <source src="/videos/hero-lavender.mp4" type="video/mp4" />
+      <source src="/videos/hero-marmol.mp4" type="video/mp4" />
     </video>
   );
 }
