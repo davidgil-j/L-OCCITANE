@@ -11,7 +11,7 @@ export default function Hero({ content }) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="relative isolate flex min-h-[92vh] items-center overflow-hidden px-6 py-28 md:py-40">
+    <section className="relative isolate flex min-h-dvh items-center overflow-hidden px-6 py-20 md:py-24">
       {/* Sin Parallax: un transform ligado al scroll necesita un margen de
           desbordamiento "suficientemente grande" que nunca esta garantizado
           (zoom del navegador, rebote de scroll en iOS...). Anclado con
