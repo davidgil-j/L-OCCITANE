@@ -6,15 +6,21 @@ import ClientLogo from '@/components/ui/ClientLogo';
 import FadeIn from '@/components/animations/FadeIn';
 import MaskReveal from '@/components/animations/MaskReveal';
 import HeroMedia from '@/components/sections/HeroMedia';
+import useHasScrolled from '@/components/animations/useHasScrolled';
+import { EASE_CSS } from '@/components/animations/easing';
 
 export default function Hero({ content }) {
   const shouldReduceMotion = useReducedMotion();
+  const hasScrolled = useHasScrolled();
   const title = content?.title ?? 'Título pendiente de contenido de Yasmina';
   const accent = content?.titleAccent;
   const [titleStart, titleEnd] = accent ? title.split(accent) : [title, ''];
 
   return (
-    <section className="relative isolate flex min-h-dvh items-center overflow-hidden px-6 py-16 md:py-24">
+    <section
+      id="inicio"
+      data-bg-tone="dark"
+      className="relative isolate flex min-h-dvh items-center overflow-hidden px-6 py-16 md:py-24">
       {/* Sin Parallax: un transform ligado al scroll necesita un margen de
           desbordamiento "suficientemente grande" que nunca esta garantizado
           (zoom del navegador, rebote de scroll en iOS...). Anclado con
@@ -53,7 +59,7 @@ export default function Hero({ content }) {
         </FadeIn>
         <FadeIn delay={0.3}>
           <div className="mt-10">
-            <Button href="#productos" variant="inverted">
+            <Button href="#agendas" variant="inverted">
               Ver la propuesta
             </Button>
           </div>
@@ -61,8 +67,16 @@ export default function Hero({ content }) {
       </div>
 
       {/* Indicador de scroll: linea de 40px cuyo trazo recorre el raíl en
-          bucle. Estatico si el usuario pide movimiento reducido. */}
-      <div className="absolute inset-x-0 bottom-10 flex justify-center">
+          bucle. Estatico si el usuario pide movimiento reducido. Se desvanece
+          con el primer scroll y no vuelve: a partir de ahi orienta la
+          navegacion lateral. */}
+      <div
+        aria-hidden="true"
+        className={`absolute inset-x-0 bottom-10 flex justify-center transition-opacity duration-700 motion-reduce:transition-none ${
+          hasScrolled ? 'opacity-0' : 'opacity-100'
+        }`}
+        style={{ transitionTimingFunction: EASE_CSS }}
+      >
         <div className="h-10 w-px overflow-hidden bg-background/25">
           <motion.div
             className="h-full w-full bg-background"

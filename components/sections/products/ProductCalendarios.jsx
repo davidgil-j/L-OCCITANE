@@ -7,9 +7,9 @@ import MaskReveal from '@/components/animations/MaskReveal';
  * 02 — Lo contrario de la 01: simetrica y serena. Nombre pequeno arriba,
  * imagen centrada y contenida, claim grande debajo, y mucho aire alrededor.
  */
-export default function ProductCalendarios({ item, index, imageSrc }) {
+export default function ProductCalendarios({ item, index, imageSrc, id }) {
   return (
-    <section className="bg-background px-6 py-28 md:py-40">
+    <section id={id} data-bg-tone="light" className="bg-background px-6 py-28 md:px-12 md:py-40">
       <article className="mx-auto max-w-3xl text-center">
         <h3 className="font-sans text-[11px] uppercase tracking-[0.14em] text-textMuted">
           {item.name}

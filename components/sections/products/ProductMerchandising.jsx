@@ -9,9 +9,13 @@ import MaskReveal from '@/components/animations/MaskReveal';
  * Cierra sobre el magenta de Vanster, con velo plano dentro del arco para
  * que el titular se lea por encima de la mochila negra.
  */
-export default function ProductMerchandising({ item, index, imageSrc }) {
+export default function ProductMerchandising({ item, index, imageSrc, id }) {
   return (
-    <section className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-vanster px-6 py-24">
+    <section
+      id={id}
+      data-bg-tone="dark"
+      className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-vanster px-6 py-24"
+    >
       <ArchImage
         src={imageSrc}
         alt={item.name}

@@ -12,7 +12,11 @@ import { vanster } from '@/content/vanster';
  */
 export default function CTA({ content }) {
   return (
-    <section className="relative isolate overflow-hidden px-6 py-32 md:py-40">
+    <section
+      id="contacto"
+      data-bg-tone="dark"
+      className="relative isolate overflow-hidden px-6 py-32 md:px-12 md:py-40"
+    >
       <Image
         src="/images/brand/vanster-marmol.jpg"
         alt=""

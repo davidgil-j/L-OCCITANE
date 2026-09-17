@@ -16,6 +16,7 @@ export const loccitane = {
     {
       id: 'agendas',
       name: 'Agendas 2027',
+      navLabel: 'Agendas',
       audience: 'Tiendas y trabajadores',
       description:
         "Una agenda anual pensada para el día a día en tienda o en oficina, con acabados que evocan los tonos cálidos y los materiales naturales de Provenza. Personalizable con el logotipo de L'Occitane.",
@@ -23,6 +24,7 @@ export const loccitane = {
     {
       id: 'calendarios',
       name: 'Calendarios de sobremesa',
+      navLabel: 'Calendarios',
       audience: 'Tiendas y trabajadores',
       // Claim corto de la composicion 02 (borrador, pendiente de validar).
       claim: 'Doce meses de Provenza sobre la mesa',
@@ -32,6 +34,7 @@ export const loccitane = {
     {
       id: 'bidon',
       name: 'Bidón de agua premium',
+      navLabel: 'Bidón',
       audience: 'Trabajadores',
       description:
         'Un bidón térmico de calidad, pensado como detalle diario para el equipo: funcional, duradero, con el logotipo de la marca en un acabado discreto y elegante.',
@@ -39,6 +42,7 @@ export const loccitane = {
     {
       id: 'merchandising',
       name: 'Merchandising para clientes',
+      navLabel: 'Merchandising',
       audience: 'Clientes',
       description:
         'Una selección de artículos de regalo pensados para acompañar la experiencia de compra y fidelizar a los clientes, con el mismo cuidado en los materiales que define a la Maison.',

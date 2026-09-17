@@ -10,7 +10,7 @@ import MaskReveal from '@/components/animations/MaskReveal';
  */
 export default function ProductAgendas({ item, index, imageSrc, id }) {
   return (
-    <section id={id} className="bg-background px-6 py-24 md:px-12 md:py-32">
+    <section id={id} data-bg-tone="light" className="bg-background px-6 py-24 md:px-12 md:py-32">
       <article className="mx-auto max-w-6xl">
         <div className="md:grid md:grid-cols-12 md:items-center">
           <div className="md:col-start-1 md:col-end-8 md:row-start-1">

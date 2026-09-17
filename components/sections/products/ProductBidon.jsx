@@ -8,9 +8,9 @@ import MaskReveal from '@/components/animations/MaskReveal';
  * en lugar de Blanc Brule. Imagen a la derecha, texto a la
  * izquierda alineado abajo.
  */
-export default function ProductBidon({ item, index, imageSrc }) {
+export default function ProductBidon({ item, index, imageSrc, id }) {
   return (
-    <section className="bg-vansterPalido px-6 py-24 md:px-12 md:py-32">
+    <section id={id} data-bg-tone="light" className="bg-vansterPalido px-6 py-24 md:px-12 md:py-32">
       <article className="mx-auto max-w-6xl">
         <div className="md:grid md:grid-cols-12 md:items-end md:gap-12">
           <div className="md:col-start-7 md:col-end-13 md:row-start-1">

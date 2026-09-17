@@ -5,14 +5,24 @@ import Footer from '@/components/sections/Footer';
 import PageBackground from '@/components/animations/PageBackground';
 import FilmGrain from '@/components/animations/FilmGrain';
 import SmoothScroll from '@/components/animations/SmoothScroll';
+import SideScrollIndicator from '@/components/ui/SideScrollIndicator';
 import ArchDefs from '@/components/ArchDefs';
 import { loccitane } from '@/content/loccitane';
+
+// Un punto de la navegacion lateral por cada seccion real de la pagina. Los
+// id tienen que coincidir con los de las secciones.
+const SECTIONS = [
+  { id: 'inicio', label: 'Inicio' },
+  ...loccitane.products.map((product) => ({ id: product.id, label: product.navLabel })),
+  { id: 'contacto', label: 'Contacto' },
+];
 
 export default function Home() {
   return (
     <SmoothScroll>
       <ArchDefs />
       <PageBackground />
+      <SideScrollIndicator sections={SECTIONS} />
       <FilmGrain />
       <main>
         <Hero content={loccitane.hero} />

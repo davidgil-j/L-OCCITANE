@@ -11,9 +11,9 @@ import { useReducedMotion } from 'framer-motion';
  * Motion y el resto de animaciones ligadas al scroll siguen funcionando sin
  * tocar nada.
  *
- * Los anclajes internos (#productos) si hay que reconducirlos: el salto
- * nativo pelea con la interpolacion de Lenis, de modo que se interceptan y
- * se delegan en `lenis.scrollTo`.
+ * Los anclajes internos (boton del hero, navegacion lateral) si hay que
+ * reconducirlos: el salto nativo pelea con la interpolacion de Lenis, de modo
+ * que se interceptan y se delegan en `lenis.scrollTo`.
  */
 export default function SmoothScroll({ children }) {
   const shouldReduceMotion = useReducedMotion();

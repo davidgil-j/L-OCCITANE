@@ -41,7 +41,7 @@ export default function ProductShowcase({ items = [] }) {
             item={item}
             index={i}
             imageSrc={resolveImageSrc(item.id)}
-            id={i === 0 ? 'productos' : undefined}
+            id={item.id}
           />
         );
       })}
