@@ -13,7 +13,7 @@ export default function ProductBidon({ item, index, imageSrc }) {
     <section className="bg-surface px-6 py-24 md:px-12 md:py-32">
       <article className="mx-auto max-w-6xl">
         <div className="md:grid md:grid-cols-12 md:items-end md:gap-12">
-          <FadeIn className="md:col-start-7 md:col-end-13 md:row-start-1">
+          <div className="md:col-start-7 md:col-end-13 md:row-start-1">
             <ArchImage
               src={imageSrc}
               alt={item.name}
@@ -21,7 +21,7 @@ export default function ProductBidon({ item, index, imageSrc }) {
               fit="cover"
               className="aspect-[4/5] w-full"
             />
-          </FadeIn>
+          </div>
 
           <div className="mt-10 md:col-start-1 md:col-end-6 md:row-start-1 md:mt-0 md:self-end md:pb-4">
             <MaskReveal

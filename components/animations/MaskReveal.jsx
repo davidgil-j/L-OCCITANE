@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { EASE } from '@/components/animations/easing';
 
 export default function MaskReveal({ children, as: Tag = 'div', className = '', delay = 0 }) {
   return (
@@ -10,7 +11,7 @@ export default function MaskReveal({ children, as: Tag = 'div', className = '', 
         initial={{ y: '100%' }}
         whileInView={{ y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.8, delay, ease: EASE }}
       >
         {children}
       </motion.span>

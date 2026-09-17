@@ -15,15 +15,13 @@ export default function ProductCalendarios({ item, index, imageSrc }) {
           {item.name}
         </h3>
 
-        <FadeIn>
-          <ArchImage
-            src={imageSrc}
-            alt={item.name}
-            sizes="(min-width: 768px) 352px, 70vw"
-            fit="cover"
-            className="mx-auto mt-14 aspect-[3/4] w-[min(70vw,22rem)]"
-          />
-        </FadeIn>
+        <ArchImage
+          src={imageSrc}
+          alt={item.name}
+          sizes="(min-width: 768px) 352px, 70vw"
+          fit="cover"
+          className="mx-auto mt-14 aspect-[3/4] w-[min(70vw,22rem)]"
+        />
 
         <MaskReveal
           as="p"

@@ -13,7 +13,7 @@ export default function ProductAgendas({ item, index, imageSrc, id }) {
     <section id={id} className="bg-background px-6 py-24 md:px-12 md:py-32">
       <article className="mx-auto max-w-6xl">
         <div className="md:grid md:grid-cols-12 md:items-center">
-          <FadeIn className="md:col-start-1 md:col-end-8 md:row-start-1">
+          <div className="md:col-start-1 md:col-end-8 md:row-start-1">
             <ArchImage
               src={imageSrc}
               alt={item.name}
@@ -21,7 +21,7 @@ export default function ProductAgendas({ item, index, imageSrc, id }) {
               fit="cover"
               className="aspect-[4/5] w-full"
             />
-          </FadeIn>
+          </div>
           <MaskReveal
             as="h3"
             className="relative z-10 mt-8 font-serif text-[clamp(2.6rem,6vw,6rem)] uppercase leading-[0.9] tracking-tight text-text md:col-start-7 md:col-end-13 md:row-start-1 md:mt-0 md:self-end md:pb-16"
