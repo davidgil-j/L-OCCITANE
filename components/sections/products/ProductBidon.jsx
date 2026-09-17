@@ -5,12 +5,12 @@ import MaskReveal from '@/components/animations/MaskReveal';
 
 /**
  * 03 — Corta el ritmo a mitad del recorrido: unica ficha sobre Beige
- * Travertin en lugar de Blanc Brule. Imagen a la derecha, texto a la
+ * en lugar de Blanc Brule. Imagen a la derecha, texto a la
  * izquierda alineado abajo.
  */
 export default function ProductBidon({ item, index, imageSrc }) {
   return (
-    <section className="bg-surface px-6 py-24 md:px-12 md:py-32">
+    <section className="bg-vansterPalido px-6 py-24 md:px-12 md:py-32">
       <article className="mx-auto max-w-6xl">
         <div className="md:grid md:grid-cols-12 md:items-end md:gap-12">
           <div className="md:col-start-7 md:col-end-13 md:row-start-1">

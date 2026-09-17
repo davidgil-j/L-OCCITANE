@@ -6,12 +6,12 @@ import MaskReveal from '@/components/animations/MaskReveal';
  * 04 — Cierre a pantalla completa. La seccion es la que va a sangre; la
  * foto NO se estira a todo el ancho porque el original mide 440x484 px y
  * escalarlo x3 lo dejaria borroso (ver nota en la conversacion de fase 2).
- * Velo plano de Noir des Terres sobre el conjunto para que el titular en
- * Blanc Brule se lea por encima de la mochila negra.
+ * Cierra sobre el magenta de Vanster, con velo plano dentro del arco para
+ * que el titular se lea por encima de la mochila negra.
  */
 export default function ProductMerchandising({ item, index, imageSrc }) {
   return (
-    <section className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-brand px-6 py-24">
+    <section className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-vanster px-6 py-24">
       <ArchImage
         src={imageSrc}
         alt={item.name}
@@ -19,9 +19,10 @@ export default function ProductMerchandising({ item, index, imageSrc }) {
         fit="cover"
         className="aspect-[4/5] w-[min(90vw,40rem)]"
       >
-        {/* Velo plano dentro del arco: rebaja la foto para que el titular
-            en Blanc Brule se lea, y deja el arco recortado contra el
-            Noir des Terres de la seccion. */}
+        {/* Velo neutro, no magenta: el magenta es el armazon de la seccion,
+            pero dentro del arco tenirlo volvia granate una mochila negra. En
+            neutro el producto conserva su color y el arco sigue recortando
+            contra el magenta del fondo. */}
         <div className="absolute inset-0 bg-brand/45" />
       </ArchImage>
 

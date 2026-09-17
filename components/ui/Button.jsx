@@ -6,7 +6,7 @@ export default function Button({ href = '#', children, variant = 'primary' }) {
   const base =
     'inline-block px-8 py-4 text-sm uppercase tracking-wide transition duration-300 hover:-translate-y-0.5 hover:opacity-90 motion-reduce:transform-none motion-reduce:transition-none';
   const variants = {
-    primary: 'bg-brand text-background',
+    primary: 'bg-vanster text-white',
     ghost: 'border border-brand text-brand',
     // Para usar sobre fondos oscuros/foto -- boton solido claro, texto oscuro.
     inverted: 'bg-background text-brand',

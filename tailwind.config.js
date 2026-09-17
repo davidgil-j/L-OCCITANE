@@ -21,6 +21,7 @@ module.exports = {
         // oficial de aplicaciones (design/guias-marca/VÄNSTER_aplicacions.pdf).
         vanster: '#C40452',        // magenta de marca (logo, fondos, avatares)
         vansterAmarillo: '#FDBA12', // amarillo del claim de Vanster
+        vansterPalido: '#F8EAEC',  // magenta al 6% sobre Blanc Brule: superficie clara con caracter Vanster
         accent: '#FFC700',       // Soleil Jaune Iconique -- USO MUY RESTRINGIDO:
                                   // solo toques pequenos, o elementos que deban ir
                                   // enteramente en amarillo (cajas/bolsas/regalo).

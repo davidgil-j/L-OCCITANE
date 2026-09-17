@@ -1,20 +1,44 @@
+import Image from 'next/image';
 import FadeIn from '@/components/animations/FadeIn';
 import MaskReveal from '@/components/animations/MaskReveal';
 import Button from '@/components/ui/Button';
 
+/**
+ * Cierre a sangre sobre el marmol de Vanster. Es el momento en que habla la
+ * agencia y no el producto, asi que es donde la identidad de Vanster se ve
+ * entera. El claim va en amarillo de marca, que es como Vanster lo usa en sus
+ * propios soportes: sobre fondo saturado, nunca sobre claro.
+ */
 export default function CTA({ content }) {
   return (
-    <section className="px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-xl text-center">
+    <section className="relative isolate overflow-hidden px-6 py-32 md:py-40">
+      <Image
+        src="/images/brand/vanster-marmol.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+      {/* Velo plano de magenta: el marmol tiene mucho contraste y el titular
+          tiene que leerse sin recurrir a sombras. */}
+      <div className="absolute inset-0 bg-vanster/55" />
+
+      <div className="relative mx-auto max-w-2xl text-center">
+        <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-vansterAmarillo">
+          Your online &amp; offline creative partner
+        </p>
         <MaskReveal
           as="h2"
-          className="font-serif text-3xl uppercase tracking-tight text-text md:text-4xl"
+          className="mt-8 font-serif text-[clamp(2rem,4.4vw,3.75rem)] uppercase leading-[0.95] tracking-tight text-white"
         >
           {content?.title}
         </MaskReveal>
         <FadeIn delay={0.15}>
-          <div className="mt-10">
-            <Button href={content?.href ?? '#'}>{content?.buttonLabel}</Button>
+          <div className="mt-12">
+            <Button href={content?.href ?? '#'} variant="inverted">
+              {content?.buttonLabel}
+            </Button>
           </div>
         </FadeIn>
       </div>

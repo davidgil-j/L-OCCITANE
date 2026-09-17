@@ -3,11 +3,15 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 /**
- * "365 dias de Provenza": capa fija a pantalla completa que tine el
- * fondo muy sutilmente (5-8% opacidad) a medida que se recorre la
- * pagina, recorriendo el dia en Haute-Provence con los colores
- * complementarios oficiales de la marca. Puramente atmosferico
+ * Capa fija a pantalla completa que tine el fondo muy sutilmente (5-7% de
+ * opacidad) a medida que se recorre la pagina. Puramente atmosferico
  * (pointer-events-none), no altera el contraste del contenido.
+ *
+ * Antes recorria el dia en Haute-Provence con los complementarios de
+ * L'Occitane. Al pasar el armazon de la pagina a la identidad de Vanster ese
+ * recorrido dejaba de tener sentido, asi que ahora deriva por los tonos del
+ * marmol de Vanster: entra en magenta y va calentando hacia el naranja segun
+ * se acerca al cierre, donde el marmol aparece ya a sangre.
  */
 // Los tramos siguen el ritmo real de las secciones, medido sobre la pagina:
 // hero 0-0.18 | 01 0.18-0.44 | 02 0.44-0.68 | 03 0.68-0.88 | 04 y CTA 0.88-1.
@@ -16,14 +20,14 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 // Si cambia el numero de secciones o su altura, hay que recalcularlos.
 const SCROLL_STOPS = [0, 0.18, 0.24, 0.62, 0.7, 0.8, 0.88, 1];
 const TINTS = [
-  'rgba(91,56,69,0)', // manana -- Hero: Blanc Brule puro, sin tinte
-  'rgba(91,56,69,0)',
-  'rgba(91,56,69,0.06)', // mediodia -- Lavande Valensolaire (productos 01-02)
-  'rgba(91,56,69,0.06)',
-  'rgba(162,164,104,0.06)', // tarde -- Verveine au Soir (producto 03)
-  'rgba(162,164,104,0.06)',
-  'rgba(63,68,82,0.07)', // noche -- Nuit Haute-Provencale (producto 04 + CTA)
-  'rgba(63,68,82,0.07)',
+  'rgba(196,4,82,0)', // Hero: sin tinte, el velo magenta ya vive en la propia seccion
+  'rgba(196,4,82,0)',
+  'rgba(196,4,82,0.05)', // productos 01-02: magenta de Vanster, apenas insinuado
+  'rgba(196,4,82,0.05)',
+  'rgba(207,84,50,0.06)', // producto 03: empieza a calentar hacia el naranja del marmol
+  'rgba(207,84,50,0.06)',
+  'rgba(214,88,48,0.07)', // producto 04 y CTA: naranja pleno antes del marmol a sangre
+  'rgba(214,88,48,0.07)',
 ];
 
 export default function PageBackground() {
