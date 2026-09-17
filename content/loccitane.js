@@ -24,6 +24,8 @@ export const loccitane = {
       id: 'calendarios',
       name: 'Calendarios de sobremesa',
       audience: 'Tiendas y trabajadores',
+      // Claim corto de la composicion 02 (borrador, pendiente de validar).
+      claim: 'Doce meses de Provenza sobre la mesa',
       description:
         'Un calendario de mesa o pared para acompañar el espacio de trabajo durante todo el año, con un diseño sobrio que refleja la identidad de la Maison.',
     },
