@@ -5,3 +5,28 @@
 body {
   @apply bg-background font-body text-text;
 }
+
+/* Seleccion de texto en Beige Travertin sobre Noir des Terres. */
+::selection {
+  background-color: #f2e9db;
+  color: #3f2b2e;
+}
+
+/* Barra de scroll fina, Noir des Terres sobre Blanc Brule. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #3f2b2e #fbf9f6;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fbf9f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3f2b2e;
+}
