@@ -17,6 +17,10 @@ module.exports = {
         brand: '#3F2B2E',        // Noir des Terres
         text: '#3F2B2E',         // Noir des Terres
         textMuted: '#A58671',    // Pierre de Fontaine (complementario oficial)
+        // Vanster -- la agencia que firma la propuesta. Valores tomados del PDF
+        // oficial de aplicaciones (design/guias-marca/VÄNSTER_aplicacions.pdf).
+        vanster: '#C40452',        // magenta de marca (logo, fondos, avatares)
+        vansterAmarillo: '#FDBA12', // amarillo del claim de Vanster
         accent: '#FFC700',       // Soleil Jaune Iconique -- USO MUY RESTRINGIDO:
                                   // solo toques pequenos, o elementos que deban ir
                                   // enteramente en amarillo (cajas/bolsas/regalo).
