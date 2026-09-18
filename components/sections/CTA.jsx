@@ -36,11 +36,11 @@ export default function CTA({ content }) {
       {/* Contenedor propio, mas ancho que el del titular, para que el contacto
           quepa en una sola linea en escritorio. */}
       <div className="mx-auto max-w-4xl">
-        <address className="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-2 font-sans text-xs not-italic tracking-[0.02em] text-background/85 md:text-sm">
-          <a href={`mailto:${vanster.email}`} className="transition-opacity duration-300 hover:opacity-70">
+        <address className="mt-10 flex flex-col items-center font-sans text-sm not-italic tracking-[0.02em] text-background/85 md:mt-12 md:flex-row md:flex-wrap md:justify-center md:gap-x-6">
+          <a href={`mailto:${vanster.email}`} className="inline-flex min-h-11 items-center transition-opacity duration-300 hover:opacity-70">
             {vanster.email}
           </a>
-          <a href={vanster.phoneHref} className="transition-opacity duration-300 hover:opacity-70">
+          <a href={vanster.phoneHref} className="inline-flex min-h-11 items-center transition-opacity duration-300 hover:opacity-70">
             T {vanster.phone}
           </a>
           <a
@@ -48,7 +48,7 @@ export default function CTA({ content }) {
             target="_blank"
             rel="noreferrer"
             aria-label={`${vanster.address.join(', ')} (abrir en Google Maps)`}
-            className="underline decoration-background/40 underline-offset-4 transition-opacity duration-300 hover:opacity-70"
+            className="inline-flex min-h-11 items-center underline decoration-background/40 underline-offset-4 transition-opacity duration-300 hover:opacity-70"
           >
             {vanster.address.join(', ')}
           </a>
@@ -56,7 +56,7 @@ export default function CTA({ content }) {
             href={vanster.webHref}
             target="_blank"
             rel="noreferrer"
-            className="transition-opacity duration-300 hover:opacity-70"
+            className="inline-flex min-h-11 items-center transition-opacity duration-300 hover:opacity-70"
           >
             {vanster.web}
           </a>

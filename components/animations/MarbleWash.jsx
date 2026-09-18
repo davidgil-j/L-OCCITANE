@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import useMediaQuery, { DESKTOP_POINTER } from '@/components/animations/useMediaQuery';
 
 const PARALLAX = 90; // px de desfase maximo respecto al contenido
 const OVERSCAN = PARALLAX + 30; // siempre mayor que el desfase: nunca deja borde
@@ -21,7 +22,14 @@ const OVERSCAN = PARALLAX + 30; // siempre mayor que el desfase: nunca deja bord
  * propio marmol, no un degradado). Solo transforms. Ambos movimientos se
  * enganchan despues de montar y se quedan quietos con movimiento reducido.
  */
-export default function MarbleWash({ side = 'right', index = 0 }) {
+export default function MarbleWash(props) {
+  // Sin raton ni se monta: oculta con CSS, su deriva en bucle seguia
+  // calculandose en cada fotograma.
+  const hasMouse = useMediaQuery(DESKTOP_POINTER);
+  return hasMouse ? <MarbleWashInner {...props} /> : null;
+}
+
+function MarbleWashInner({ side = 'right', index = 0 }) {
   const ref = useRef(null);
   const shouldReduceMotion = useReducedMotion();
   const [on, setOn] = useState(false);

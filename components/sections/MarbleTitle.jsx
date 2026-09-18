@@ -9,13 +9,27 @@ const FONT_SIZE = 100; // unidades del sistema de coordenadas del SVG
 const LINE_HEIGHT = 0.95;
 const PAD = 6; // margen alrededor del texto medido, para no cortar la cursiva
 
-/** Parte el titular en dos lineas: la primera termina en el acento en cursiva. */
-function toLines(title, accent) {
-  if (!accent || !title.includes(accent)) return [[{ text: title.toLocaleUpperCase('es') }]];
+const up = (t) => t.toLocaleUpperCase('es');
+
+/**
+ * Reparte el titular en lineas alrededor del acento en cursiva. En escritorio,
+ * dos lineas anchas. En movil, tres cortas: la mas larga es mucho mas estrecha,
+ * asi que al ocupar todo el ancho la letra sale bastante mas grande.
+ */
+function toLines(title, accent, narrow) {
+  if (!accent || !title.includes(accent)) return [[{ text: up(title) }]];
   const [before, after] = title.split(accent);
+  if (!narrow) {
+    return [
+      [{ text: up(before) }, { text: accent, accent: true }],
+      [{ text: up(after.trim()) }],
+    ];
+  }
+  const [next, ...rest] = after.trim().split(' ');
   return [
-    [{ text: before.toLocaleUpperCase('es') }, { text: accent, accent: true }],
-    [{ text: after.trim().toLocaleUpperCase('es') }],
+    [{ text: up(before.trim()) }],
+    [{ text: accent, accent: true }, { text: ` ${up(next)}` }],
+    [{ text: up(rest.join(' ')) }],
   ];
 }
 
@@ -77,7 +91,7 @@ export default function MarbleTitle({ title, accent }) {
   const [box, setBox] = useState(null);
   const [supported, setSupported] = useState(true);
   const [isDesktop, setIsDesktop] = useState(false);
-  const lines = toLines(title, accent);
+  const lines = toLines(title, accent, !isDesktop);
 
   useEffect(() => {
     setSupported(CSS.supports('clip-path', 'url(#a)') || CSS.supports('-webkit-clip-path', 'url(#a)'));
@@ -104,7 +118,7 @@ export default function MarbleTitle({ title, accent }) {
     return () => {
       cancelled = true;
     };
-  }, [title, accent]);
+  }, [title, accent, isDesktop]);
 
   useEffect(() => {
     const el = boxRef.current;
@@ -152,7 +166,8 @@ export default function MarbleTitle({ title, accent }) {
               ref={boxRef}
               className="relative mx-auto block max-w-full"
               style={{
-                '--title-size': 'clamp(2.25rem, 5.6vw, 4.5rem)',
+                // En movil se pide de mas y max-w-full lo ajusta al ancho exacto.
+                '--title-size': isDesktop ? 'clamp(2.25rem, 5.6vw, 4.5rem)' : 'clamp(2.25rem, 16vw, 5rem)',
                 width: box ? `calc(${box.w / FONT_SIZE} * var(--title-size))` : '1px',
                 aspectRatio: box ? `${box.w} / ${box.h}` : '1 / 1',
                 clipPath: ready ? `url(#${clipId})` : 'inset(50%)',

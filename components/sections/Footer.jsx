@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
         <div className="flex items-center gap-6">
           <p className="font-sans text-xs tracking-[0.02em] text-background/85">© 2010-{year} Vänster</p>
-          <ul className="flex items-center gap-4">
+          <ul className="-mr-3 flex items-center">
             {vanster.social.map((s) => (
               <li key={s.name}>
                 <a
@@ -62,7 +62,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Vänster en ${s.name}`}
-                  className="block text-background transition-opacity duration-300 hover:opacity-70"
+                  className="grid h-11 w-11 place-items-center text-background transition-opacity duration-300 hover:opacity-70"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]">
                     <path d={ICONS.find((i) => i.name === s.name).path} />

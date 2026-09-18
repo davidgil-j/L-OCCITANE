@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { cancelFrame, frame, useReducedMotion } from 'framer-motion';
+import useMediaQuery, { DESKTOP_POINTER } from '@/components/animations/useMediaQuery';
 
 /**
  * Scroll con inercia (Lenis). Envuelve la pagina entera.
@@ -17,13 +18,18 @@ import { cancelFrame, frame, useReducedMotion } from 'framer-motion';
  * de Framer siguen funcionando sin tocar nada. Los anclajes internos si hay
  * que reconducirlos: el salto nativo pelea con la interpolacion de Lenis, de
  * modo que se interceptan y se delegan en lenis.scrollTo.
+ *
+ * Solo se monta con raton. En pantallas tactiles el scroll nativo (con la
+ * inercia de iOS y Android) es mejor que cualquier imitacion, y Lenis en
+ * Safari de iPhone llegaba a bloquear el desplazamiento.
  */
 export default function SmoothScroll({ children }) {
   const shouldReduceMotion = useReducedMotion();
+  const hasMouse = useMediaQuery(DESKTOP_POINTER);
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    if (shouldReduceMotion) return;
+    if (shouldReduceMotion || !hasMouse) return;
 
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true, autoRaf: false });
     lenisRef.current = lenis;
@@ -48,7 +54,7 @@ export default function SmoothScroll({ children }) {
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, [shouldReduceMotion]);
+  }, [shouldReduceMotion, hasMouse]);
 
   return children;
 }

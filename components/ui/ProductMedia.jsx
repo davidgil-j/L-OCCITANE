@@ -14,20 +14,15 @@ const place = ({ left, top, width, height }) => ({
 });
 
 /**
- * Foto o video de producto con su marco ilustrado.
- *
- * El contenedor toma la proporcion del marco (o de la pieza, si el adorno es
- * suelto). La pieza ocupa la ventana `media.window` y los dibujos van encima:
- * un marco completo (calendario, bidon) o un adorno suelto que se apoya en un
- * borde (el ramillete de la agenda, la ramita de la mochila). Todo en %, asi
- * que escala con la ficha sin recolocar nada.
+ * Foto o video de producto, a sangre en su caja (`media.box`, la proporcion
+ * del archivo, para no recortar el producto).
  *
  * Sobre las fotos puede ir el logotipo de L'Occitane (`media.logo`) en el
  * hueco del producto, en modo multiplicar y algo transparente para que se lea
  * impreso en el material y no pegado encima.
  *
  * La pieza entra con una mascara que sube (solo transforms: la capa exterior
- * sube y la interior baja lo mismo) y el dibujo aparece despues con un fundido.
+ * sube y la interior baja lo mismo).
  * El video no descarga nada hasta llegar a el, se para al salir de pantalla y
  * con movimiento reducido se queda en su fotograma fijo.
  */
@@ -108,22 +103,9 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
           </motion.div>
         </div>
 
-        {media.ornaments?.map((o) => (
-          <motion.span
-            key={o.src}
-            aria-hidden="true"
-            className="pointer-events-none absolute block"
-            style={place(o)}
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : undefined}
-            transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
-          >
-            <Image src={o.src} alt="" fill sizes={o.sizes ?? '40vw'} className="object-contain" />
-          </motion.span>
-        ))}
       </div>
       {credit && (
-        <figcaption className="mt-3 text-right font-sans text-[10px] uppercase tracking-[0.14em] text-textMuted">
+        <figcaption className="mt-3 text-right font-sans text-[11px] uppercase tracking-[0.14em] text-textMuted">
           Vänster para L&apos;Occitane · 2027
         </figcaption>
       )}

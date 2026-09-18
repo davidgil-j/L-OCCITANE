@@ -12,7 +12,7 @@ export default function Hero({ content }) {
   const hasScrolled = useHasScrolled();
 
   return (
-    <section id="inicio" data-bg-tone="dark" className="relative isolate min-h-dvh overflow-hidden px-6">
+    <section id="inicio" data-bg-tone="dark" className="relative isolate min-h-svh overflow-hidden px-6">
       <Image
         src="/images/imagen_estatica_lavanda.png"
         alt="Campo de lavanda al atardecer en Haute-Provence"

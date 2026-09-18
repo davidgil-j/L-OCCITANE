@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import useHasScrolled from '@/components/animations/useHasScrolled';
+import useMediaQuery, { DESKTOP_POINTER } from '@/components/animations/useMediaQuery';
 
 // Silueta de la espiga (recortada de foto_png_lavandaespiga_scroll.png).
 const MASK = 'url(/images/espiga-scroll.png)';
@@ -25,6 +26,12 @@ const MASK = 'url(/images/espiga-scroll.png)';
  * el relleno sigue al scroll sin suavizado, porque Lenis no se monta.
  */
 export default function LavenderScroll() {
+  // Sin raton ni se monta: oculta con CSS seguia recalculandose en cada scroll.
+  const hasMouse = useMediaQuery(DESKTOP_POINTER);
+  return hasMouse ? <LavenderScrollInner /> : null;
+}
+
+function LavenderScrollInner() {
   const { scrollYProgress } = useScroll();
   const hasScrolled = useHasScrolled();
   const [bgTone, setBgTone] = useState('dark');
