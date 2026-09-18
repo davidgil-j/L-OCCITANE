@@ -1,62 +1,73 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
-import ClientLogo from '@/components/ui/ClientLogo';
-import FadeIn from '@/components/animations/FadeIn';
-import MaskReveal from '@/components/animations/MaskReveal';
-import HeroMedia from '@/components/sections/HeroMedia';
+import MarbleTitle from '@/components/sections/MarbleTitle';
 import useHasScrolled from '@/components/animations/useHasScrolled';
 import { EASE, EASE_CSS } from '@/components/animations/easing';
+
+/**
+ * Rotulo "L'OCCITANE ✕ VÄNSTER" compuesto en tipografia, no con los PNG de
+ * los logotipos. La equis es un trazo SVG y no el glifo ✕: Gambarino no lo
+ * tiene y el de la fuente de sustitucion no se deja centrar con precision.
+ * El tracking de 0.3em se anade tambien tras la ultima letra de cada palabra;
+ * el pl compensa el de "VÄNSTER" para que el conjunto quede centrado, y el
+ * margen izquierdo de la equis resta el de "L'OCCITANE" para que respire
+ * igual por los dos lados. Margenes y desplazamiento medidos al pixel: 8 px
+ * de hueco a cada lado y la equis centrada en la altura de las mayusculas.
+ */
+function Lockup() {
+  return (
+    <p className="pl-[0.3em] font-serif text-base uppercase leading-none tracking-[0.3em] text-background">
+      L&apos;Occitane
+      <span className="sr-only"> y </span>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 10 10"
+        className="relative -top-[0.105em] ml-[0.24em] mr-[0.56em] inline-block h-[0.3em] w-[0.3em] align-middle"
+      >
+        <path d="M1 1 9 9M9 1 1 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
+      </svg>
+      Vänster
+    </p>
+  );
+}
 
 export default function Hero({ content }) {
   const shouldReduceMotion = useReducedMotion();
   const hasScrolled = useHasScrolled();
-  const title = content?.title ?? 'Título pendiente de contenido de Yasmina';
-  const accent = content?.titleAccent;
-  const [titleStart, titleEnd] = accent ? title.split(accent) : [title, ''];
 
   return (
-    <section
-      id="inicio"
-      data-bg-tone="dark"
-      className="relative isolate flex min-h-dvh items-center overflow-hidden px-6 pb-28 pt-16 md:pb-32 md:pt-24"
-    >
-      {/* Sin Parallax: un transform ligado al scroll necesita un margen de
-          desbordamiento "suficientemente grande" que nunca esta garantizado
-          (zoom del navegador, rebote de scroll en iOS...). Anclado con
-          inset-0 es geometricamente imposible que deje un hueco. */}
-      <HeroMedia />
-      {/* Velo neutro y plano, solo para que el titular se lea sobre el
-          marmol. Nada de magenta aqui: la firma de Vanster ya esta en el
-          cielo del video, y un velo magenta tenia tambien la lavanda.
-          Las opacidades van de cinco en cinco: la escala de Tailwind no
-          genera CSS para valores intermedios y la capa quedaria invisible. */}
-      <div className="absolute inset-0 bg-brand/40" />
+    <section id="inicio" data-bg-tone="dark" className="relative isolate min-h-dvh overflow-hidden px-6">
+      <Image
+        src="/images/imagen_estatica_lavanda.png"
+        alt="Campo de lavanda al atardecer en Haute-Provence"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-[28%_center] md:object-center"
+      />
+      {/* Vineteado en un solo color, Noir des Terres, que solo oscurece los
+          bordes: no es un degradado entre colores. Algo mas arriba, donde el
+          cielo es claro, para que el rotulo pequeno se lea. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background: [
+            'linear-gradient(to bottom, rgb(63 43 46 / 0.6), rgb(63 43 46 / 0) 18%)',
+            'radial-gradient(ellipse 80% 75% at 50% 45%, rgb(63 43 46 / 0) 55%, rgb(63 43 46 / 0.45) 100%)',
+          ].join(', '),
+        }}
+      />
 
-      <div className="relative mx-auto max-w-5xl text-center">
-        <FadeIn>
-          <ClientLogo invert className="mb-8" />
-        </FadeIn>
-        <MaskReveal
-          as="h1"
-          delay={0.1}
-          className="text-balance font-serif text-[clamp(2.25rem,4.4vw,4rem)] uppercase leading-[0.95] tracking-tight text-background"
-        >
-          {titleStart}
-          {accent && <em className="whitespace-nowrap font-body normal-case italic">{accent}</em>}
-          {titleEnd}
-        </MaskReveal>
-        <motion.span
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.7, delay: 0.6, ease: EASE }}
-          className="mx-auto mt-7 block h-px w-14 origin-center bg-background"
-        />
-        <FadeIn delay={0.2}>
-          <p className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-background/85 md:text-lg">
-            {content?.subtitle ?? 'Subtítulo pendiente de contenido'}
-          </p>
-        </FadeIn>
+      <div className="absolute inset-x-6 top-8 flex justify-center md:top-10">
+        <Lockup />
+      </div>
+
+      {/* El titular va sobre el cielo, que ocupa la mitad superior de la foto. */}
+      <div className="absolute inset-x-6 top-[26%] -translate-y-1/2">
+        <MarbleTitle title={content?.title ?? ''} accent={content?.titleAccent} />
       </div>
 
       {/* Marca de scroll: etiqueta y capsula con un punto que baja en bucle,
