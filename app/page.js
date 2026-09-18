@@ -4,6 +4,7 @@ import CTA from '@/components/sections/CTA';
 import Footer from '@/components/sections/Footer';
 import FilmGrain from '@/components/animations/FilmGrain';
 import SmoothScroll from '@/components/animations/SmoothScroll';
+import Loader from '@/components/animations/Loader';
 import SideScrollIndicator from '@/components/ui/SideScrollIndicator';
 import MarbleSurface from '@/components/ui/MarbleSurface';
 import ArchDefs from '@/components/ArchDefs';
@@ -20,6 +21,7 @@ const SECTIONS = [
 export default function Home() {
   return (
     <SmoothScroll>
+      <Loader />
       <ArchDefs />
       <SideScrollIndicator sections={SECTIONS} />
       <FilmGrain />
