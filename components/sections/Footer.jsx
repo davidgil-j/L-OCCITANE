@@ -33,14 +33,14 @@ export default function Footer() {
 
   return (
     <footer data-bg-tone="light" className="bg-background px-6 md:px-12">
-      <div className="flex flex-col items-center justify-center gap-7 py-14 sm:flex-row sm:gap-10 md:py-16">
+      <div className="flex items-center justify-center gap-5 py-12 sm:gap-10 md:py-16">
         <Image
           src="/images/brand/loccitane-logo-black.png"
           alt="L'Occitane en Provence"
           width={2048}
           height={512}
           unoptimized
-          className="h-auto w-[176px] md:w-[208px]"
+          className="h-auto w-[150px] sm:w-[176px] md:w-[208px]"
         />
         <svg aria-hidden="true" viewBox="0 0 10 10" className="h-[7px] w-[7px] text-brand/60">
           <path d="M1 1 9 9M9 1 1 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none" />
@@ -51,7 +51,7 @@ export default function Footer() {
           width={800}
           height={170}
           unoptimized
-          className="h-auto w-[100px] md:w-[118px]"
+          className="h-auto w-[86px] sm:w-[100px] md:w-[118px]"
         />
       </div>
       <div className="flex items-center justify-between gap-6 border-t border-brand/15 py-6">

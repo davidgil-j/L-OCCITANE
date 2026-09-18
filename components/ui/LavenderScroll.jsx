@@ -17,6 +17,9 @@ const MASK = 'url(/images/espiga-scroll.png)';
  * Brule sobre oscuro): son dos capas que se cruzan con opacidad, asi todo lo
  * que se anima es transform u opacity.
  *
+ * Por debajo de 1440 px va mas pequena y pegada al borde: el texto de las
+ * fichas llega ahi a 48 px del borde y la espiga grande lo pisaba.
+ *
  * Aparece con el primer scroll, se oculta en movil y es decorativa (el
  * progreso no aporta nada a un lector de pantalla). Con movimiento reducido
  * el relleno sigue al scroll sin suavizado, porque Lenis no se monta.
@@ -54,7 +57,7 @@ export default function LavenderScroll() {
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none fixed right-6 top-1/2 z-50 hidden h-[200px] w-[36px] -translate-y-1/2 transition-opacity duration-700 motion-reduce:transition-none md:block xl:right-10 ${
+      className={`pointer-events-none fixed right-3 top-1/2 z-50 hidden h-[160px] w-[28px] -translate-y-1/2 transition-opacity duration-700 motion-reduce:transition-none md:block min-[1440px]:right-10 min-[1440px]:h-[200px] min-[1440px]:w-[36px] ${
         hasScrolled ? 'opacity-100' : 'opacity-0'
       }`}
       style={mask}
