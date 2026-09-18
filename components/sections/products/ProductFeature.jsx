@@ -1,6 +1,7 @@
 import ProductMedia from '@/components/ui/ProductMedia';
 import FadeIn from '@/components/animations/FadeIn';
 import MaskReveal from '@/components/animations/MaskReveal';
+import DrawLine from '@/components/animations/DrawLine';
 
 /**
  * Ficha de producto a dos columnas: pieza a un lado y texto al otro, y las
@@ -8,6 +9,10 @@ import MaskReveal from '@/components/animations/MaskReveal';
  * videos son apaisados y las fotos verticales, asi que la pieza apaisada toma
  * mas columnas que la vertical y ninguna se recorta. En movil se apila, con
  * la pieza primero.
+ *
+ * Toque Vanster sobre el fondo claro, sin tocar las fotos: un filete magenta
+ * que se dibuja al llegar a cada ficha y el numero de la ficha enorme, en
+ * magenta al 5%, como marca de agua en el lado del texto.
  */
 export default function ProductFeature({ item, index, media, id, reverse = false, credit = false }) {
   const number = String(index + 1).padStart(2, '0');
@@ -22,7 +27,16 @@ export default function ProductFeature({ item, index, media, id, reverse = false
     : `md:col-span-6 ${reverse ? 'md:col-start-1 md:row-start-1' : 'md:col-start-7'}`;
 
   return (
-    <section id={id} data-bg-tone="light" className="bg-background px-6 py-10 md:px-12 md:py-14">
+    <section id={id} data-bg-tone="light" className="relative isolate overflow-hidden bg-background px-6 py-10 md:px-12 md:py-14">
+      <DrawLine className="mx-auto mb-10 max-w-6xl text-vanster/60 md:mb-14" />
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute -bottom-[0.18em] -z-10 select-none font-serif text-[clamp(11rem,26vw,24rem)] leading-none tracking-tight text-vanster/5 ${
+          reverse ? 'left-6 md:left-[max(3rem,calc((100%-72rem)/2))]' : 'right-6 md:right-[max(3rem,calc((100%-72rem)/2))]'
+        }`}
+      >
+        {number}
+      </span>
       <article className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
         <div className={mediaPlace}>
           <ProductMedia

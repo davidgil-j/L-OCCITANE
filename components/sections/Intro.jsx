@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import RevealLines from '@/components/animations/RevealLines';
 
 /**
@@ -8,11 +9,26 @@ import RevealLines from '@/components/animations/RevealLines';
  */
 export default function Intro({ text }) {
   return (
-    <section id="intro" data-bg-tone="light" className="bg-background px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-32">
-      <div className="mx-auto max-w-6xl">
-        <RevealLines
-          text={text}
-          className="max-w-[42ch] text-pretty font-body text-[clamp(1.375rem,1.8vw,1.5rem)] leading-[1.4] text-text"
+    <section
+      id="intro"
+      data-bg-tone="light"
+      className="bg-background px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-32"
+    >
+      <div className="mx-auto flex max-w-6xl items-end justify-between gap-8">
+        <div className="min-w-0 flex-1">
+          <RevealLines
+            text={text}
+            className="max-w-[42ch] text-pretty font-body text-[clamp(1.375rem,1.8vw,1.5rem)] leading-[1.4] text-text"
+          />
+        </div>
+        {/* Ramita de lavanda como firma de la intro; decorativa. */}
+        <Image
+          src="/images/ramita-lavanda.png"
+          alt=""
+          aria-hidden="true"
+          width={130}
+          height={300}
+          className="hidden h-auto w-[56px] shrink-0 md:block"
         />
       </div>
     </section>
