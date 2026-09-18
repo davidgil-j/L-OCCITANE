@@ -5,11 +5,11 @@ import { vanster } from '@/content/vanster';
 
 /**
  * Cierre de la propuesta: invitacion a hablar y datos de contacto de Vanster.
- * No lleva fondo propio; va sobre la MarbleSurface que comparte con el pie.
+ * No lleva fondo propio; va sobre la MarbleSurface.
  */
 export default function CTA({ content }) {
   return (
-    <section id="contacto" data-bg-tone="dark" className="px-6 pb-16 pt-24 md:px-12 md:pb-20 md:pt-28">
+    <section id="contacto" data-bg-tone="dark" className="px-6 py-24 md:px-12 md:py-28">
       <div className="mx-auto max-w-2xl text-center">
         <MaskReveal
           as="h2"

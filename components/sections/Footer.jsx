@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { vanster } from '@/content/vanster';
 
 /** Trazados de los iconos; las URL viven en content/vanster.js. */
@@ -17,19 +18,44 @@ const ICONS = [
 ];
 
 /**
- * Pie de Vanster, la agencia que firma la propuesta. No lleva fondo propio:
- * va sobre la MarbleSurface que comparte con el CTA, separado de el por un
- * filete, para que el marmol sea una sola pieza continua hasta el final.
+ * Pie sobre Blanc Brule, debajo del marmol del contacto. Lleva los dos
+ * logotipos en PNG tal cual, sin recolorear ni recomprimir (unoptimized):
+ * el de L'Occitane es negro y sobre el marmol no se leeria, y su guia de marca
+ * prefiere precisamente el fondo claro. Entre los dos, la misma equis del
+ * rotulo del hero, y a cada lado del de L'Occitane mas del espacio de respeto
+ * que pide su guia (el ancho de la "O", unos 20 px a este tamano).
+ *
+ * El PNG de Vänster es el logotipo del PDF oficial de aplicaciones renderizado
+ * en alta y con transparencia; su magenta es exactamente #C40452.
  */
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="px-6 md:px-12">
-      <div className="flex items-center justify-between gap-6 border-t border-background/20 py-7">
-        <p className="font-sans text-xs tracking-[0.02em] text-background md:text-sm">
-          © 2010-{year} Vänster
-        </p>
+    <footer data-bg-tone="light" className="bg-background px-6 md:px-12">
+      <div className="flex flex-col items-center justify-center gap-7 py-14 sm:flex-row sm:gap-10 md:py-16">
+        <Image
+          src="/images/brand/loccitane-logo-black.png"
+          alt="L'Occitane en Provence"
+          width={2048}
+          height={512}
+          unoptimized
+          className="h-auto w-[176px] md:w-[208px]"
+        />
+        <svg aria-hidden="true" viewBox="0 0 10 10" className="h-[7px] w-[7px] text-brand/60">
+          <path d="M1 1 9 9M9 1 1 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+        </svg>
+        <Image
+          src="/images/brand/vanster-logo.png"
+          alt="Vänster"
+          width={800}
+          height={170}
+          unoptimized
+          className="h-auto w-[100px] md:w-[118px]"
+        />
+      </div>
+      <div className="flex items-center justify-between gap-6 border-t border-brand/15 py-6">
+        <p className="font-sans text-xs tracking-[0.02em] text-brand/80 md:text-sm">© 2010-{year} Vänster</p>
         <ul className="flex items-center gap-4 md:gap-5">
           {vanster.social.map((s) => (
             <li key={s.name}>
@@ -38,7 +64,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Vänster en ${s.name}`}
-                className="block text-background transition-opacity duration-300 hover:opacity-70"
+                className="block text-brand transition-opacity duration-300 hover:opacity-60"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
                   <path d={ICONS.find((i) => i.name === s.name).path} />

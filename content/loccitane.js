@@ -20,7 +20,6 @@ export const loccitane = {
     {
       id: 'agendas',
       name: 'Agendas 2027',
-      navLabel: 'Agendas',
       audience: 'Tiendas y trabajadores',
       description: [
         'Una agenda anual para acompañar el día a día en tienda y en oficina. Proponemos cubiertas en tonos inspirados en la paleta de Provenza y un interior pensado para el ritmo real de trabajo, con planificación semanal y espacio para notas.',
@@ -30,7 +29,6 @@ export const loccitane = {
     {
       id: 'calendarios',
       name: 'Calendarios de sobremesa',
-      navLabel: 'Calendarios',
       audience: 'Tiendas y trabajadores',
       description: [
         'Un calendario de mesa que acompaña el puesto de trabajo durante los doce meses. Cada mes puede dedicarse a un paisaje, un ingrediente o un momento del año en Provenza, de modo que la identidad de la Maison esté presente sin necesidad de nombrarla.',
@@ -40,7 +38,6 @@ export const loccitane = {
     {
       id: 'bidon',
       name: 'Bidón de agua premium',
-      navLabel: 'Bidón',
       audience: 'Trabajadores',
       description: [
         'Un bidón térmico pensado como detalle diario para el equipo: útil, duradero y agradable de llevar. Al ser reutilizable, evita botellas de un solo uso en tienda y en oficina.',
@@ -50,7 +47,6 @@ export const loccitane = {
     {
       id: 'merchandising',
       name: 'Merchandising para clientes',
-      navLabel: 'Merchandising',
       audience: 'Clientes',
       description: [
         'Una selección de artículos de regalo para acompañar la experiencia de compra y cuidar la relación con los clientes más fieles. Piezas útiles, a la altura de la Maison, que prolongan la visita a la tienda una vez en casa.',

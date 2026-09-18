@@ -6,24 +6,15 @@ import Footer from '@/components/sections/Footer';
 import FilmGrain from '@/components/animations/FilmGrain';
 import SmoothScroll from '@/components/animations/SmoothScroll';
 import Loader from '@/components/animations/Loader';
-import SideScrollIndicator from '@/components/ui/SideScrollIndicator';
+import LavenderScroll from '@/components/ui/LavenderScroll';
 import MarbleSurface from '@/components/ui/MarbleSurface';
 import { loccitane } from '@/content/loccitane';
-
-// Un punto de la navegacion lateral por cada seccion real de la pagina. Los
-// id tienen que coincidir con los de las secciones.
-const SECTIONS = [
-  { id: 'inicio', label: 'Inicio' },
-  { id: 'manifiesto', label: 'La propuesta' },
-  ...loccitane.products.map((product) => ({ id: product.id, label: product.navLabel })),
-  { id: 'contacto', label: 'Contacto' },
-];
 
 export default function Home() {
   return (
     <SmoothScroll>
       <Loader />
-      <SideScrollIndicator sections={SECTIONS} />
+      <LavenderScroll />
       <FilmGrain />
       <main>
         <Hero content={loccitane.hero} />
@@ -31,8 +22,8 @@ export default function Home() {
         <ProductShowcase items={loccitane.products} />
         <MarbleSurface>
           <CTA content={loccitane.cta} />
-          <Footer />
         </MarbleSurface>
+        <Footer />
       </main>
     </SmoothScroll>
   );

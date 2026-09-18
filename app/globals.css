@@ -4,6 +4,8 @@
 
 body {
   @apply bg-background font-body text-text;
+  /* Ligaduras y ajuste de pares de Gambetta, la letra de cuerpo. */
+  font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
 }
 
 /* Seleccion de texto en Beige Travertin sobre Noir des Terres. */
@@ -12,8 +14,8 @@ body {
   color: #3f2b2e;
 }
 
-/* Sin barra de scroll nativa: la sustituye la navegacion lateral
-   (SideScrollIndicator). Solo se oculta la barra; el desplazamiento sigue
+/* Sin barra de scroll nativa: la sustituye la espiga de lavanda que marca
+   el progreso (LavenderScroll). Solo se oculta la barra; el desplazamiento sigue
    funcionando con rueda, trackpad, teclado y tacto. No usar overflow:hidden
    aqui, que si bloquearia el scroll. */
 html,

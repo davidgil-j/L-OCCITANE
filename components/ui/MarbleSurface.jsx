@@ -1,13 +1,10 @@
 import Image from 'next/image';
 
 /**
- * Superficie de marmol de Vanster compartida por el CTA y el pie.
- *
- * Los dos van sobre una sola imagen continua: con una imagen por seccion la
- * textura se cortaba en la union, cada tramo llevaba un velo distinto y el
- * final de la pagina parecia un fallo. El velo es neutro y no magenta, para
- * que el marmol conserve sus propios colores y el texto se lea igual en todo
- * el bloque.
+ * Superficie de marmol de Vanster bajo el contacto. Una sola imagen con un
+ * solo velo: cuando el marmol se repetia en dos secciones seguidas, la union
+ * se veia como un corte. El velo es neutro y no magenta, para que el marmol
+ * conserve sus propios colores y el texto se lea igual en todo el bloque.
  *
  * La textura es el marmol del PDF de marca con los naranjas desplazados hacia
  * el coral (tono -40 solo en amarillos): bajo el velo, el naranja original se
