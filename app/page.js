@@ -8,7 +8,6 @@ import SmoothScroll from '@/components/animations/SmoothScroll';
 import Loader from '@/components/animations/Loader';
 import SideScrollIndicator from '@/components/ui/SideScrollIndicator';
 import MarbleSurface from '@/components/ui/MarbleSurface';
-import ArchDefs from '@/components/ArchDefs';
 import { loccitane } from '@/content/loccitane';
 
 // Un punto de la navegacion lateral por cada seccion real de la pagina. Los
@@ -24,7 +23,6 @@ export default function Home() {
   return (
     <SmoothScroll>
       <Loader />
-      <ArchDefs />
       <SideScrollIndicator sections={SECTIONS} />
       <FilmGrain />
       <main>

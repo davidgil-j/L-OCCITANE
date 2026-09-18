@@ -1,21 +1,26 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import ProductFeature from '@/components/sections/products/ProductFeature';
 
-const PRODUCT_IMAGES = {
-  agendas: '/images/agendas/agenda.png',
-  // calendarios y bidon: pendientes de foto real de L'Occitane (las anteriores
-  // llevaban branding de otros clientes de Vänster). Sin imagen, ArchImage
-  // pinta el arco vacio con la nota "Foto pendiente".
-  merchandising: '/images/merchandising/merchandising.png',
+/**
+ * Pieza de cada producto: videos apaisados para agenda y calendario, fotos de
+ * escena verticales para bidon y merchandising. `aspect` es la proporcion del
+ * propio archivo, para que la ficha no recorte el producto.
+ */
+const PRODUCT_MEDIA = {
+  agendas: {
+    type: 'video',
+    src: '/videos/productos/agenda.mp4',
+    poster: '/images/productos/agenda-poster.jpg',
+    aspect: '16 / 9',
+  },
+  calendarios: {
+    type: 'video',
+    src: '/videos/productos/calendario.mp4',
+    poster: '/images/productos/calendario-poster.jpg',
+    aspect: '16 / 9',
+  },
+  bidon: { type: 'image', src: '/images/productos/bidon.jpg', aspect: '1122 / 1402' },
+  merchandising: { type: 'image', src: '/images/productos/merchandising.jpg', aspect: '1122 / 1402' },
 };
-
-function resolveImageSrc(id) {
-  const src = PRODUCT_IMAGES[id];
-  if (!src) return null;
-  const absolutePath = path.join(process.cwd(), 'public', src);
-  return fs.existsSync(absolutePath) ? src : null;
-}
 
 export default function ProductShowcase({ items = [] }) {
   return (
@@ -25,7 +30,7 @@ export default function ProductShowcase({ items = [] }) {
           key={item.id}
           item={item}
           index={i}
-          imageSrc={resolveImageSrc(item.id)}
+          media={PRODUCT_MEDIA[item.id]}
           id={item.id}
           reverse={i % 2 === 1}
         />
