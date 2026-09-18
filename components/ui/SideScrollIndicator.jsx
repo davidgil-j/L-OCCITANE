@@ -18,9 +18,9 @@ import { EASE_CSS } from '@/components/animations/easing';
  *   viewport, que es justo donde esta el indicador, asi que es exactamente
  *   la que tiene detras.
  * - En movil se oculta: el contenido tiene prioridad y no hay hover.
- * - A 24px del borde en todos los anchos: los creditos de la ficha 04 van a
- *   48px del borde a cualquier ancho (no estan limitados por max-w-6xl), asi
- *   que un indicador mas separado los pisaria al pasar por el centro.
+ * - A 24px del borde hasta 1280px y a 40px a partir de ahi. Por debajo, la
+ *   columna de texto de las fichas llega a 48px del borde y un indicador mas
+ *   separado la pisaria al pasar por el centro.
  */
 export default function SideScrollIndicator({ sections }) {
   const hasScrolled = useHasScrolled();
@@ -57,7 +57,7 @@ export default function SideScrollIndicator({ sections }) {
   return (
     <nav
       aria-label="Secciones de la propuesta"
-      className={`fixed right-6 top-1/2 z-50 hidden -translate-y-1/2 transition-[opacity,color] duration-700 motion-reduce:transition-none md:block ${visibility} ${color}`}
+      className={`fixed right-6 top-1/2 z-50 hidden -translate-y-1/2 transition-[opacity,color] duration-700 motion-reduce:transition-none md:block xl:right-10 ${visibility} ${color}`}
       style={ease}
     >
       <ol className="flex flex-col items-center">
