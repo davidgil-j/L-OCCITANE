@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 /**
- * Superficie de marmol de Vanster bajo el contacto. Una sola imagen con un
+ * Superficie de marmol de Vanster bajo el contacto y el pie. Una sola imagen con un
  * solo velo: cuando el marmol se repetia en dos secciones seguidas, la union
  * se veia como un corte. El velo es neutro y no magenta, para que el marmol
  * conserve sus propios colores y el texto se lea igual en todo el bloque.

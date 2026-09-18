@@ -1,5 +1,5 @@
 import Hero from '@/components/sections/Hero';
-import Manifesto from '@/components/sections/Manifesto';
+import Intro from '@/components/sections/Intro';
 import ProductShowcase from '@/components/sections/ProductShowcase';
 import CTA from '@/components/sections/CTA';
 import Footer from '@/components/sections/Footer';
@@ -18,12 +18,12 @@ export default function Home() {
       <FilmGrain />
       <main>
         <Hero content={loccitane.hero} />
-        <Manifesto text={loccitane.manifesto} />
+        <Intro text={loccitane.intro} />
         <ProductShowcase items={loccitane.products} />
         <MarbleSurface>
           <CTA content={loccitane.cta} />
+          <Footer />
         </MarbleSurface>
-        <Footer />
       </main>
     </SmoothScroll>
   );

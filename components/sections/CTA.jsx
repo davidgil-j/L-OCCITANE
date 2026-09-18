@@ -9,7 +9,7 @@ import { vanster } from '@/content/vanster';
  */
 export default function CTA({ content }) {
   return (
-    <section id="contacto" data-bg-tone="dark" className="px-6 py-24 md:px-12 md:py-28">
+    <section id="contacto" data-bg-tone="marble" className="px-6 pb-16 pt-24 md:px-12 md:pb-20 md:pt-28">
       <div className="mx-auto max-w-2xl text-center">
         <MaskReveal
           as="h2"
@@ -26,7 +26,7 @@ export default function CTA({ content }) {
         )}
         <FadeIn delay={0.15}>
           <div className="mt-9">
-            <Button href={content?.href ?? `mailto:${vanster.email}`} variant="inverted">
+            <Button href={content?.href ?? `mailto:${vanster.email}`} variant="outlineLight">
               {content?.buttonLabel}
             </Button>
           </div>
@@ -43,7 +43,15 @@ export default function CTA({ content }) {
           <a href={vanster.phoneHref} className="transition-opacity duration-300 hover:opacity-70">
             T {vanster.phone}
           </a>
-          <span>{vanster.address.join(', ')}</span>
+          <a
+            href={vanster.mapsHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${vanster.address.join(', ')} (abrir en Google Maps)`}
+            className="underline decoration-background/40 underline-offset-4 transition-opacity duration-300 hover:opacity-70"
+          >
+            {vanster.address.join(', ')}
+          </a>
           <a
             href={vanster.webHref}
             target="_blank"

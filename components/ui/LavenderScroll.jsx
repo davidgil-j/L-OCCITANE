@@ -33,7 +33,7 @@ export default function LavenderScroll() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setBgTone(entry.target.dataset.bgTone === 'dark' ? 'dark' : 'light');
+          if (entry.isIntersecting) setBgTone(entry.target.dataset.bgTone || 'light');
         });
       },
       // Solo cuenta la seccion que cruza el centro vertical, donde esta la espiga.
@@ -69,12 +69,25 @@ export default function LavenderScroll() {
       />
       <span
         className={`absolute inset-0 bg-background transition-opacity duration-700 motion-reduce:transition-none ${
-          bgTone === 'dark' ? 'opacity-40' : 'opacity-0'
+          bgTone === 'light' ? 'opacity-0' : 'opacity-40'
         }`}
       />
       {/* Magenta de Vanster (#C40452): tomado del bloque de color plano del
-          PDF oficial de aplicaciones de marca, no estimado a ojo. */}
-      <motion.span className="absolute inset-0 origin-bottom bg-vanster" style={{ scaleY: scrollYProgress }} />
+          PDF oficial de aplicaciones de marca, no estimado a ojo. Sobre el
+          marmol del final el magenta se perdia en el propio marmol, asi que
+          ahi el relleno pasa a Blanc Brule. */}
+      <motion.span
+        className={`absolute inset-0 origin-bottom bg-vanster transition-opacity duration-700 motion-reduce:transition-none ${
+          bgTone === 'marble' ? 'opacity-0' : 'opacity-100'
+        }`}
+        style={{ scaleY: scrollYProgress }}
+      />
+      <motion.span
+        className={`absolute inset-0 origin-bottom bg-background transition-opacity duration-700 motion-reduce:transition-none ${
+          bgTone === 'marble' ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ scaleY: scrollYProgress }}
+      />
     </div>
   );
 }

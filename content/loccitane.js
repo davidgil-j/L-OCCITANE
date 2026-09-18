@@ -14,8 +14,8 @@ export const loccitane = {
     // acento editorial. Debe aparecer literalmente dentro de `title`.
     titleAccent: 'a medida',
   },
-  manifesto:
-    'En Vänster hemos preparado una colección de piezas corporativas para vuestras tiendas, vuestros equipos y vuestros clientes. Todas parten del universo de la Maison: la luz de Provenza, lo artesanal y el cuidado por el detalle.',
+  intro:
+    'Cuatro piezas para 2027: agenda, calendario, bidón y regalo de cliente. Pensadas para usarse todos los días en tienda, en oficina y en casa.',
   products: [
     {
       id: 'agendas',

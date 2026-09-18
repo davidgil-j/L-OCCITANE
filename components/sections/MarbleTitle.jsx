@@ -184,6 +184,9 @@ export default function MarbleTitle({ title, accent }) {
                 En magenta pasan a rosa y recortan contra el cielo sin apagar el
                 marmol, que con Noir des Terres se volvia marron. */}
               <span className="absolute inset-0 bg-vanster/25" />
+              {/* Un 5% de Noir des Terres, calido, para que el marmol recorte algo
+                  mas contra el cielo claro sin perder los tonos de Vanster. */}
+              <span className="absolute inset-0 bg-brand/5" />
             </span>
           </span>
         )}

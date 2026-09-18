@@ -9,7 +9,7 @@ import MaskReveal from '@/components/animations/MaskReveal';
  * mas columnas que la vertical y ninguna se recorta. En movil se apila, con
  * la pieza primero.
  */
-export default function ProductFeature({ item, index, media, id, reverse = false }) {
+export default function ProductFeature({ item, index, media, id, reverse = false, credit = false }) {
   const number = String(index + 1).padStart(2, '0');
   const wide = media.type === 'video';
   // Rejilla de 12: apaisada 7 + texto 5; vertical 5 + hueco 1 + texto 6.
@@ -22,13 +22,14 @@ export default function ProductFeature({ item, index, media, id, reverse = false
     : `md:col-span-6 ${reverse ? 'md:col-start-1 md:row-start-1' : 'md:col-start-7'}`;
 
   return (
-    <section id={id} data-bg-tone="light" className="bg-background px-6 py-20 md:px-12 md:py-28">
-      <article className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
+    <section id={id} data-bg-tone="light" className="bg-background px-6 py-10 md:px-12 md:py-14">
+      <article className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
         <div className={mediaPlace}>
           <ProductMedia
             media={media}
             alt={item.name}
             sizes={wide ? '(min-width: 768px) 58vw, 90vw' : '(min-width: 768px) 42vw, 90vw'}
+            credit={credit}
           />
         </div>
 

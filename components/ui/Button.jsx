@@ -5,12 +5,15 @@ export default function Button({ href = '#', children, variant = 'primary' }) {
   // cursor, opacidad y un desplazamiento minimo, sin rebotes ni escalados.
   // Solo transform y opacity, que no fuerzan recalculo de layout.
   const base =
-    'inline-block rounded-full px-7 py-3.5 text-[13px] uppercase tracking-[0.14em] transition-[transform,opacity] duration-300 hover:-translate-y-0.5 hover:opacity-90 motion-reduce:transform-none motion-reduce:transition-none';
+    'inline-block px-7 py-3.5 text-[13px] tracking-[0.15em] transition-[transform,opacity] duration-300 hover:-translate-y-0.5 hover:opacity-90 motion-reduce:transform-none motion-reduce:transition-none';
   const variants = {
-    primary: 'bg-vanster text-white',
-    ghost: 'border border-brand text-brand',
+    primary: 'rounded-full bg-vanster uppercase text-white',
+    ghost: 'rounded-full border border-brand uppercase text-brand',
     // Para usar sobre fondos oscuros/foto -- boton solido claro, texto oscuro.
-    inverted: 'bg-background text-brand',
+    inverted: 'rounded-full bg-background uppercase text-brand',
+    // Sobre el marmol: solo el filete, sin relleno, para que no tape la textura.
+    // Rectangular y en versalitas: sobre el marmol lo redondo se leia a boton de app.
+    outlineLight: 'border border-background px-9 text-[15px] text-background [font-variant-caps:all-small-caps]',
   };
 
   return (

@@ -7,6 +7,9 @@ export const vanster = {
   phone: '93 164 89 25',
   phoneHref: 'tel:+34931648925',
   address: ['c. Diputació, 322', '08009 Barcelona'],
+  // Abre la direccion en Google Maps (en movil, en la app si esta instalada),
+  // desde donde se pueden pedir indicaciones para llegar.
+  mapsHref: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Carrer de la Diputació, 322, 08009 Barcelona'),
   web: 'www.vanster.design',
   webHref: 'https://www.vanster.design',
   social: [

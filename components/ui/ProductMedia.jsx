@@ -5,23 +5,37 @@ import Image from 'next/image';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { EASE } from '@/components/animations/easing';
 
+/** Estilo de posicion de una caja expresada en % de su contenedor. */
+const place = ({ left, top, width, height }) => ({
+  left: `${left}%`,
+  top: `${top}%`,
+  width: `${width}%`,
+  ...(height !== undefined ? { height: `${height}%` } : null),
+});
+
 /**
- * Foto o video de producto en rectangulo limpio, a sangre dentro de su cartel
- * (marco fino y creditos en la esquina).
+ * Foto o video de producto con su marco ilustrado.
  *
- * Entra con una mascara que sube desde abajo, hecha solo con transforms: la
- * capa exterior sube desde translateY(100%) mientras la interior baja lo
- * mismo, de modo que la imagen se queda quieta y lo que avanza es el borde.
+ * El contenedor toma la proporcion del marco (o de la pieza, si el adorno es
+ * suelto). La pieza ocupa la ventana `media.window` y los dibujos van encima:
+ * un marco completo (calendario, bidon) o un adorno suelto que se apoya en un
+ * borde (el ramillete de la agenda, la ramita de la mochila). Todo en %, asi
+ * que escala con la ficha sin recolocar nada.
  *
- * El video solo se reproduce mientras esta en pantalla y no descarga nada
- * hasta entonces (preload="none", con su fotograma fijo como poster). Con
- * movimiento reducido se queda el fotograma fijo.
+ * Sobre las fotos puede ir el logotipo de L'Occitane (`media.logo`) en el
+ * hueco del producto, en modo multiplicar y algo transparente para que se lea
+ * impreso en el material y no pegado encima.
+ *
+ * La pieza entra con una mascara que sube (solo transforms: la capa exterior
+ * sube y la interior baja lo mismo) y el dibujo aparece despues con un fundido.
+ * El video no descarga nada hasta llegar a el, se para al salir de pantalla y
+ * con movimiento reducido se queda en su fotograma fijo.
  */
-export default function ProductMedia({ media, alt, sizes }) {
-  const frameRef = useRef(null);
+export default function ProductMedia({ media, alt, sizes, credit = false }) {
+  const boxRef = useRef(null);
   const videoRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
-  const inView = useInView(frameRef, { once: true, amount: 0.2 });
+  const inView = useInView(boxRef, { once: true, amount: 0.2 });
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -40,11 +54,12 @@ export default function ProductMedia({ media, alt, sizes }) {
   }, [playing]);
 
   const transition = { duration: 1, ease: EASE };
+  const logo = media.logo;
 
   return (
     <figure>
-      <div ref={frameRef} className="border border-brand/15 p-2 md:p-2.5">
-        <div className="relative overflow-hidden bg-surface" style={{ aspectRatio: media.aspect }}>
+      <div ref={boxRef} className="relative" style={{ aspectRatio: media.box }}>
+        <div className="absolute overflow-hidden bg-surface" style={place(media.window)}>
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={{ y: '100%' }}
@@ -73,13 +88,45 @@ export default function ProductMedia({ media, alt, sizes }) {
               ) : (
                 <Image src={media.src} alt={alt} fill sizes={sizes} className="object-cover" />
               )}
+              {logo && (
+                <span
+                  aria-hidden="true"
+                  className="absolute block mix-blend-multiply"
+                  style={{ ...place(logo), opacity: logo.opacity, transform: `translate(-50%, -50%) rotate(${logo.rotate ?? 0}deg)` }}
+                >
+                  <Image
+                    src="/images/brand/loccitane-logo-black.png"
+                    alt=""
+                    width={2048}
+                    height={512}
+                    sizes="200px"
+                    className="h-auto w-full"
+                  />
+                </span>
+              )}
             </motion.div>
           </motion.div>
         </div>
+
+        {media.ornaments?.map((o) => (
+          <motion.span
+            key={o.src}
+            aria-hidden="true"
+            className="pointer-events-none absolute block"
+            style={place(o)}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : undefined}
+            transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
+          >
+            <Image src={o.src} alt="" fill sizes={o.sizes ?? '40vw'} className="object-contain" />
+          </motion.span>
+        ))}
       </div>
-      <figcaption className="mt-3 text-right font-sans text-[10px] uppercase tracking-[0.14em] text-textMuted">
-        Vänster para L&apos;Occitane · 2027
-      </figcaption>
+      {credit && (
+        <figcaption className="mt-3 text-right font-sans text-[10px] uppercase tracking-[0.14em] text-textMuted">
+          Vänster para L&apos;Occitane · 2027
+        </figcaption>
+      )}
     </figure>
   );
 }
