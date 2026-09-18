@@ -1,4 +1,5 @@
 import Hero from '@/components/sections/Hero';
+import Manifesto from '@/components/sections/Manifesto';
 import ProductShowcase from '@/components/sections/ProductShowcase';
 import CTA from '@/components/sections/CTA';
 import Footer from '@/components/sections/Footer';
@@ -14,6 +15,7 @@ import { loccitane } from '@/content/loccitane';
 // id tienen que coincidir con los de las secciones.
 const SECTIONS = [
   { id: 'inicio', label: 'Inicio' },
+  { id: 'manifiesto', label: 'La propuesta' },
   ...loccitane.products.map((product) => ({ id: product.id, label: product.navLabel })),
   { id: 'contacto', label: 'Contacto' },
 ];
@@ -27,6 +29,7 @@ export default function Home() {
       <FilmGrain />
       <main>
         <Hero content={loccitane.hero} />
+        <Manifesto text={loccitane.manifesto} />
         <ProductShowcase items={loccitane.products} />
         <MarbleSurface>
           <CTA content={loccitane.cta} />
