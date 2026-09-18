@@ -1,7 +1,7 @@
 import ProductMedia from '@/components/ui/ProductMedia';
 import FadeIn from '@/components/animations/FadeIn';
 import MaskReveal from '@/components/animations/MaskReveal';
-import Image from 'next/image';
+import MarbleWash from '@/components/animations/MarbleWash';
 
 /**
  * Ficha de producto a dos columnas: pieza a un lado y texto al otro, y las
@@ -10,10 +10,9 @@ import Image from 'next/image';
  * mas columnas que la vertical y ninguna se recorta. En movil se apila, con
  * la pieza primero.
  *
- * Toque Vanster sobre el fondo claro, sin tocar las fotos: una mancha de su
- * marmol muy desvaida en el lado del texto, que se desvanece hacia los bordes
- * con una mascara (no es un degradado de color: el color es el del marmol).
- * Solo en escritorio, donde ese lado tiene aire; en movil no hay hueco.
+ * Toque Vanster sobre el fondo claro, sin tocar las fotos: una bruma de su
+ * marmol en el lado del texto (MarbleWash). Solo en escritorio, donde ese
+ * lado tiene aire; en movil no hay hueco.
  */
 export default function ProductFeature({ item, index, media, id, reverse = false, credit = false }) {
   const number = String(index + 1).padStart(2, '0');
@@ -29,24 +28,7 @@ export default function ProductFeature({ item, index, media, id, reverse = false
 
   return (
     <section id={id} data-bg-tone="light" className="relative isolate overflow-hidden bg-background px-6 py-10 md:px-12 md:py-14">
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 -z-10 hidden w-[55%] opacity-[0.18] md:block ${
-          reverse ? 'left-0' : 'right-0'
-        }`}
-        style={{
-          maskImage: `radial-gradient(ellipse 70% 60% at ${reverse ? '35%' : '65%'} 60%, #000 0%, transparent 72%)`,
-          WebkitMaskImage: `radial-gradient(ellipse 70% 60% at ${reverse ? '35%' : '65%'} 60%, #000 0%, transparent 72%)`,
-        }}
-      >
-        <Image
-          src="/images/brand/vanster-marmol-cierre.jpg"
-          alt=""
-          fill
-          sizes="55vw"
-          className={`object-cover ${index % 2 ? 'object-left' : 'object-right'}`}
-        />
-      </span>
+      <MarbleWash side={reverse ? 'left' : 'right'} index={index} />
       <article className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
         <div className={mediaPlace}>
           <ProductMedia
