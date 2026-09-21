@@ -9,7 +9,7 @@ import SmoothScroll from '@/components/animations/SmoothScroll';
 import Loader from '@/components/animations/Loader';
 import LavenderScroll from '@/components/ui/LavenderScroll';
 import SiteHeader from '@/components/ui/SiteHeader';
-import MarbleSurface from '@/components/ui/MarbleSurface';
+import MarbleClosing from '@/components/ui/MarbleClosing';
 import { loccitane } from '@/content/loccitane';
 import { vanster } from '@/content/vanster';
 
@@ -24,11 +24,10 @@ export default function Home() {
         <Hero content={loccitane.hero} />
         <Intro text={loccitane.intro} />
         <ProductShowcase items={loccitane.products} />
-        <About content={vanster.about} />
-        <MarbleSurface>
+        <MarbleClosing top={<About content={vanster.about} />}>
           <CTA content={loccitane.cta} />
           <Footer />
-        </MarbleSurface>
+        </MarbleClosing>
       </main>
     </SmoothScroll>
   );

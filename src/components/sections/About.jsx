@@ -18,8 +18,8 @@ const label = 'font-sans text-[11px] uppercase tracking-[0.14em] text-background
 export default function About({ content }) {
   return (
     <section id="nosotros" data-bg-tone="marble" className="bg-vanster px-6 py-20 text-background md:px-12 md:py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-8">
-        <div className="md:col-span-6">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-x-8">
+        <div className="md:col-span-6 md:row-start-1">
           <p className={label}>{content.eyebrow}</p>
           <h2
             aria-label={content.title}
@@ -31,22 +31,9 @@ export default function About({ content }) {
               </MaskReveal>
             ))}
           </h2>
-          <FadeIn className="mt-10">
-            <div className="relative aspect-[2/1] overflow-hidden rounded-lg md:rounded-xl">
-              <Image
-                src="/images/brand/vanster-marmol-cierre.jpg"
-                alt=""
-                aria-hidden="true"
-                fill
-                loading="eager"
-                sizes="(min-width: 768px) 45vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </FadeIn>
         </div>
 
-        <div className="flex flex-col md:col-span-5 md:col-start-8 md:pt-[3.25rem]">
+        <div className="flex flex-col md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1 md:pt-[3.25rem]">
           <FadeIn delay={0.1}>
             <p className="max-w-[40ch] text-pretty font-body text-lg leading-[1.6] text-background/90">{content.text}</p>
           </FadeIn>
@@ -65,6 +52,25 @@ export default function About({ content }) {
           </ol>
           <p className={`mt-8 md:mt-auto md:pt-8 ${label} tracking-[0.2em] md:tracking-[0.3em]`}>{content.claim}</p>
         </div>
+
+        {/* La ventana de marmol. En movil va al final de la seccion, justo antes
+            del cierre; en escritorio, bajo el titular. MarbleClosing la usa
+            como punto de partida: la ventana se abre hasta ser el fondo del
+            cierre. Sin esa animacion (movimiento reducido, sin JavaScript,
+            impresion) se ve esta imagen tal cual. */}
+        <FadeIn className="md:col-span-6 md:col-start-1 md:row-start-2">
+          <div data-marble-window className="relative aspect-[2/1] overflow-hidden rounded-lg md:rounded-xl">
+            <Image
+              src="/images/brand/vanster-marmol-cierre.jpg"
+              alt=""
+              aria-hidden="true"
+              fill
+              loading="eager"
+              sizes="(min-width: 768px) 45vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
