@@ -52,6 +52,7 @@ export default function MarbleClosing({ top, children }) {
     const layer = layerRef.current;
     const closing = closingRef.current;
     const win = document.querySelector('[data-marble-window]');
+    const logo = document.querySelector('[data-marble-logo]');
     if (!layer || !closing || !win) return;
 
     let frame = 0;
@@ -69,6 +70,14 @@ export default function MarbleClosing({ top, children }) {
       const e = easeInOutCubic(raw);
       // El velo del cierre aparece a la vez: la ventana mantiene su color.
       veilRef.current.style.opacity = e;
+      // El logo de Vanster de la ventana se disuelve al empezar a abrirse:
+      // en el primer 40 % del recorrido ya no esta, antes de que llegue el
+      // cierre.
+      if (logo) {
+        const fade = Math.min(1, raw / 0.4);
+        logo.style.opacity = String(1 - fade);
+        logo.style.transform = `scale(${1 + fade * 0.08})`;
+      }
       // Al final de la curva se suelta el recorte: si no, quedaban unos
       // pixeles de fucsia en los bordes.
       if (e > 0.985) {
@@ -114,7 +123,7 @@ export default function MarbleClosing({ top, children }) {
     // queda por encima de la capa de marmol: la ventana se abre por detras
     // del texto, sin taparlo. La imagen fija de la ventana se oculta: lo que
     // se ve por ella es la capa.
-    <div className="relative bg-vanster [&_#nosotros]:relative [&_#nosotros]:z-[15] [&_#nosotros]:bg-transparent [&_[data-marble-window]_img]:opacity-0">
+    <div className="relative bg-vanster [&_#nosotros]:relative [&_#nosotros]:z-[15] [&_#nosotros]:bg-transparent [&_[data-marble-window]>img]:opacity-0">
       {/* La capa de marmol: fija a la pantalla durante todo el tramo final.
           Mide lo mismo que la pantalla grande del movil (lvh), para que al
           esconderse la barra del navegador no quede un hueco por debajo. */}

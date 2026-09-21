@@ -69,6 +69,19 @@ export default function About({ content }) {
               sizes="(min-width: 768px) 45vw, 100vw"
               className="object-cover"
             />
+            {/* Firma de Vanster sobre el marmol. MarbleClosing la desvanece
+                mientras la ventana se abre hacia el cierre. */}
+            <div className="absolute inset-0 grid place-items-center">
+              <Image
+                data-marble-logo
+                src="/images/brand/vanster-logo-blanc.png"
+                alt="Vänster"
+                width={800}
+                height={170}
+                unoptimized
+                className="h-auto w-[38%] origin-center"
+              />
+            </div>
           </div>
         </FadeIn>
       </div>
