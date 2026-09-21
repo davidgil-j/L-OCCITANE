@@ -1,6 +1,6 @@
 import FadeIn from '@/components/animations/FadeIn';
 import MaskReveal from '@/components/animations/MaskReveal';
-import Button from '@/components/ui/Button';
+import SwitchButton from '@/components/ui/SwitchButton';
 import { vanster } from '@/content/vanster';
 
 /**
@@ -26,9 +26,9 @@ export default function CTA({ content }) {
         )}
         <FadeIn delay={0.15}>
           <div className="mt-9">
-            <Button href={content?.href ?? `mailto:${vanster.email}?subject=${encodeURIComponent(content?.subject ?? '')}`} variant="outlineLight">
+            <SwitchButton href={content?.href ?? `mailto:${vanster.email}?subject=${encodeURIComponent(content?.subject ?? '')}`}>
               {content?.buttonLabel}
-            </Button>
+            </SwitchButton>
           </div>
         </FadeIn>
       </div>

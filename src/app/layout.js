@@ -28,7 +28,7 @@ const body = localFont({
 
 const title = "Propuesta de merchandising corporativo para L'Occitane | Vänster";
 const description =
-  "Propuesta de Vänster para L'Occitane: agendas, calendarios, bidón de agua premium y merchandising personalizados para tiendas, trabajadores y clientes.";
+  "Propuesta de Vänster para L'Occitane: agendas, calendarios, bidón de agua premium y merchandising personalizados para tiendas, equipos y clientes.";
 
 // Las imagenes para compartir necesitan URL absoluta. En Vercel se toma el
 // dominio de produccion; en local, el servidor de desarrollo.

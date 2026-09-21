@@ -20,7 +20,7 @@ export const loccitane = {
     {
       id: 'agendas',
       name: 'Agendas 2027',
-      audience: 'Tiendas y trabajadores',
+      audience: 'Tiendas y equipos',
       description: [
         'Una agenda anual para acompañar el día a día en tienda y en oficina. Proponemos cubiertas en tonos inspirados en la paleta de Provenza y un interior pensado para el ritmo real de trabajo, con planificación semanal y espacio para notas.',
         "Lleva el logotipo de L'Occitane y puede adaptarse por equipo o por tienda, para que cada persona la sienta como una pieza propia.",
@@ -29,7 +29,7 @@ export const loccitane = {
     {
       id: 'calendarios',
       name: 'Calendarios de sobremesa',
-      audience: 'Tiendas y trabajadores',
+      audience: 'Tiendas y equipos',
       description: [
         'Un calendario de mesa que acompaña el puesto de trabajo durante los doce meses. Cada mes puede dedicarse a un paisaje, un ingrediente o un momento del año en Provenza, de modo que la identidad de la Maison esté presente sin necesidad de nombrarla.',
         "Un diseño sobrio, en un formato cómodo para el mostrador o el escritorio, personalizado con la imagen de L'Occitane.",
@@ -38,7 +38,7 @@ export const loccitane = {
     {
       id: 'bidon',
       name: 'Bidón de agua premium',
-      audience: 'Trabajadores',
+      audience: 'Equipos',
       description: [
         'Un bidón térmico pensado como detalle diario para el equipo: útil, duradero y agradable de llevar. Al ser reutilizable, evita botellas de un solo uso en tienda y en oficina.',
         'Es un objeto que se usa cada día, y por eso transmite la marca con naturalidad. El logotipo se aplica con un acabado discreto, en colores afines a la paleta de la Maison.',
