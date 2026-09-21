@@ -71,6 +71,16 @@ html.lenis body {
   overflow: clip;
 }
 
+/* Seguro de la pantalla de carga: si JavaScript tarda en arrancar (movil
+   lento, mala cobertura) o falla, se retira sola a los 2,5 s. */
+@keyframes loader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 /* Impresion y "Guardar como PDF": fuera lo que solo tiene sentido en pantalla
    (cabecera fija, espiga, grano, pantalla de carga, marca de scroll, bruma), las
    entradas animadas se imprimen ya visibles aunque no se haya bajado por la

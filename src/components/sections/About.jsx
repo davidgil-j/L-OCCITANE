@@ -18,7 +18,7 @@ const label = 'font-sans text-[11px] uppercase tracking-[0.14em] text-background
 export default function About({ content }) {
   return (
     <section id="nosotros" data-bg-tone="marble" className="bg-vanster px-6 py-20 text-background md:px-12 md:py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-x-8">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-x-[3%]">
         <div className="md:col-span-6 md:row-start-1">
           <p className={label}>{content.eyebrow}</p>
           <h2

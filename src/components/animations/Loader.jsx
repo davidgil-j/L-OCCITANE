@@ -28,6 +28,11 @@ function imageReady(selector) {
  * Se renderiza ya en el HTML del servidor para tapar desde el primer pintado.
  * Nunca dura mas de 2,5 s aunque algo tarde; con movimiento reducido
  * desaparece sin animacion.
+ *
+ * Ese limite lo pone JavaScript, que en un movil lento con mala cobertura
+ * puede tardar muchos segundos en arrancar (se midio 16 s en 3G). Por eso
+ * lleva ademas un seguro en CSS (loader-failsafe, en globals.css) que la
+ * retira a los 2,5 s pase lo que pase, tambien sin JavaScript.
  */
 export default function Loader() {
   const shouldReduceMotion = useReducedMotion();
@@ -84,7 +89,7 @@ export default function Loader() {
       ref={rootRef}
       role="status"
       aria-label="Cargando la propuesta"
-      className="fixed inset-0 z-[70] overflow-hidden"
+      className="fixed inset-0 z-[70] overflow-hidden [animation:loader-failsafe_0.5s_ease-out_2.5s_forwards] motion-reduce:[animation-duration:0s]"
       initial={false}
       animate={leaving && !shouldReduceMotion ? { y: '-100%' } : { y: 0 }}
       transition={exit}

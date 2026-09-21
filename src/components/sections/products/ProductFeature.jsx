@@ -29,7 +29,7 @@ export default function ProductFeature({ item, index, media, id, reverse = false
   return (
     <section id={id} data-bg-tone="light" className="relative isolate overflow-hidden bg-background px-6 py-10 md:px-12 md:py-14">
       <MarbleWash side={reverse ? 'left' : 'right'} index={index} />
-      <article className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
+      <article className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-12 md:gap-x-[4%] md:gap-y-12 lg:gap-x-[5%]">
         <div className={mediaPlace}>
           <ProductMedia
             media={media}
