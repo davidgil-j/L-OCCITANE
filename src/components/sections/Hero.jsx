@@ -49,6 +49,7 @@ export default function Hero({ content }) {
           reducido. */}
       <a
         href="#agendas"
+        data-print="hide"
         tabIndex={hasScrolled ? -1 : undefined}
         className={`absolute bottom-8 left-1/2 flex w-max -translate-x-1/2 flex-col items-center gap-4 text-background transition-opacity duration-700 motion-reduce:transition-none ${
           hasScrolled ? 'pointer-events-none opacity-0' : 'opacity-100'

@@ -8,9 +8,8 @@ import ProductFeature from '@/components/sections/products/ProductFeature';
  * - logo: logotipo de L'Occitane sobre la foto; left/top son el CENTRO del
  *   logo, en % de la pieza.
  *
- * Los videos (agenda, calendario) no llevan logo: el producto se mueve en
- * ellos (se abre la agenda, pasa la hoja del calendario) y un logo fijo
- * encima se despegaria del objeto.
+ * Los videos (agenda, calendario) no llevan logo encima: el logotipo ya va
+ * impreso en la pieza del propio video.
  */
 const PRODUCT_MEDIA = {
   agendas: {

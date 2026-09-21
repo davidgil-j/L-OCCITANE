@@ -65,6 +65,7 @@ function LavenderScrollInner() {
   return (
     <div
       aria-hidden="true"
+      data-print="hide"
       className={`pointer-events-none fixed right-3 top-1/2 z-50 hidden h-[160px] w-[28px] -translate-y-1/2 transition-opacity duration-700 motion-reduce:transition-none md:block min-[1440px]:right-10 min-[1440px]:h-[200px] min-[1440px]:w-[36px] ${
         hasScrolled ? 'opacity-100' : 'opacity-0'
       }`}

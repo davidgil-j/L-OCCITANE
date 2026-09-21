@@ -153,7 +153,7 @@ export default function MarbleTitle({ title, accent }) {
         <span
           className={
             supported
-              ? 'sr-only'
+              ? 'sr-only print:not-sr-only print:block print:text-balance print:text-center print:font-serif print:text-[2.75rem] print:uppercase print:leading-[0.95] print:tracking-tight print:text-background'
               : 'block text-balance font-serif text-[clamp(2.25rem,5.6vw,4.5rem)] uppercase leading-[0.95] tracking-tight text-background'
           }
         >
@@ -161,7 +161,7 @@ export default function MarbleTitle({ title, accent }) {
         </span>
 
         {supported && (
-          <span aria-hidden="true" className="block">
+          <span aria-hidden="true" className="block print:hidden">
             <span
               ref={boxRef}
               className="relative mx-auto block max-w-full"

@@ -26,7 +26,7 @@ export default function CTA({ content }) {
         )}
         <FadeIn delay={0.15}>
           <div className="mt-9">
-            <Button href={content?.href ?? `mailto:${vanster.email}`} variant="outlineLight">
+            <Button href={content?.href ?? `mailto:${vanster.email}?subject=${encodeURIComponent(content?.subject ?? '')}`} variant="outlineLight">
               {content?.buttonLabel}
             </Button>
           </div>

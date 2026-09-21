@@ -47,6 +47,7 @@ function MarbleWashInner({ side = 'right', index = 0 }) {
     <span
       ref={ref}
       aria-hidden="true"
+      data-print="hide"
       className={`pointer-events-none absolute inset-y-0 -z-10 hidden w-[70%] overflow-hidden md:block ${
         side === 'left' ? 'left-0' : 'right-0'
       }`}

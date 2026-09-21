@@ -19,6 +19,7 @@ export default function MaskReveal({ children, as: Tag = 'div', className = '', 
   return (
     <Tag ref={ref} className={`overflow-hidden ${className}`}>
       <motion.span
+        data-reveal
         className="block"
         initial={{ y: '100%' }}
         animate={inView ? { y: 0 } : undefined}

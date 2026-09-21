@@ -80,6 +80,7 @@ export default function Loader() {
 
   return (
     <motion.div
+      data-print="hide"
       ref={rootRef}
       role="status"
       aria-label="Cargando la propuesta"

@@ -15,7 +15,7 @@ export const loccitane = {
     titleAccent: 'a medida',
   },
   intro:
-    'Cuatro piezas para 2027: agenda, calendario, bidón y regalo de cliente. Pensadas para usarse todos los días en tienda, en oficina y en casa.',
+    'Cuatro piezas para 2027: agenda, calendario de sobremesa, bidón y merchandising para clientes. Pensadas para usarse todos los días en tienda, en oficina y en casa.',
   products: [
     {
       id: 'agendas',
@@ -58,6 +58,8 @@ export const loccitane = {
     title: '¿Hablamos de los próximos pasos?',
     text: 'Nos encantaría presentaros la propuesta en persona, resolver cualquier duda y ajustar cada pieza a lo que necesitan de verdad vuestras tiendas y vuestros equipos.',
     buttonLabel: 'Hablemos',
-    // Sin href propio: el CTA escribe al email de Vanster (src/content/vanster.js).
+    // Escribe al email de Vanster (src/content/vanster.js) con el asunto ya
+    // puesto, para que el correo llegue identificado.
+    subject: "Propuesta de merchandising L'Occitane 2027",
   },
 };

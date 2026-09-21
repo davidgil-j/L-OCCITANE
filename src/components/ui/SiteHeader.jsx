@@ -66,14 +66,14 @@ export default function SiteHeader() {
   const color = useTransform(progress, [0.45, 0.9], ['#FBF9F6', '#3F2B2E']);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-[60] flex justify-center">
+    <header data-print="hide" className="pointer-events-none fixed inset-x-0 top-0 z-[60] flex justify-center">
       <motion.div
         className={`relative transition-opacity duration-500 ${ready ? 'opacity-100' : 'opacity-0'}`}
         style={{ y, scale }}
       >
         <motion.span
           aria-hidden="true"
-          className="absolute -inset-x-7 -inset-y-[14px] rounded-full border border-brand/10 bg-background/95"
+          className="absolute -inset-x-7 -inset-y-[14px] rounded-full border border-brand/10 bg-background"
           style={{ opacity: pillOpacity, scale: pillScale }}
         />
         <motion.a

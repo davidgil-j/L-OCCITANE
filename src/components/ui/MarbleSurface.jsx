@@ -21,7 +21,7 @@ export default function MarbleSurface({ children }) {
         sizes="100vw"
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-brand/50" />
+      <div className="absolute inset-0 bg-brand/55" />
       <div className="relative">{children}</div>
     </div>
   );

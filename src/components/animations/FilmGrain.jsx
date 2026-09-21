@@ -15,6 +15,7 @@ export default function FilmGrain() {
   return (
     <div
       aria-hidden="true"
+      data-print="hide"
       className="pointer-events-none fixed inset-0 z-50 hidden opacity-[0.03] mix-blend-overlay [@media(hover:hover)_and_(pointer:fine)]:block"
     >
       <svg className="h-full w-full">

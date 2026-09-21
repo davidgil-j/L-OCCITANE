@@ -85,6 +85,7 @@ export default function RevealLines({
           ? lines.map((line, i) => (
               <span key={`${i}-${line.join('-')}`} className="block overflow-hidden">
                 <motion.span
+                  data-reveal
                   className="block"
                   initial={revealed ? false : { y: '100%' }}
                   animate={inView ? { y: 0 } : undefined}

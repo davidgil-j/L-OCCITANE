@@ -101,12 +101,14 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
           onPointerLeave={release}
         >
           <motion.div
+            data-reveal
             className="absolute inset-0 overflow-hidden"
             initial={{ y: '100%' }}
             animate={inView ? { y: 0 } : undefined}
             transition={transition}
           >
             <motion.div
+              data-reveal
               className="absolute inset-0"
               initial={{ y: '-100%' }}
               animate={inView ? { y: 0 } : undefined}

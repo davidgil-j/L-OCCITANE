@@ -7,6 +7,7 @@ import { REVEAL_VIEWPORT } from '@/components/animations/viewport';
 export default function FadeIn({ children, delay = 0, className = '' }) {
   return (
     <motion.div
+      data-reveal
       className={className}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}

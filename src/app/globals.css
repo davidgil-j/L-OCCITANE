@@ -70,3 +70,24 @@ html.lenis body {
 .lenis.lenis-stopped {
   overflow: clip;
 }
+
+/* Impresion y "Guardar como PDF": fuera lo que solo tiene sentido en pantalla
+   (cabecera fija, espiga, grano, pantalla de carga, marca de scroll, bruma), las
+   entradas animadas se imprimen ya visibles aunque no se haya bajado por la
+   pagina, y ninguna ficha se parte entre dos hojas. */
+@media print {
+  [data-print='hide'] {
+    display: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  section,
+  article,
+  figure {
+    break-inside: avoid;
+  }
+}
