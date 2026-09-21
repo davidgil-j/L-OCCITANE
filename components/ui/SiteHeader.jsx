@@ -1,62 +1,90 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useMotionValueEvent, useScroll } from 'framer-motion';
+import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Lockup from '@/components/ui/Lockup';
-import { EASE_CSS } from '@/components/animations/easing';
 
-const THRESHOLD = 64; // px de scroll a partir de los que el rotulo pasa a isla
+const ISLAND_Y = 28; // px desde arriba del rotulo cuando es isla
+const GAP = 14; // px entre el rotulo y el titular del hero, arriba del todo
+const TRAVEL = 220; // px de scroll en los que el rotulo sube hasta la isla
 
 /**
  * Cabecera con el rotulo L'OCCITANE × VÄNSTER.
  *
- * Arriba del todo es el rotulo suelto sobre la foto, como hasta ahora. En
- * cuanto se hace scroll se recoge en una isla flotante: una capsula en Blanc
- * Brule con un filete fino, separada del borde y algo mas pequena, que queda
- * fija mientras se recorre la pagina. Al volver arriba se deshace.
+ * Arriba del todo el rotulo hace de antetitulo: va justo encima del titular
+ * del hero, dentro de la composicion. Al hacer scroll se despega y sube hasta
+ * quedarse como isla flotante (capsula en Blanc Brule con filete fino, algo
+ * mas pequena), fija arriba mientras se recorre la pagina. Al volver arriba
+ * baja otra vez a su sitio.
  *
- * La capsula es una capa aparte que aparece con opacidad y escala, y el
- * rotulo sube y se reduce con transform: nada cambia de tamano en el flujo,
- * asi que no hay saltos de maquetacion. El unico cambio que no es transform
- * ni opacidad es el color del texto (claro sobre la foto, oscuro en la isla).
- * Sin sombras difusas ni desenfoques, como pide la guia de marca: el borde lo
- * marca el filete.
+ * El recorrido va ligado al scroll y pasa por un muelle, asi que el rotulo
+ * llega un poco tarde: se nota que lo arrastra el scroll. Con movimiento
+ * reducido sigue al scroll sin muelle.
+ *
+ * La posicion de salida se mide sobre el titular (data-hero-title) y se
+ * vuelve a medir si cambia su tamano. Hasta medir queda donde estaba antes,
+ * tapado por la pantalla de carga.
+ *
+ * Solo se anima transform, opacidad y el color del texto. Sin sombras ni
+ * desenfoques, como pide la guia de marca: el borde lo marca el filete.
  */
 export default function SiteHeader() {
+  const shouldReduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
-  const [island, setIsland] = useState(false);
+  const startY = useMotionValue(40);
+  const [ready, setReady] = useState(false);
 
-  useEffect(() => setIsland(window.scrollY > THRESHOLD), []);
-  useMotionValueEvent(scrollY, 'change', (y) => setIsland(y > THRESHOLD));
+  useEffect(() => {
+    const title = document.querySelector('[data-hero-title]');
+    if (!title) return;
+    const measure = () => {
+      const top = title.getBoundingClientRect().top + window.scrollY;
+      startY.set(Math.max(ISLAND_Y, Math.round(top - 16 - GAP)));
+      setReady(true);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(title);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [startY]);
 
-  const ease = { transitionTimingFunction: EASE_CSS };
+  const raw = useTransform(scrollY, [0, TRAVEL], [0, 1], { clamp: true });
+  const spring = useSpring(raw, { stiffness: 140, damping: 24, mass: 0.7 });
+  const progress = shouldReduceMotion ? raw : spring;
+
+  const y = useTransform(() => {
+    const s = startY.get();
+    return s + (ISLAND_Y - s) * progress.get();
+  });
+  const scale = useTransform(progress, [0, 1], [1, 0.88]);
+  const pillOpacity = useTransform(progress, [0.5, 1], [0, 1]);
+  const pillScale = useTransform(progress, [0.5, 1], [0.9, 1]);
+  const color = useTransform(progress, [0.45, 0.9], ['#FBF9F6', '#3F2B2E']);
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-[60] flex justify-center">
-      <div
-        className={`relative mt-8 transition-transform duration-700 motion-reduce:transition-none md:mt-10 ${
-          island ? '-translate-y-1 scale-[0.88] md:-translate-y-3' : ''
-        }`}
-        style={ease}
+      <motion.div
+        className={`relative transition-opacity duration-500 ${ready ? 'opacity-100' : 'opacity-0'}`}
+        style={{ y, scale }}
       >
-        <span
+        <motion.span
           aria-hidden="true"
-          className={`absolute -inset-x-7 -inset-y-[14px] rounded-full border border-brand/10 bg-background/95 transition duration-700 motion-reduce:transition-none ${
-            island ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
-          }`}
-          style={ease}
+          className="absolute -inset-x-7 -inset-y-[14px] rounded-full border border-brand/10 bg-background/95"
+          style={{ opacity: pillOpacity, scale: pillScale }}
         />
-        <a
+        <motion.a
           href="#inicio"
           aria-label="L'Occitane y Vänster: volver al inicio"
-          className={`pointer-events-auto relative block transition-colors duration-700 motion-reduce:transition-none ${
-            island ? 'text-brand' : 'text-background'
-          }`}
-          style={ease}
+          className="pointer-events-auto relative block"
+          style={{ color }}
         >
           <Lockup />
-        </a>
-      </div>
+        </motion.a>
+      </motion.div>
     </header>
   );
 }

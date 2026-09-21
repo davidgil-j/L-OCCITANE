@@ -34,11 +34,12 @@ export default function Hero({ content }) {
         }}
       />
 
-      {/* El rotulo L'OCCITANE × VÄNSTER lo pone la cabecera fija (SiteHeader),
-          que al hacer scroll lo convierte en isla flotante. */}
+      {/* El rotulo L'OCCITANE × VÄNSTER lo pone la cabecera fija (SiteHeader):
+          arriba del todo se coloca justo encima de este titular, que mide por
+          data-hero-title, y al hacer scroll sube hasta la isla flotante. */}
 
       {/* El titular va sobre el cielo, que ocupa la mitad superior de la foto. */}
-      <div className="absolute inset-x-6 top-[26%] -translate-y-1/2">
+      <div data-hero-title className="absolute inset-x-6 top-[26%] -translate-y-1/2">
         <MarbleTitle title={content?.title ?? ''} accent={content?.titleAccent} />
       </div>
 
