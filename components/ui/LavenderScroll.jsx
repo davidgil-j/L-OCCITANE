@@ -9,11 +9,12 @@ import useMediaQuery, { DESKTOP_POINTER } from '@/components/animations/useMedia
 const MASK = 'url(/images/espiga-scroll.png)';
 
 /**
- * Indicador de progreso de scroll: la espiga de lavanda se llena de abajo
- * arriba con el magenta de Vanster segun se avanza por la pagina.
+ * Indicador de progreso de scroll: la espiga de lavanda se llena de arriba
+ * abajo con el magenta de Vanster, en el mismo sentido en que se recorre la
+ * pagina: lo relleno es lo ya leido.
  *
  * El PNG de la espiga hace de mascara sobre dos capas: la base, apagada, y
- * encima el magenta, que crece con scaleY desde abajo. La base cambia de
+ * encima el magenta, que crece con scaleY desde arriba. La base cambia de
  * color segun el fondo que tenga detras (Noir des Terres sobre claro, Blanc
  * Brule sobre oscuro): son dos capas que se cruzan con opacidad, asi todo lo
  * que se anima es transform u opacity.
@@ -84,13 +85,13 @@ function LavenderScrollInner() {
           marmol del final el magenta se perdia en el propio marmol, asi que
           ahi el relleno pasa a Blanc Brule. */}
       <motion.span
-        className={`absolute inset-0 origin-bottom bg-vanster transition-opacity duration-700 motion-reduce:transition-none ${
+        className={`absolute inset-0 origin-top bg-vanster transition-opacity duration-700 motion-reduce:transition-none ${
           bgTone === 'marble' ? 'opacity-0' : 'opacity-100'
         }`}
         style={{ scaleY: scrollYProgress }}
       />
       <motion.span
-        className={`absolute inset-0 origin-bottom bg-background transition-opacity duration-700 motion-reduce:transition-none ${
+        className={`absolute inset-0 origin-top bg-background transition-opacity duration-700 motion-reduce:transition-none ${
           bgTone === 'marble' ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ scaleY: scrollYProgress }}

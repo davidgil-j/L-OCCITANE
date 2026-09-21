@@ -6,10 +6,8 @@ import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { EASE, EASE_CSS } from '@/components/animations/easing';
 
 /** Estilo de posicion de una caja expresada en % de su contenedor. */
-// Hover: cuanto se acerca la imagen y cuantos px se desplaza como maximo.
-const HOVER_SCALE = 1.045;
-const HOVER_SHIFT = 10;
-const HOVER_POP = 2; // px que crece la caja por cada lado
+// Hover: px que crece la pieza por cada lado.
+const HOVER_POP = 4;
 const HOVER_QUERY = '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
 
 const place = ({ left, top, width, height }) => ({
@@ -34,17 +32,15 @@ const place = ({ left, top, width, height }) => ({
  * pagina y no parezca pegada encima. El difuminado es una capa fija encima:
  * no se repinta aunque la imagen se mueva debajo.
  *
- * Con el cursor encima, la caja entera crece 2 px por cada lado y, dentro, la
- * imagen se acerca un poco y se desplaza unos pixeles siguiendo al raton. La
- * transicion larga suaviza el seguimiento. El logotipo va en la misma capa y
- * se mueve con ella. Solo con raton y nunca con movimiento reducido.
+ * Con el cursor encima, la pieza entera (marco e imagen juntos) crece unos
+ * pixeles por cada lado, sin zoom por dentro. Solo con raton y nunca con
+ * movimiento reducido.
  * El video no descarga nada hasta llegar a el, se para al salir de pantalla y
  * con movimiento reducido se queda en su fotograma fijo.
  */
 export default function ProductMedia({ media, alt, sizes, credit = false }) {
   const boxRef = useRef(null);
   const videoRef = useRef(null);
-  const zoomRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
   const inView = useInView(boxRef, { once: true, amount: 0.2 });
   const [playing, setPlaying] = useState(false);
@@ -64,19 +60,13 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
     else video.pause();
   }, [playing]);
 
-  const follow = (e) => {
-    const el = zoomRef.current;
-    if (!el || e.pointerType !== 'mouse' || !window.matchMedia(HOVER_QUERY).matches) return;
+  const pop = (e) => {
+    if (e.pointerType !== 'mouse' || !window.matchMedia(HOVER_QUERY).matches) return;
     const box = e.currentTarget;
-    const r = box.getBoundingClientRect();
     box.style.transform = `translateZ(0) scale(${(box.offsetWidth + HOVER_POP * 2) / box.offsetWidth})`;
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `translate3d(${-x * HOVER_SHIFT}px, ${-y * HOVER_SHIFT}px, 0) scale(${HOVER_SCALE})`;
   };
   const release = (e) => {
     e.currentTarget.style.transform = '';
-    if (zoomRef.current) zoomRef.current.style.transform = '';
   };
 
   const transition = { duration: 1, ease: EASE };
@@ -88,8 +78,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
         <div
           className="absolute overflow-hidden rounded-lg bg-surface transition-transform duration-500 [transform:translateZ(0)] md:rounded-xl"
           style={{ ...place(media.window), transitionTimingFunction: EASE_CSS }}
-          onPointerEnter={follow}
-          onPointerMove={follow}
+          onPointerEnter={pop}
           onPointerLeave={release}
         >
           <motion.div
@@ -104,11 +93,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
               animate={inView ? { y: 0 } : undefined}
               transition={transition}
             >
-              <div
-                ref={zoomRef}
-                className="absolute inset-0 transition-transform duration-[900ms] will-change-transform"
-                style={{ transitionTimingFunction: EASE_CSS }}
-              >
+              <div className="absolute inset-0">
                 {media.type === 'video' ? (
                   <video
                     ref={videoRef}
@@ -144,7 +129,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
               </div>
             </motion.div>
           </motion.div>
-          <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_2px_1px_#FBF9F6]" />
+          <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_1.5px_0.5px_#FBF9F6]" />
         </div>
 
       </div>
