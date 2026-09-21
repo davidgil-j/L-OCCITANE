@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { EASE, EASE_CSS } from '@/components/animations/easing';
+import { REVEAL_VIEWPORT } from '@/components/animations/viewport';
 
 /** Estilo de posicion de una caja expresada en % de su contenedor. */
 // Hover: px que crece la pieza por cada lado.
@@ -42,15 +43,30 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
   const boxRef = useRef(null);
   const videoRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
-  const inView = useInView(boxRef, { once: true, amount: 0.2 });
+  const inView = useInView(boxRef, REVEAL_VIEWPORT);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video || shouldReduceMotion) return;
-    const observer = new IntersectionObserver(([entry]) => setPlaying(entry.isIntersecting), { threshold: 0.25 });
+    // A una pantalla de distancia empieza a descargarse, para que al llegar
+    // ya este listo; se reproduce en cuanto asoma y se para al salir.
+    const near = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        video.preload = 'auto';
+        video.load();
+        near.disconnect();
+      },
+      { rootMargin: '100% 0px' },
+    );
+    const observer = new IntersectionObserver(([entry]) => setPlaying(entry.isIntersecting), { threshold: 0 });
+    near.observe(video);
     observer.observe(video);
-    return () => observer.disconnect();
+    return () => {
+      near.disconnect();
+      observer.disconnect();
+    };
   }, [shouldReduceMotion]);
 
   useEffect(() => {
@@ -72,7 +88,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
     e.currentTarget.style.transform = '';
   };
 
-  const transition = { duration: 1, ease: EASE };
+  const transition = { duration: 0.8, ease: EASE };
   const logo = media.logo;
 
   return (
@@ -111,7 +127,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
                     <source src={media.src} type="video/mp4" />
                   </video>
                 ) : (
-                  <Image src={media.src} alt={alt} fill sizes={sizes} className="object-cover" />
+                  <Image src={media.src} alt={alt} fill sizes={sizes} loading="eager" className="object-cover" />
                 )}
                 {logo && (
                   <span

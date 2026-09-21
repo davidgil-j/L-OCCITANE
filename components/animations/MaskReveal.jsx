@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { EASE } from '@/components/animations/easing';
+import { REVEAL_VIEWPORT } from '@/components/animations/viewport';
 
 /**
  * Titular que entra desde abajo tras una mascara, sin fundido de opacidad.
@@ -13,7 +14,7 @@ import { EASE } from '@/components/animations/easing';
  */
 export default function MaskReveal({ children, as: Tag = 'div', className = '', delay = 0 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.15 });
+  const inView = useInView(ref, REVEAL_VIEWPORT);
 
   return (
     <Tag ref={ref} className={`overflow-hidden ${className}`}>

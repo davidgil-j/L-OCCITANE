@@ -38,6 +38,7 @@ export default function About({ content }) {
                 alt=""
                 aria-hidden="true"
                 fill
+                loading="eager"
                 sizes="(min-width: 768px) 45vw, 100vw"
                 className="object-cover"
               />

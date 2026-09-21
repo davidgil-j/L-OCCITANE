@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { EASE } from '@/components/animations/easing';
+import { REVEAL_VIEWPORT } from '@/components/animations/viewport';
 
 /**
  * Parrafo que entra linea a linea, cada una tras su propia mascara vertical
@@ -29,7 +30,7 @@ export default function RevealLines({
   const measureRef = useRef(null);
   const [lines, setLines] = useState(null);
   const [revealed, setRevealed] = useState(false);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
+  const inView = useInView(ref, REVEAL_VIEWPORT);
   const words = text.split(' ');
   // Palabras de un tramo, con el tono secundario donde toque.
   const renderWords = (indices) =>
@@ -73,7 +74,7 @@ export default function RevealLines({
 
   useEffect(() => {
     if (!inView || !lines) return;
-    const t = setTimeout(() => setRevealed(true), (0.9 + lines.length * stagger) * 1000);
+    const t = setTimeout(() => setRevealed(true), (0.8 + lines.length * stagger) * 1000);
     return () => clearTimeout(t);
   }, [inView, lines, stagger]);
 
@@ -87,7 +88,7 @@ export default function RevealLines({
                   className="block"
                   initial={revealed ? false : { y: '100%' }}
                   animate={inView ? { y: 0 } : undefined}
-                  transition={{ duration: 0.9, delay: i * stagger, ease: EASE }}
+                  transition={{ duration: 0.8, delay: i * stagger, ease: EASE }}
                 >
                   {renderWords(line)}
                   {/* Espacio al final de cada linea: sin el, el texto (y los
