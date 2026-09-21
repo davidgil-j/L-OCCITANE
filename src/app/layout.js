@@ -10,17 +10,17 @@ const sans = Inter({
 });
 
 const heading = localFont({
-  src: '../public/fonts/gambarino/Gambarino-Regular.woff2',
+  src: '../../public/fonts/gambarino/Gambarino-Regular.woff2',
   variable: '--font-heading',
   display: 'swap',
 });
 
 const body = localFont({
   src: [
-    { path: '../public/fonts/gambetta/Gambetta-Light.woff2', weight: '300', style: 'normal' },
-    { path: '../public/fonts/gambetta/Gambetta-Regular.woff2', weight: '400', style: 'normal' },
-    { path: '../public/fonts/gambetta/Gambetta-Italic.woff2', weight: '400', style: 'italic' },
-    { path: '../public/fonts/gambetta/Gambetta-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/gambetta/Gambetta-Light.woff2', weight: '300', style: 'normal' },
+    { path: '../../public/fonts/gambetta/Gambetta-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/gambetta/Gambetta-Italic.woff2', weight: '400', style: 'italic' },
+    { path: '../../public/fonts/gambetta/Gambetta-Medium.woff2', weight: '500', style: 'normal' },
   ],
   variable: '--font-body',
   display: 'swap',

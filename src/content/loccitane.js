@@ -58,6 +58,6 @@ export const loccitane = {
     title: '¿Hablamos de los próximos pasos?',
     text: 'Nos encantaría presentaros la propuesta en persona, resolver cualquier duda y ajustar cada pieza a lo que necesitan de verdad vuestras tiendas y vuestros equipos.',
     buttonLabel: 'Hablemos',
-    // Sin href propio: el CTA escribe al email de Vanster (content/vanster.js).
+    // Sin href propio: el CTA escribe al email de Vanster (src/content/vanster.js).
   },
 };

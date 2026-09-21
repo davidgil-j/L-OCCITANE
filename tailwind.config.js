@@ -4,8 +4,7 @@ module.exports = {
   // estado se quedaba pegado tras tocar.
   future: { hoverOnlyWhenSupported: true },
   content: [
-    './app/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
+    './src/**/*.{js,jsx}',
   ],
   theme: {
     extend: {

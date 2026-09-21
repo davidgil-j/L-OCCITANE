@@ -2,7 +2,7 @@
 
 Landing page que presenta la propuesta de Vänster a L'Occitane: agendas,
 calendarios y bidones de agua personalizados para tiendas, trabajadores y
-clientes (desglose completo en `content/loccitane.js`).
+clientes (desglose completo en `src/content/loccitane.js`).
 
 ## Stack
 - Next.js (App Router) + React
@@ -17,27 +17,28 @@ npm install
 npm run dev
 ```
 
-Abre http://localhost:3000
+Abre http://localhost:3001 (el puerto 3000 lo usa otro proyecto).
 
 ## Estructura
 
-Cada carpeta tiene su propio `README.md` explicando qué contiene y qué no
-debe entrar en ella, para que el proyecto no se desordene a medida que
-crece.
+En la raíz solo queda lo que Next.js y las herramientas necesitan ahí
+(`package.json`, configuraciones, `public/` y `skills-lock.json`). Todo lo
+demás va en carpetas:
 
-- `app/` — rutas y layout de Next.js
-- `components/` — UI reutilizable (`ui/`, `sections/`, `animations/`)
-- `content/` — textos y datos de producto, separados de los componentes
-- `design/` — tokens de marca (colores, tipografía) y referencias visuales
-- `public/images/` — assets finales por categoría de producto
+- `src/app/` — rutas, layout, estilos globales e iconos de Next.js
+- `src/components/` — UI (`ui/`, `sections/`, `animations/`)
+- `src/content/` — textos y datos, separados de los componentes
+- `public/` — imágenes, vídeos y tipografías que se publican con la web
+- `design/` — material de trabajo que no se publica: guías de marca,
+  tokens, bocetos y los archivos para generar imágenes y vídeos
+- `docs/` — el plan de diseño (`PLAN.md`) y el paquete original del método
+  de diseño (`metodo-diseno/`)
+- `.claude/skills/` — las skills de diseño que usa Claude en este proyecto
 
 ## Estado actual
 
-Esqueleto técnico funcional con contenido placeholder (todo a `null` en
-`content/loccitane.js`). Pendiente antes de dar la landing por acabada:
+Landing construida y auditada (accesibilidad, rendimiento y móvil). El
+detalle de lo decidido y lo pendiente está en `docs/PLAN.md`.
 
-- [ ] Materiales de branding reales de Vänster (Yasmina)
-- [ ] Tokens de color/tipografía definitivos — extracción con SkillUI
-      sobre `loccitane.es` (`skillui --url https://www.loccitane.es`)
-- [ ] Imágenes de producto finales (Axel)
-- [ ] Copy definitivo de cada sección .
+- [ ] Validación de los textos de Quiénes somos por Vänster
+- [ ] Prueba en iPhone y Android reales de la versión publicada

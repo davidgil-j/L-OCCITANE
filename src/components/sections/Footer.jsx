@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { vanster } from '@/content/vanster';
 
-/** Trazados de los iconos; las URL viven en content/vanster.js. */
+/** Trazados de los iconos; las URL viven en src/content/vanster.js. */
 const ICONS = [
   {
     name: 'Instagram',
