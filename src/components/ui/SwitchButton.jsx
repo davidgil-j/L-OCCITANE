@@ -12,9 +12,10 @@ const TRAVEL = INNER - GAP * 2 - KNOB; // lo que se desliza el circulo
 const TEXT_SHIFT = -38; // el texto pasa al hueco que deja el circulo
 const DRAG_THRESHOLD = 6; // px de arrastre a partir de los que ya no es un toque
 
-// Muelle al estilo de Apple: sin rebote exagerado y reversible a mitad de
+// Muelle al estilo de Apple, sin rebote (como el resto del movimiento de la
+// pagina) y reversible a mitad de
 // camino (si se quita el cursor antes de acabar, vuelve desde donde este).
-const spring = { type: 'spring', duration: 0.55, bounce: 0.12 };
+const spring = { type: 'spring', duration: 0.55, bounce: 0 };
 
 /**
  * Boton de cierre en forma de interruptor, como el de encendido de iOS.

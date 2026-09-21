@@ -52,9 +52,9 @@ export default function Footer() {
             className="h-auto w-[76px]"
           />
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 pl-3 md:pl-0">
           <p className="font-sans text-xs tracking-[0.02em] text-background">© 2010-{year} Vänster</p>
-          <ul className="-mr-3 flex items-center">
+          <ul className="flex items-center md:-mr-3">
             {vanster.social.map((s) => (
               <li key={s.name}>
                 <a
