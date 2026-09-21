@@ -1,50 +1,49 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
 import Lockup from '@/components/ui/Lockup';
 
 const ISLAND_Y = 28; // px desde arriba del rotulo cuando es isla
-const GAP = 14; // px entre el rotulo y el titular del hero, arriba del todo
-const TRAVEL = 220; // px de scroll en los que el rotulo sube hasta la isla
+const FROM_BOTTOM = 150; // px del borde inferior del hero al rotulo, arriba del todo
+const MORPH = 120; // px de recorrido final en los que se convierte en isla
 
 /**
- * Cabecera con el rotulo L'OCCITANE × VÄNSTER.
+ * Cabecera con el rotulo L'OCCITANE × VÄNSTER, como en la web de EvoMeet.
  *
- * Arriba del todo el rotulo hace de antetitulo: va justo encima del titular
- * del hero, dentro de la composicion. Al hacer scroll se despega y sube hasta
- * quedarse como isla flotante (capsula en Blanc Brule con filete fino, algo
- * mas pequena), fija arriba mientras se recorre la pagina. Al volver arriba
- * baja otra vez a su sitio.
+ * Arriba del todo el rotulo esta en la parte baja del hero, encima de
+ * "Descubre la propuesta", quieto como parte de la foto. Al hacer scroll sube
+ * pegado a la pagina, al mismo ritmo que el resto (1:1), y al llegar arriba
+ * se queda enganchado: en los ultimos 120 px de recorrido se convierte en la
+ * isla flotante (capsula en Blanc Brule con filete fino, algo mas pequena).
+ * Al volver arriba hace el camino inverso.
  *
- * El recorrido va ligado al scroll y pasa por un muelle, asi que el rotulo
- * llega un poco tarde: se nota que lo arrastra el scroll. Con movimiento
- * reducido sigue al scroll sin muelle.
- *
- * La posicion de salida se mide sobre el titular (data-hero-title) y se
- * vuelve a medir si cambia su tamano. Hasta medir queda donde estaba antes,
- * tapado por la pantalla de carga.
+ * La posicion de salida se mide sobre el hero y se vuelve a medir si cambia
+ * su tamano. Hasta medir queda oculto (la pantalla de carga lo tapa igual).
  *
  * Solo se anima transform, opacidad y el color del texto. Sin sombras ni
  * desenfoques, como pide la guia de marca: el borde lo marca el filete.
  */
 export default function SiteHeader() {
-  const shouldReduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const startY = useMotionValue(40);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const title = document.querySelector('[data-hero-title]');
-    if (!title) return;
+    const hero = document.querySelector('#inicio');
+    if (!hero) return;
     const measure = () => {
-      const top = title.getBoundingClientRect().top + window.scrollY;
-      startY.set(Math.max(ISLAND_Y, Math.round(top - 16 - GAP)));
+      const bottom = hero.getBoundingClientRect().bottom + window.scrollY;
+      // En pantallas muy bajas (movil en horizontal) nunca por encima del
+      // final del titular.
+      const title = document.querySelector('[data-hero-title]');
+      const titleBottom = title ? title.getBoundingClientRect().bottom + window.scrollY + 24 : 0;
+      startY.set(Math.max(ISLAND_Y, titleBottom, Math.round(bottom - FROM_BOTTOM)));
       setReady(true);
     };
     measure();
     const observer = new ResizeObserver(measure);
-    observer.observe(title);
+    observer.observe(hero);
     window.addEventListener('resize', measure);
     return () => {
       observer.disconnect();
@@ -52,18 +51,17 @@ export default function SiteHeader() {
     };
   }, [startY]);
 
-  const raw = useTransform(scrollY, [0, TRAVEL], [0, 1], { clamp: true });
-  const spring = useSpring(raw, { stiffness: 140, damping: 24, mass: 0.7 });
-  const progress = shouldReduceMotion ? raw : spring;
-
-  const y = useTransform(() => {
-    const s = startY.get();
-    return s + (ISLAND_Y - s) * progress.get();
+  // Sube con la pagina hasta la isla y alli se queda.
+  const y = useTransform(() => Math.max(ISLAND_Y, startY.get() - scrollY.get()));
+  // 0 mientras viaja con la pagina, 1 ya convertido en isla.
+  const progress = useTransform(() => {
+    const left = startY.get() - scrollY.get() - ISLAND_Y;
+    return Math.min(1, Math.max(0, 1 - left / MORPH));
   });
   const scale = useTransform(progress, [0, 1], [1, 0.88]);
-  const pillOpacity = useTransform(progress, [0.5, 1], [0, 1]);
-  const pillScale = useTransform(progress, [0.5, 1], [0.9, 1]);
-  const color = useTransform(progress, [0.45, 0.9], ['#FBF9F6', '#3F2B2E']);
+  const pillOpacity = useTransform(progress, [0.3, 1], [0, 1]);
+  const pillScale = useTransform(progress, [0.3, 1], [0.9, 1]);
+  const color = useTransform(progress, [0.3, 0.8], ['#FBF9F6', '#3F2B2E']);
 
   return (
     <header data-print="hide" className="pointer-events-none fixed inset-x-0 top-0 z-[60] flex justify-center">

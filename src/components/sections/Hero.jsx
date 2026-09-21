@@ -35,8 +35,8 @@ export default function Hero({ content }) {
       />
 
       {/* El rotulo L'OCCITANE × VÄNSTER lo pone la cabecera fija (SiteHeader):
-          arriba del todo se coloca justo encima de este titular, que mide por
-          data-hero-title, y al hacer scroll sube hasta la isla flotante. */}
+          arriba del todo esta en la parte baja del hero, encima de la marca
+          de scroll, y al hacer scroll sube con la pagina hasta la isla. */}
 
       {/* El titular va sobre el cielo, que ocupa la mitad superior de la foto. */}
       <div data-hero-title className="absolute inset-x-6 top-[26%] -translate-y-1/2">
@@ -51,7 +51,7 @@ export default function Hero({ content }) {
         href="#agendas"
         data-print="hide"
         tabIndex={hasScrolled ? -1 : undefined}
-        className={`absolute bottom-8 left-1/2 flex w-max -translate-x-1/2 flex-col items-center gap-4 text-background transition-opacity duration-700 motion-reduce:transition-none ${
+        className={`absolute bottom-8 left-1/2 flex w-max [@media(max-height:480px)]:hidden -translate-x-1/2 flex-col items-center gap-4 text-background transition-opacity duration-700 motion-reduce:transition-none ${
           hasScrolled ? 'pointer-events-none opacity-0' : 'opacity-100'
         }`}
         style={{ transitionTimingFunction: EASE_CSS }}
