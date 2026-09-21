@@ -1,6 +1,6 @@
 # Plan · Landing L'Occitane × Vänster
 
-Fase actual: 4 · Construir (Quiénes somos Bloque construida, pendiente de visto bueno)
+Fase actual: 6 · Repaso (auditoría hecha, pendiente de prueba en teléfono real)
 Listón: la landing actual, que el cliente ya ha felicitado
 
 ## 0 · Entrevista
@@ -28,3 +28,8 @@ Heredada de la web: rejilla max-w-6xl, Gambarino para el titular, Gambetta para 
 Color: fondo fucsia Vänster #C40452 a sangre, texto Blanc Brûlé (etiquetas al 90 %: 4,8:1)
 Movimiento: cada línea del titular tras su máscara (MaskReveal escalonado), mármol, texto y columnas con FadeIn
 La espiga de scroll pasa a Blanc Brûlé en esta sección (data-bg-tone="marble")
+
+## 6 · Repaso
+Auditoría con impeccable (audit + detector), mobile-native y emil-design-eng. Arreglado: foco visible, contraste de etiquetas y del texto sobre mármol, jerarquía h1 → h2, zona táctil del rótulo, prioridad de la imagen del titular, respuesta al pulsar, hover solo con cursor, sin destello al tocar, theme-color, imagen para compartir.
+Excepciones asumidas: etiqueta «Quiénes somos» sobre el titular (mismo sistema que las fichas de producto); lema en mayúsculas (38 caracteres, es una etiqueta); recortes overflow-hidden en las piezas (intencionados, no hay menús que escapen).
+Pendiente: prueba en iPhone y Android reales.
