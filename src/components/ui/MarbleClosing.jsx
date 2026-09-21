@@ -119,7 +119,9 @@ export default function MarbleClosing({ top, children }) {
         className="pointer-events-none sticky top-0 z-10 -mb-[100lvh] h-lvh overflow-hidden"
         style={{ clipPath: 'inset(50%)' }}
       >
-        <Image src={MARBLE} alt="" fill sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0">
+          <Image src={MARBLE} alt="" fill sizes="100vw" className="object-cover" />
+        </div>
         <div ref={veilRef} className="absolute inset-0 bg-brand/55" style={{ opacity: 0 }} />
       </div>
       {top}

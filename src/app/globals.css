@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Referencia de posicion para los calculos de scroll de Framer Motion
+   (useScroll con target, en la bruma de marmol). */
+html {
+  position: relative;
+}
+
 /* Movil: sin el destello gris del navegador al tocar (cada control tiene su
    propia respuesta) y sin que el texto se infle al girar el telefono. */
 html {

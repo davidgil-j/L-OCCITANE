@@ -151,6 +151,7 @@ export default function MarbleTitle({ title, accent }) {
       </svg>
       <h1>
         <span
+          data-noscript-title
           className={
             supported
               ? 'sr-only print:not-sr-only print:block print:text-balance print:text-center print:font-serif print:text-[2.75rem] print:uppercase print:leading-[0.95] print:tracking-tight print:text-background'
@@ -161,7 +162,7 @@ export default function MarbleTitle({ title, accent }) {
         </span>
 
         {supported && (
-          <span aria-hidden="true" className="block print:hidden">
+          <span aria-hidden="true" data-noscript-hide className="block print:hidden">
             <span
               ref={boxRef}
               className="relative mx-auto block max-w-full"

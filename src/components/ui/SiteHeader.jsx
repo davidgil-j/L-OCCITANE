@@ -68,6 +68,7 @@ export default function SiteHeader() {
   return (
     <header data-print="hide" className="pointer-events-none fixed inset-x-0 top-0 z-[60] flex justify-center">
       <motion.div
+        data-noscript-show
         className={`relative transition-opacity duration-500 ${ready ? 'opacity-100' : 'opacity-0'}`}
         style={{ y, scale }}
       >
