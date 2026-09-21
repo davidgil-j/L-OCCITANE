@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  // hover: solo con dispositivos que pueden pasar el cursor; en tactil el
+  // estado se quedaba pegado tras tocar.
+  future: { hoverOnlyWhenSupported: true },
   content: [
     './app/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',

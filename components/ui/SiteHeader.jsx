@@ -79,7 +79,7 @@ export default function SiteHeader() {
         <motion.a
           href="#inicio"
           aria-label="L'Occitane y Vänster: volver al inicio"
-          className="pointer-events-auto relative block"
+          className="pointer-events-auto relative -mx-3 -my-4 block px-3 py-4"
           style={{ color }}
         >
           <Lockup />

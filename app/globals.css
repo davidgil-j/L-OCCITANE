@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Movil: sin el destello gris del navegador al tocar (cada control tiene su
+   propia respuesta) y sin que el texto se infle al girar el telefono. */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Enlaces y botones responden al instante: sin la espera del doble toque. */
+a,
+button {
+  touch-action: manipulation;
+}
+
+/* Foco visible solo al navegar con teclado, en el color del propio texto:
+   claro sobre la foto y el marmol, oscuro sobre el fondo claro. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 body {
   @apply bg-background font-body text-text;
   /* Ligaduras y ajuste de pares de Gambetta, la letra de cuerpo. */

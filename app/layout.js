@@ -30,7 +30,17 @@ const title = "Propuesta de merchandising corporativo para L'Occitane | Vänster
 const description =
   "Propuesta de Vänster para L'Occitane: agendas, calendarios, bidón de agua premium y merchandising personalizados para tiendas, trabajadores y clientes.";
 
+// Las imagenes para compartir necesitan URL absoluta. En Vercel se toma el
+// dominio de produccion; en local, el servidor de desarrollo.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : 'http://localhost:3001';
+
+// Vista previa al compartir el enlace (WhatsApp, correo, LinkedIn): el hero.
+const shareImage = { url: '/og.jpg', width: 1200, height: 630, alt: "Una propuesta a medida para L'Occitane" };
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title,
   description,
   robots: {
@@ -40,14 +50,20 @@ export const metadata = {
   openGraph: {
     title,
     description,
-    images: ['/images/brand/loccitane-logo-black.png'],
+    images: [shareImage],
   },
   twitter: {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/images/brand/loccitane-logo-black.png'],
+    images: [shareImage],
   },
+};
+
+// Barra del navegador en movil del color de lo alto del hero (el cielo
+// oscurecido con Noir des Terres).
+export const viewport = {
+  themeColor: '#3F2B2E',
 };
 
 export default function RootLayout({ children }) {

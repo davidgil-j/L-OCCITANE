@@ -179,6 +179,7 @@ export default function MarbleTitle({ title, accent }) {
                 src="/images/titulo-marmol.jpg"
                 alt=""
                 fill
+                priority
                 sizes="(min-width: 768px) 60vw, 90vw"
                 className="object-cover"
               />

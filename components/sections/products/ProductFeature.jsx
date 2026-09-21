@@ -40,12 +40,12 @@ export default function ProductFeature({ item, index, media, id, reverse = false
         </div>
 
         <div className={textPlace}>
-          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-textMuted">
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-text/70">
             <span className="text-vanster">{number}</span>
             <span className="ml-3">{item.audience}</span>
           </p>
           <MaskReveal
-            as="h3"
+            as="h2"
             className="mt-5 text-balance font-serif text-[clamp(2rem,3.4vw,3.25rem)] uppercase leading-[0.95] tracking-tight text-text"
           >
             {item.name}

@@ -63,9 +63,12 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
   const pop = (e) => {
     if (e.pointerType !== 'mouse' || !window.matchMedia(HOVER_QUERY).matches) return;
     const box = e.currentTarget;
+    box.style.transitionDuration = '500ms';
     box.style.transform = `translateZ(0) scale(${(box.offsetWidth + HOVER_POP * 2) / box.offsetWidth})`;
   };
+  // La salida, mas rapida que la entrada: la pieza se suelta enseguida.
   const release = (e) => {
+    e.currentTarget.style.transitionDuration = '250ms';
     e.currentTarget.style.transform = '';
   };
 
@@ -134,7 +137,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
 
       </div>
       {credit && (
-        <figcaption className="mt-3 text-right font-sans text-[11px] uppercase tracking-[0.14em] text-textMuted">
+        <figcaption className="mt-3 text-right font-sans text-[11px] uppercase tracking-[0.14em] text-text/70">
           Vänster para L&apos;Occitane · 2027
         </figcaption>
       )}
