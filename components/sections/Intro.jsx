@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import RevealLines from '@/components/animations/RevealLines';
 
 /**
@@ -6,6 +5,9 @@ import RevealLines from '@/components/animations/RevealLines';
  * son cuatro piezas y para que. Alineada a la izquierda sobre el mismo borde
  * que las fichas, para que caiga en la rejilla de la pagina, y entrando linea
  * a linea tras su mascara.
+ *
+ * Sin ramita de lavanda al lado: la espiga de scroll ya lleva ese motivo por
+ * el mismo lateral, y juntas se repetian.
  */
 export default function Intro({ text }) {
   return (
@@ -14,21 +16,10 @@ export default function Intro({ text }) {
       data-bg-tone="light"
       className="bg-background px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-32"
     >
-      <div className="mx-auto flex max-w-6xl items-end justify-between gap-8">
-        <div className="min-w-0 flex-1">
-          <RevealLines
-            text={text}
-            className="max-w-[42ch] text-pretty font-body text-[clamp(1.375rem,1.8vw,1.5rem)] leading-[1.4] text-text"
-          />
-        </div>
-        {/* Ramita de lavanda como firma de la intro; decorativa. */}
-        <Image
-          src="/images/ramita-lavanda.png"
-          alt=""
-          aria-hidden="true"
-          width={130}
-          height={300}
-          className="hidden h-auto w-[56px] shrink-0 md:block"
+      <div className="mx-auto max-w-6xl">
+        <RevealLines
+          text={text}
+          className="max-w-[42ch] text-pretty font-body text-[clamp(1.375rem,1.8vw,1.5rem)] leading-[1.4] text-text"
         />
       </div>
     </section>
