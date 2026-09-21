@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import MarbleTitle from '@/components/sections/MarbleTitle';
-import Lockup from '@/components/ui/Lockup';
 import useHasScrolled from '@/components/animations/useHasScrolled';
 import { EASE, EASE_CSS } from '@/components/animations/easing';
 
@@ -35,39 +34,34 @@ export default function Hero({ content }) {
         }}
       />
 
-      <div className="absolute inset-x-6 top-8 flex justify-center md:top-10">
-        <Lockup className="text-background" />
-      </div>
+      {/* El rotulo L'OCCITANE × VÄNSTER lo pone la cabecera fija (SiteHeader),
+          que al hacer scroll lo convierte en isla flotante. */}
 
       {/* El titular va sobre el cielo, que ocupa la mitad superior de la foto. */}
       <div className="absolute inset-x-6 top-[26%] -translate-y-1/2">
         <MarbleTitle title={content?.title ?? ''} accent={content?.titleAccent} />
       </div>
 
-      {/* Marca de scroll: etiqueta y capsula con un punto que baja en bucle,
-          para que se vea sin dudas que hay que bajar. Hace de boton hacia la
-          primera ficha y se desvanece con el primer scroll; a partir de ahi
-          orienta la navegacion lateral. */}
+      {/* Marca de scroll: etiqueta y una linea de 40 px por la que baja un
+          trazo en bucle, como una gota que cae. Hace de boton hacia la primera
+          ficha y se desvanece con el primer scroll. Estatica con movimiento
+          reducido. */}
       <a
         href="#agendas"
         tabIndex={hasScrolled ? -1 : undefined}
-        className={`absolute bottom-8 left-1/2 flex w-max -translate-x-1/2 flex-col items-center gap-3 text-background transition-opacity duration-700 motion-reduce:transition-none ${
+        className={`absolute bottom-8 left-1/2 flex w-max -translate-x-1/2 flex-col items-center gap-4 text-background transition-opacity duration-700 motion-reduce:transition-none ${
           hasScrolled ? 'pointer-events-none opacity-0' : 'opacity-100'
         }`}
         style={{ transitionTimingFunction: EASE_CSS }}
       >
         <span className="whitespace-nowrap font-sans text-xs uppercase tracking-[0.18em]">Descubre la propuesta</span>
-        <span
-          aria-hidden="true"
-          className="flex h-9 w-[22px] justify-center rounded-full border border-background/80 pt-[7px]"
-        >
+        <span aria-hidden="true" className="block h-10 w-px overflow-hidden bg-background/30">
           <motion.span
-            className="block h-1.5 w-[3px] rounded-full bg-background"
-            animate={shouldReduceMotion ? undefined : { y: [0, 10], opacity: [1, 0] }}
+            className="block h-full w-full origin-top bg-background"
+            initial={{ y: '-100%' }}
+            animate={shouldReduceMotion ? { y: 0 } : { y: ['-100%', '100%'] }}
             transition={
-              shouldReduceMotion
-                ? undefined
-                : { duration: 1.6, ease: EASE, repeat: Infinity, repeatDelay: 0.3 }
+              shouldReduceMotion ? { duration: 0 } : { duration: 2, ease: EASE, repeat: Infinity, repeatDelay: 0.5 }
             }
           />
         </span>
