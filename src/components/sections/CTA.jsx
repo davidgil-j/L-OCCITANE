@@ -13,13 +13,13 @@ export default function CTA({ content }) {
       <div className="mx-auto max-w-2xl text-center">
         <MaskReveal
           as="h2"
-          className="text-balance font-serif text-[clamp(2rem,3.4vw,3.25rem)] uppercase leading-[0.95] tracking-tight text-background"
+          className="text-balance font-serif text-[clamp(2rem,3.4vw,3.25rem)] uppercase leading-[1.02] tracking-tight text-background"
         >
           {content?.title}
         </MaskReveal>
         {content?.text && (
           <FadeIn delay={0.1}>
-            <p className="mx-auto mt-6 max-w-lg text-pretty text-base leading-relaxed text-background">
+            <p className="mx-auto mt-6 max-w-lg text-balance text-base leading-relaxed text-background">
               {content.text}
             </p>
           </FadeIn>

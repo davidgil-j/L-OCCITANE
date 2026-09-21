@@ -17,14 +17,16 @@ import MarbleWash from '@/components/animations/MarbleWash';
 export default function ProductFeature({ item, index, media, id, reverse = false, credit = false }) {
   const number = String(index + 1).padStart(2, '0');
   const wide = media.type === 'video';
-  // Rejilla de 12: apaisada 7 + texto 5; vertical 5 + hueco 1 + texto 6.
+  // Rejilla de 12: apaisada 7 + texto 5; vertical 5 + hueco 2 + texto 5, con
+  // el texto siempre en la columna 8 o en la 1: las mismas lineas en todas
+  // las fichas y en Quienes somos.
   // La pieza siempre toca su borde exterior y el texto queda al otro lado.
   const mediaPlace = wide
     ? `md:col-span-7 ${reverse ? 'md:col-start-6 md:row-start-1' : 'md:col-start-1'}`
     : `md:col-span-5 ${reverse ? 'md:col-start-8 md:row-start-1' : 'md:col-start-1'}`;
   const textPlace = wide
     ? `md:col-span-5 ${reverse ? 'md:col-start-1 md:row-start-1' : 'md:col-start-8'}`
-    : `md:col-span-6 ${reverse ? 'md:col-start-1 md:row-start-1' : 'md:col-start-7'}`;
+    : `${reverse ? 'md:col-span-6 md:col-start-1 md:row-start-1' : 'md:col-span-5 md:col-start-8'}`;
 
   return (
     <section id={id} data-bg-tone="light" className="relative isolate overflow-hidden bg-background px-6 py-10 md:px-12 md:py-14">

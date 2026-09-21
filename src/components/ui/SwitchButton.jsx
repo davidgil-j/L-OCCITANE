@@ -51,10 +51,12 @@ export default function SwitchButton({ href, children }) {
     const k = 1 - v;
     return `inset(${GAP * k}px ${(INNER - KNOB - GAP) * k}px ${GAP * k}px ${GAP * k}px round 999px)`;
   });
-  const knobColor = useTransform(p, [0, 1], ['#FBF9F6', '#C40452']);
-  const arrowColor = useTransform(p, [0, 1], ['#3F2B2E', '#FBF9F6']);
+  // Los colores cambian en un tramo corto del recorrido: a mitad de camino no
+  // hay rosas lavados ni grises sin contraste.
+  const knobColor = useTransform(p, [0.35, 0.65], ['#FBF9F6', '#C40452']);
+  const arrowColor = useTransform(p, [0.35, 0.65], ['#3F2B2E', '#FBF9F6']);
   const labelX = useTransform(p, [0, 1], [0, TEXT_SHIFT]);
-  const labelColor = useTransform(p, [0, 1], ['#FBF9F6', '#3F2B2E']);
+  const labelColor = useTransform(p, [0.4, 0.6], ['#FBF9F6', '#3F2B2E']);
 
   const moveTo = (target) => animate(x, target, shouldReduceMotion ? { duration: 0 } : spring);
 
@@ -97,7 +99,7 @@ export default function SwitchButton({ href, children }) {
     >
       <motion.span
         aria-hidden="true"
-        className="absolute inset-0 rounded-full bg-background"
+        className="absolute -inset-px rounded-full bg-background"
         style={{ clipPath: fillClip }}
       />
       <motion.span

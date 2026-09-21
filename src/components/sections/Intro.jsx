@@ -19,7 +19,7 @@ export default function Intro({ text }) {
       <div className="mx-auto max-w-6xl">
         <RevealLines
           text={text}
-          className="max-w-[42ch] text-pretty font-body text-[clamp(1.375rem,1.8vw,1.5rem)] leading-[1.4] text-text"
+          className="max-w-[42ch] text-balance font-body text-[clamp(1.375rem,1.8vw,1.5rem)] leading-[1.4] text-text"
         />
       </div>
     </section>

@@ -20,8 +20,8 @@ const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 /
  * El paso de "Quienes somos" al cierre: la ventana de marmol se abre hasta ser
  * el fondo del contacto.
  *
- * Hay una sola capa de marmol, fija a la pantalla (sticky), por encima de
- * "Quienes somos" y por debajo del contenido del cierre. Mientras se lee la
+ * Hay una sola capa de marmol, fija a la pantalla (sticky), por debajo del
+ * texto de "Quienes somos" y del contenido del cierre. Mientras se lee la
  * seccion fucsia, esa capa esta recortada exactamente a la ventana
  * (data-marble-window): la ventana se mueve con el scroll y el marmol se queda
  * quieto detras, como una ventana de verdad. Al llegar el cierre, el recorte
@@ -69,7 +69,9 @@ export default function MarbleClosing({ top, children }) {
       const e = easeInOutCubic(raw);
       // El velo del cierre aparece a la vez: la ventana mantiene su color.
       veilRef.current.style.opacity = e;
-      if (raw >= 1) {
+      // Al final de la curva se suelta el recorte: si no, quedaban unos
+      // pixeles de fucsia en los bordes.
+      if (e > 0.985) {
         layer.style.clipPath = 'none';
         return;
       }
@@ -108,7 +110,11 @@ export default function MarbleClosing({ top, children }) {
   }
 
   return (
-    <div className="relative bg-vanster">
+    // En este modo "Quienes somos" pierde su fondo (lo pone este contenedor) y
+    // queda por encima de la capa de marmol: la ventana se abre por detras
+    // del texto, sin taparlo. La imagen fija de la ventana se oculta: lo que
+    // se ve por ella es la capa.
+    <div className="relative bg-vanster [&_#nosotros]:relative [&_#nosotros]:z-[15] [&_#nosotros]:bg-transparent [&_[data-marble-window]_img]:opacity-0">
       {/* La capa de marmol: fija a la pantalla durante todo el tramo final.
           Mide lo mismo que la pantalla grande del movil (lvh), para que al
           esconderse la barra del navegador no quede un hueco por debajo. */}

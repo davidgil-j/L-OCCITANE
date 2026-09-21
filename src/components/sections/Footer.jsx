@@ -38,7 +38,7 @@ export default function Footer() {
             width={2048}
             height={512}
             unoptimized
-            className="h-auto w-[132px]"
+            className="-ml-1.5 h-auto w-[132px]"
           />
           <svg aria-hidden="true" viewBox="0 0 10 10" className="h-[6px] w-[6px] text-background/70">
             <path d="M1 1 9 9M9 1 1 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none" />

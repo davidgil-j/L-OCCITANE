@@ -22,11 +22,11 @@ button {
 }
 
 /* Foco visible solo al navegar con teclado, en el color del propio texto:
-   claro sobre la foto y el marmol, oscuro sobre el fondo claro. */
+   claro sobre la foto y el marmol, oscuro sobre el fondo claro. El contorno
+   sigue el redondeo de cada elemento (la pildora sigue siendo pildora). */
 :focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 4px;
-  border-radius: 2px;
 }
 
 body {

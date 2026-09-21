@@ -18,12 +18,12 @@ const label = 'font-sans text-[11px] uppercase tracking-[0.14em] text-background
 export default function About({ content }) {
   return (
     <section id="nosotros" data-bg-tone="marble" className="bg-vanster px-6 py-20 text-background md:px-12 md:py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-x-[3%]">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-x-[4%] lg:gap-x-[5%]">
         <div className="md:col-span-6 md:row-start-1">
           <p className={label}>{content.eyebrow}</p>
           <h2
             aria-label={content.title}
-            className="mt-6 font-serif text-[clamp(3.5rem,2.2rem+4vw,4.75rem)] uppercase leading-[1] tracking-tight md:mt-8"
+            className="mt-5 font-serif text-[clamp(3.5rem,2.2rem+4vw,4.75rem)] uppercase leading-[1] tracking-tight"
           >
             {content.titleLines.map((line, i) => (
               <MaskReveal key={line} as="span" className="-mt-[0.14em] block pt-[0.14em] first:mt-0" delay={i * 0.08}>

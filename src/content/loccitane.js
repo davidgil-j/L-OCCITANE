@@ -15,7 +15,7 @@ export const loccitane = {
     titleAccent: 'a medida',
   },
   intro:
-    'Cuatro piezas para 2027: agenda, calendario de sobremesa, bidón y merchandising para clientes. Pensadas para usarse todos los días en tienda, en oficina y en casa.',
+    'Cuatro piezas para 2027: agenda, calendario\u00A0de\u00A0sobremesa, bidón y merchandising para clientes. Pensadas para usarse todos los días en tienda, en oficina y en casa.',
   products: [
     {
       id: 'agendas',
