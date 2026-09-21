@@ -12,8 +12,8 @@ export default function Button({ href = '#', children, variant = 'primary' }) {
     // Para usar sobre fondos oscuros/foto -- boton solido claro, texto oscuro.
     inverted: 'rounded-full bg-background uppercase text-brand',
     // Sobre el marmol: solo el filete, sin relleno, para que no tape la textura.
-    // Rectangular y en versalitas: sobre el marmol lo redondo se leia a boton de app.
-    outlineLight: 'border border-background px-9 text-[15px] text-background [font-variant-caps:all-small-caps]',
+    // En pildora, como la isla de la cabecera, para que la forma se repita.
+    outlineLight: 'rounded-full border border-background px-9 text-[15px] text-background [font-variant-caps:all-small-caps]',
   };
 
   return (
