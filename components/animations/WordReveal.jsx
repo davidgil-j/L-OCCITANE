@@ -13,7 +13,7 @@ const STEP_MS = 28;
  * el desenfoque: animar un filtro en cada palabra es caro y la guia de marca
  * no usa desenfoques.
  *
- * Las palabras entre *asteriscos* van en cursiva magenta.
+ * Lo que va entre *asteriscos* (una palabra o varias) va en cursiva magenta.
  *
  * Las palabras solo se esconden una vez montado el componente, asi que sin
  * JavaScript el texto se ve entero. Se anima con transiciones CSS (transform
@@ -44,13 +44,19 @@ export default function WordReveal({ text, className = '', delay = 0 }) {
   }, [shouldReduceMotion]);
 
   const hidden = armed && !visible;
-  const words = text.split(' ');
+  // Marca que palabras caen dentro de un tramo entre asteriscos.
+  let open = false;
+  const words = text.split(' ').map((raw) => {
+    const starts = raw.startsWith('*');
+    const ends = /\*[.,:;]?$/.test(raw);
+    const accent = open || starts;
+    open = accent && !ends;
+    return { word: raw.replace(/\*/g, ''), accent };
+  });
 
   return (
     <p ref={ref} className={className}>
-      {words.map((raw, i) => {
-        const accent = /^\*.*\*[.,:;]?$/.test(raw);
-        const word = accent ? raw.replace(/\*/g, '') : raw;
+      {words.map(({ word, accent }, i) => {
         return (
           <span key={i}>
             <span
