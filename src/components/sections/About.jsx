@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import FadeIn from '@/components/animations/FadeIn';
+import ScrollWrite from '@/components/animations/ScrollWrite';
 import MaskReveal from '@/components/animations/MaskReveal';
 
 const label = 'font-sans text-[11px] uppercase tracking-[0.14em] text-background/90';
@@ -34,9 +35,7 @@ export default function About({ content }) {
         </div>
 
         <div className="flex flex-col md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1 md:pt-[3.25rem]">
-          <FadeIn delay={0.1}>
-            <p className="max-w-[40ch] text-pretty font-body text-lg leading-[1.6] text-background/90">{content.text}</p>
-          </FadeIn>
+          <ScrollWrite text={content.text} className="max-w-[40ch] text-pretty font-body text-lg leading-[1.6] text-background/90" />
           <ol className="mt-8 border-t border-background/30">
             {content.columns.map((col, i) => (
               <li key={col.title} className="border-b border-background/30">

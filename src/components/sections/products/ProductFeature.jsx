@@ -1,5 +1,5 @@
 import ProductMedia from '@/components/ui/ProductMedia';
-import FadeIn from '@/components/animations/FadeIn';
+import ScrollWrite from '@/components/animations/ScrollWrite';
 import MaskReveal from '@/components/animations/MaskReveal';
 import MarbleWash from '@/components/animations/MarbleWash';
 
@@ -42,23 +42,18 @@ export default function ProductFeature({ item, index, media, id, reverse = false
         </div>
 
         <div className={textPlace}>
-          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-text/70">
-            <span className="text-vanster">{number}</span>
-            <span className="ml-3">{item.audience}</span>
-          </p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-vanster">{number}</p>
           <MaskReveal
             as="h2"
             className="mt-5 text-balance font-serif text-[clamp(2rem,3.4vw,3.25rem)] uppercase leading-[0.95] tracking-tight text-text"
           >
             <span className="marble-text">{item.name}</span>
           </MaskReveal>
-          <FadeIn delay={0.1}>
-            <div className="mt-7 max-w-md space-y-4 text-pretty font-body text-base leading-relaxed text-text/85">
-              {item.description.map((paragraph) => (
-                <p key={paragraph.slice(0, 24)}>{paragraph}</p>
-              ))}
-            </div>
-          </FadeIn>
+          <div className="mt-7 max-w-md space-y-4 text-pretty font-body text-base leading-relaxed text-text/85">
+            {item.description.map((paragraph) => (
+              <ScrollWrite key={paragraph.slice(0, 24)} text={paragraph} />
+            ))}
+          </div>
         </div>
       </article>
     </section>

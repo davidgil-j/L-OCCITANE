@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import MarbleTitle from '@/components/sections/MarbleTitle';
 import useHasScrolled from '@/components/animations/useHasScrolled';
 import { EASE, EASE_CSS } from '@/components/animations/easing';
@@ -9,9 +10,27 @@ import { EASE, EASE_CSS } from '@/components/animations/easing';
 export default function Hero({ content }) {
   const shouldReduceMotion = useReducedMotion();
   const hasScrolled = useHasScrolled();
+  const heroRef = useRef(null);
+
+  // Al salir, la foto se retira: se encoge hacia arriba, se despega de los
+  // bordes y se le redondean las esquinas, como una tarjeta que se aleja
+  // sobre el Blanc Brule de la pagina. Es el gesto inverso al del marmol del
+  // cierre (alli la ventana se abre; aqui se cierra). Solo transform y
+  // border-radius, ligados al scroll; con movimiento reducido, quieta.
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const eased = useTransform(scrollYProgress, (v) => 1 - (1 - Math.min(1, v * 1.15)) ** 2);
+  const scale = useTransform(eased, [0, 1], [1, 0.86]);
+  const radius = useTransform(eased, [0, 1], [0, 36]);
+  const retreat = shouldReduceMotion ? undefined : { scale, borderRadius: radius, transformOrigin: '50% 0%' };
 
   return (
-    <section id="inicio" data-bg-tone="dark" className="relative isolate min-h-svh overflow-hidden px-6">
+    <motion.section
+      ref={heroRef}
+      id="inicio"
+      data-bg-tone="dark"
+      className="relative isolate min-h-svh overflow-hidden px-6 print:!transform-none"
+      style={retreat}
+    >
       <Image
         src="/images/imagen_estatica_lavanda.png"
         alt="Campo de lavanda al atardecer en Haute-Provence"
@@ -68,6 +87,6 @@ export default function Hero({ content }) {
           />
         </span>
       </a>
-    </section>
+    </motion.section>
   );
 }
