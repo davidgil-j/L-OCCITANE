@@ -1,35 +1,67 @@
+import Image from 'next/image';
 import FadeIn from '@/components/animations/FadeIn';
-import RevealLines from '@/components/animations/RevealLines';
+import MaskReveal from '@/components/animations/MaskReveal';
 
-const label = 'font-sans text-[11px] uppercase tracking-[0.14em] text-textMuted';
+const label = 'font-sans text-[11px] uppercase tracking-[0.14em] text-background/90';
 
 /**
- * Quienes somos: una sola frase en dos tonos (lo esencial en Noir des Terres,
- * el resto en el tono secundario) y tres columnas breves debajo. La frase
- * entra linea a linea, como la intro, para que la pagina tenga un solo
- * idioma de movimiento.
+ * Quienes somos, con la identidad de Vanster: la seccion entera en su fucsia,
+ * el titular partido en silabas con guion (el recurso de su propia web) y una
+ * ventana del marmol que cierra la pagina.
+ *
+ * Cada linea del titular entra tras su mascara, una detras de otra. Para los
+ * lectores de pantalla el titular se lee entero, sin los cortes.
+ *
+ * Va marcada como tono "marble" para que la espiga de scroll pase a Blanc
+ * Brule: en magenta sobre el fucsia no se veria.
  */
 export default function About({ content }) {
-  const statement = `${content.statement} ${content.statementMuted}`;
-  const mutedFrom = content.statement.split(' ').length;
-
   return (
-    <section id="nosotros" data-bg-tone="light" className="bg-background px-6 py-24 md:px-12 md:py-32">
-      <div className="mx-auto max-w-6xl">
-        <p className={label}>{content.eyebrow}</p>
-        <RevealLines
-          text={statement}
-          mutedFrom={mutedFrom}
-          className="mt-8 max-w-[30ch] text-balance font-body text-[clamp(1.75rem,1.1rem+2.4vw,3.25rem)] leading-[1.18] tracking-[-0.01em] text-text md:mt-10"
-        />
-        <div className="mt-16 grid gap-8 border-t border-brand/15 pt-6 md:mt-20 md:grid-cols-3">
-          {content.columns.map((col, i) => (
-            <FadeIn key={col.title} delay={i * 0.08}>
-              <p className={label}>{col.title}</p>
-              <p className="mt-3 max-w-[32ch] font-body text-base leading-relaxed text-text/85">{col.text}</p>
-            </FadeIn>
-          ))}
+    <section id="nosotros" data-bg-tone="marble" className="bg-vanster px-6 py-20 text-background md:px-12 md:py-24">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-8">
+        <div className="md:col-span-7">
+          <p className={label}>{content.eyebrow}</p>
+          <h2
+            aria-label={content.title}
+            className="mt-6 font-serif text-[clamp(3.5rem,2.2rem+4vw,4.75rem)] uppercase leading-[0.92] tracking-tight md:mt-8"
+          >
+            {content.titleLines.map((line, i) => (
+              <MaskReveal key={line} as="span" className="block" delay={i * 0.08}>
+                <span aria-hidden="true">{line}</span>
+              </MaskReveal>
+            ))}
+          </h2>
         </div>
+
+        <div className="flex flex-col md:col-span-5">
+          <FadeIn>
+            <div className="relative aspect-[16/10] overflow-hidden rounded-lg md:rounded-xl">
+              <Image
+                src="/images/brand/vanster-marmol-cierre.jpg"
+                alt=""
+                aria-hidden="true"
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="mt-7 max-w-[40ch] text-pretty font-body text-lg leading-[1.6] text-background/90">{content.text}</p>
+          </FadeIn>
+          <p className={`mt-8 md:mt-auto md:pt-8 ${label} tracking-[0.2em] md:tracking-[0.3em]`}>{content.claim}</p>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-14 grid max-w-6xl gap-8 border-t border-background/30 pt-6 md:mt-16 md:grid-cols-3">
+        {content.columns.map((col, i) => (
+          <FadeIn key={col.title} delay={i * 0.08}>
+            <p className={label}>
+              {String(i + 1).padStart(2, '0')} · {col.title}
+            </p>
+            <p className="mt-3 max-w-[32ch] font-body text-base leading-relaxed text-background/90">{col.text}</p>
+          </FadeIn>
+        ))}
       </div>
     </section>
   );

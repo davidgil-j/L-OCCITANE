@@ -1,6 +1,6 @@
 # Plan · Landing L'Occitane × Vänster
 
-Fase actual: 4 · Construir (Quiénes somos construida, pendiente de visto bueno)
+Fase actual: 4 · Construir (Quiénes somos Bloque construida, pendiente de visto bueno)
 Listón: la landing actual, que el cliente ya ha felicitado
 
 ## 0 · Entrevista
@@ -12,13 +12,19 @@ Viene trabajado: contenido sí · marca ficha (L'Occitane: design/guias-marca/RE
 Qué tiene que creer al terminar: que Vänster es un estudio serio con el que se puede trabajar
 Quiénes somos · presentar al estudio con sobriedad, sin exhibirse
 Lo que no se dice: clientes ("Han confiado en nosotros" retirado), datos no verificados
-Expresiones de David, tal cual: «debe ser más discreto», «muy poco profesional» (versión mármol), «es una mierda» (versión título + datos + lista)
+Expresiones de David, tal cual: «debe ser más discreto», «muy poco profesional» (versión mármol), «es una mierda» (versión título + datos + lista), «no tiene colores ni diseño de Vänster, mierda genérica» (versión Manifiesto)
+La sección tiene que ser Vänster: fucsia, mármol, su forma de titular. Sin caer en lo exaltado
 
 ## 2 · Bocetos
+Reabierta: el Manifiesto construido era genérico, sin identidad de Vänster.
+Nueva terna (design/bocetos/quienes-somos/): Bloque (fucsia a sangre, titular en sílabas) · Mármol (entra en la superficie del cierre) · Filo (fondo claro, banda fucsia)
+Recursos de vanster.design: bloque fucsia a sangre, ventana de mármol, titular partido en sílabas con guion, lema espaciado
 Referencias: Pentagram /about (texto sobrio junto a las personas) · Koto /about (frase en dos tonos) · Studio Dumbar /about (etiqueta, párrafo corto y retratos con nombre y cargo)
-Dirección elegida: Manifiesto · tipográfico, una frase en dos tonos (captura en design/bocetos/quienes-somos/)
-Se toma de las descartadas: nada
+Dirección elegida: Bloque · fucsia a sangre, titular en sílabas, ventana de mármol
+Lo que chirría, para vigilar: «igual es too much de alto» → bajado de ~1000 a 868 px en escritorio
 
 ## 3 · Espina
-Heredada de la web: rejilla max-w-6xl, Gambetta para la frase, Inter para etiquetas, Noir des Terres y Pierre de Fontaine como segundo tono
-Movimiento: la frase entra línea a línea (RevealLines, igual que la intro) y las columnas con FadeIn
+Heredada de la web: rejilla max-w-6xl, Gambarino para el titular, Gambetta para el texto, Inter para etiquetas
+Color: fondo fucsia Vänster #C40452 a sangre, texto Blanc Brûlé (etiquetas al 90 %: 4,8:1)
+Movimiento: cada línea del titular tras su máscara (MaskReveal escalonado), mármol, texto y columnas con FadeIn
+La espiga de scroll pasa a Blanc Brûlé en esta sección (data-bg-tone="marble")
