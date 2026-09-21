@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { EASE } from '@/components/animations/easing';
+import { EASE, EASE_CSS } from '@/components/animations/easing';
 
 /** Estilo de posicion de una caja expresada en % de su contenedor. */
 const place = ({ left, top, width, height }) => ({
@@ -23,6 +23,9 @@ const place = ({ left, top, width, height }) => ({
  *
  * La pieza entra con una mascara que sube (solo transforms: la capa exterior
  * sube y la interior baja lo mismo).
+ * Con el cursor encima, la imagen se acerca muy despacio dentro de su marco,
+ * que no se mueve; el logotipo va en la misma capa y se acerca con ella. Solo
+ * con raton (en tactil no hay hover) y nunca con movimiento reducido.
  * El video no descarga nada hasta llegar a el, se para al salir de pantalla y
  * con movimiento reducido se queda en su fotograma fijo.
  */
@@ -54,7 +57,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
   return (
     <figure>
       <div ref={boxRef} className="relative" style={{ aspectRatio: media.box }}>
-        <div className="absolute overflow-hidden bg-surface" style={place(media.window)}>
+        <div className="group absolute overflow-hidden bg-surface" style={place(media.window)}>
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={{ y: '100%' }}
@@ -67,38 +70,43 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
               animate={inView ? { y: 0 } : undefined}
               transition={transition}
             >
-              {media.type === 'video' ? (
-                <video
-                  ref={videoRef}
-                  className="h-full w-full object-cover"
-                  poster={media.poster}
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  aria-label={alt}
-                >
-                  <source src={media.src} type="video/mp4" />
-                </video>
-              ) : (
-                <Image src={media.src} alt={alt} fill sizes={sizes} className="object-cover" />
-              )}
-              {logo && (
-                <span
-                  aria-hidden="true"
-                  className="absolute block mix-blend-multiply"
-                  style={{ ...place(logo), opacity: logo.opacity, transform: `translate(-50%, -50%) rotate(${logo.rotate ?? 0}deg)` }}
-                >
-                  <Image
-                    src="/images/brand/loccitane-logo-black.png"
-                    alt=""
-                    width={2048}
-                    height={512}
-                    sizes="200px"
-                    className="h-auto w-full"
-                  />
-                </span>
-              )}
+              <div
+                className="absolute inset-0 transition-transform duration-[1400ms] [@media(hover:hover)_and_(pointer:fine)_and_(prefers-reduced-motion:no-preference)]:group-hover:scale-[1.04]"
+                style={{ transitionTimingFunction: EASE_CSS }}
+              >
+                {media.type === 'video' ? (
+                  <video
+                    ref={videoRef}
+                    className="h-full w-full object-cover"
+                    poster={media.poster}
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    aria-label={alt}
+                  >
+                    <source src={media.src} type="video/mp4" />
+                  </video>
+                ) : (
+                  <Image src={media.src} alt={alt} fill sizes={sizes} className="object-cover" />
+                )}
+                {logo && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute block mix-blend-multiply"
+                    style={{ ...place(logo), opacity: logo.opacity, transform: `translate(-50%, -50%) rotate(${logo.rotate ?? 0}deg)` }}
+                  >
+                    <Image
+                      src="/images/brand/loccitane-logo-black.png"
+                      alt=""
+                      width={2048}
+                      height={512}
+                      sizes="200px"
+                      className="h-auto w-full"
+                    />
+                  </span>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         </div>
