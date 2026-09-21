@@ -4,35 +4,31 @@
  */
 export const vanster = {
   // "Quienes somos": borrador redactado a partir de vanster.design (inicio y
-  // sobre nosotros), pendiente de que Vanster lo valide. Se compone como una
-  // entrada de diccionario del nombre. Las palabras entre asteriscos van en
-  // cursiva magenta.
+  // sobre nosotros), pendiente de que Vanster lo valide. Tono sobrio: datos y
+  // lo que hace el estudio, sin declaraciones.
   about: {
-    eyebrow: 'Quiénes somos',
-    place: 'Barcelona, desde 2010',
-    word: 'Vänster',
-    phonetic: 'vèn·ster',
-    grammar: 'adj. y s. Del sueco',
-    senses: [
-      'Izquierda, izquierdo.',
-      'Estudio creativo de Barcelona que mira las cosas desde el otro lado.',
+    eyebrow: 'Vänster',
+    title: 'Quiénes somos',
+    facts: [
+      { term: 'Fundación', value: '2010' },
+      { term: 'Sede', value: 'Barcelona' },
+      { term: 'Ámbito', value: 'Diseño y producción' },
     ],
     paragraphs: [
-      'Nacimos en 2010, de la unión entre una periodista y publicista y un abogado emprendedor por definición. Hoy somos un equipo de creativos y diseñadores, y unos cuantos somos *zurdos*: el nombre no es casualidad.',
-      'Cada marca es un mundo. Lo nuestro es entender el suyo y enseñar qué la hace única, en pantalla y en papel, en la mano y en la tienda.',
+      'Somos un estudio de diseño. Trabajamos la identidad de marca, la comunicación y las piezas físicas que la acompañan.',
+      'Además de diseñar, producimos: merchandising, regalo corporativo, impresos y elementos para punto de venta.',
+      "Para L'Occitane proponemos empezar por conocer a vuestros equipos y el uso que hacen de cada pieza, en tienda y en oficina, y producir a partir de ahí.",
     ],
+    servicesLabel: 'Servicios',
     services: [
-      { name: 'Identidad y branding' },
-      { name: 'Webs y experiencias digitales' },
-      { name: 'Informes y publicaciones' },
-      { name: 'Ilustración e infografía' },
-      { name: 'Animación y motion graphics' },
-      { name: 'Merchandising y regalo corporativo', current: true },
-      { name: 'Punto de venta y espacios efímeros' },
+      'Identidad y branding',
+      'Webs',
+      'Informes y publicaciones',
+      'Ilustración e infografía',
+      'Animación',
+      'Merchandising y regalo corporativo',
+      'Punto de venta',
     ],
-    currentLabel: 'Esta propuesta',
-    closing:
-      "Para L'Occitane no proponemos un catálogo. Proponemos sentarnos con vuestros equipos, entender cómo se usa cada pieza en tienda y en oficina, y producirla con el *mismo cuidado* que ponéis en lo vuestro.",
   },
   email: 'info@vanster.design',
   phone: '93 164 89 25',
