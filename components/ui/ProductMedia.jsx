@@ -6,6 +6,11 @@ import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { EASE, EASE_CSS } from '@/components/animations/easing';
 
 /** Estilo de posicion de una caja expresada en % de su contenedor. */
+// Hover: cuanto se acerca la imagen y cuantos px se desplaza como maximo.
+const HOVER_SCALE = 1.045;
+const HOVER_SHIFT = 10;
+const HOVER_QUERY = '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
+
 const place = ({ left, top, width, height }) => ({
   left: `${left}%`,
   top: `${top}%`,
@@ -23,15 +28,20 @@ const place = ({ left, top, width, height }) => ({
  *
  * La pieza entra con una mascara que sube (solo transforms: la capa exterior
  * sube y la interior baja lo mismo).
- * Con el cursor encima, la imagen se acerca muy despacio dentro de su marco,
- * que no se mueve; el logotipo va en la misma capa y se acerca con ella. Solo
- * con raton (en tactil no hay hover) y nunca con movimiento reducido.
+ * La caja tiene las esquinas algo redondeadas y un filete muy fino por dentro,
+ * para que la pieza quede asentada en la pagina y no pegada encima.
+ *
+ * Con el cursor encima, la imagen se acerca un poco y se desplaza unos
+ * pixeles siguiendo al raton, dentro de su marco, que no se mueve. La
+ * transicion larga suaviza el seguimiento. El logotipo va en la misma capa y
+ * se mueve con ella. Solo con raton y nunca con movimiento reducido.
  * El video no descarga nada hasta llegar a el, se para al salir de pantalla y
  * con movimiento reducido se queda en su fotograma fijo.
  */
 export default function ProductMedia({ media, alt, sizes, credit = false }) {
   const boxRef = useRef(null);
   const videoRef = useRef(null);
+  const zoomRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
   const inView = useInView(boxRef, { once: true, amount: 0.2 });
   const [playing, setPlaying] = useState(false);
@@ -51,13 +61,31 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
     else video.pause();
   }, [playing]);
 
+  const follow = (e) => {
+    const el = zoomRef.current;
+    if (!el || e.pointerType !== 'mouse' || !window.matchMedia(HOVER_QUERY).matches) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `translate3d(${-x * HOVER_SHIFT}px, ${-y * HOVER_SHIFT}px, 0) scale(${HOVER_SCALE})`;
+  };
+  const release = () => {
+    if (zoomRef.current) zoomRef.current.style.transform = '';
+  };
+
   const transition = { duration: 1, ease: EASE };
   const logo = media.logo;
 
   return (
     <figure>
       <div ref={boxRef} className="relative" style={{ aspectRatio: media.box }}>
-        <div className="group absolute overflow-hidden bg-surface" style={place(media.window)}>
+        <div
+          className="absolute overflow-hidden rounded-lg bg-surface [transform:translateZ(0)] md:rounded-xl"
+          style={place(media.window)}
+          onPointerEnter={follow}
+          onPointerMove={follow}
+          onPointerLeave={release}
+        >
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={{ y: '100%' }}
@@ -71,7 +99,8 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
               transition={transition}
             >
               <div
-                className="absolute inset-0 transition-transform duration-[1400ms] [@media(hover:hover)_and_(pointer:fine)_and_(prefers-reduced-motion:no-preference)]:group-hover:scale-[1.04]"
+                ref={zoomRef}
+                className="absolute inset-0 transition-transform duration-[900ms] will-change-transform"
                 style={{ transitionTimingFunction: EASE_CSS }}
               >
                 {media.type === 'video' ? (
@@ -109,6 +138,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
               </div>
             </motion.div>
           </motion.div>
+          <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-brand/10" />
         </div>
 
       </div>
