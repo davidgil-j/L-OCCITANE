@@ -9,6 +9,7 @@ import { EASE, EASE_CSS } from '@/components/animations/easing';
 // Hover: cuanto se acerca la imagen y cuantos px se desplaza como maximo.
 const HOVER_SCALE = 1.045;
 const HOVER_SHIFT = 10;
+const HOVER_POP = 2; // px que crece la caja por cada lado
 const HOVER_QUERY = '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
 
 const place = ({ left, top, width, height }) => ({
@@ -28,11 +29,13 @@ const place = ({ left, top, width, height }) => ({
  *
  * La pieza entra con una mascara que sube (solo transforms: la capa exterior
  * sube y la interior baja lo mismo).
- * La caja tiene las esquinas algo redondeadas y un filete muy fino por dentro,
- * para que la pieza quede asentada en la pagina y no pegada encima.
+ * La caja tiene las esquinas algo redondeadas y el borde difuminado un par de
+ * pixeles hacia el Blanc Brule del fondo, para que la pieza se funda con la
+ * pagina y no parezca pegada encima. El difuminado es una capa fija encima:
+ * no se repinta aunque la imagen se mueva debajo.
  *
- * Con el cursor encima, la imagen se acerca un poco y se desplaza unos
- * pixeles siguiendo al raton, dentro de su marco, que no se mueve. La
+ * Con el cursor encima, la caja entera crece 2 px por cada lado y, dentro, la
+ * imagen se acerca un poco y se desplaza unos pixeles siguiendo al raton. La
  * transicion larga suaviza el seguimiento. El logotipo va en la misma capa y
  * se mueve con ella. Solo con raton y nunca con movimiento reducido.
  * El video no descarga nada hasta llegar a el, se para al salir de pantalla y
@@ -64,12 +67,15 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
   const follow = (e) => {
     const el = zoomRef.current;
     if (!el || e.pointerType !== 'mouse' || !window.matchMedia(HOVER_QUERY).matches) return;
-    const r = e.currentTarget.getBoundingClientRect();
+    const box = e.currentTarget;
+    const r = box.getBoundingClientRect();
+    box.style.transform = `translateZ(0) scale(${(box.offsetWidth + HOVER_POP * 2) / box.offsetWidth})`;
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
     el.style.transform = `translate3d(${-x * HOVER_SHIFT}px, ${-y * HOVER_SHIFT}px, 0) scale(${HOVER_SCALE})`;
   };
-  const release = () => {
+  const release = (e) => {
+    e.currentTarget.style.transform = '';
     if (zoomRef.current) zoomRef.current.style.transform = '';
   };
 
@@ -80,8 +86,8 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
     <figure>
       <div ref={boxRef} className="relative" style={{ aspectRatio: media.box }}>
         <div
-          className="absolute overflow-hidden rounded-lg bg-surface [transform:translateZ(0)] md:rounded-xl"
-          style={place(media.window)}
+          className="absolute overflow-hidden rounded-lg bg-surface transition-transform duration-500 [transform:translateZ(0)] md:rounded-xl"
+          style={{ ...place(media.window), transitionTimingFunction: EASE_CSS }}
           onPointerEnter={follow}
           onPointerMove={follow}
           onPointerLeave={release}
@@ -138,7 +144,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
               </div>
             </motion.div>
           </motion.div>
-          <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-brand/10" />
+          <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_2px_1px_#FBF9F6]" />
         </div>
 
       </div>
