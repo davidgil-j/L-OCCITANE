@@ -77,6 +77,41 @@ html.lenis body {
   overflow: clip;
 }
 
+/* Titulares de producto con el marmol del titular del hero dentro de las
+   letras, moviendose muy despacio. El texto sigue siendo texto: la imagen
+   solo lo rellena (background-clip). Un velo de Noir des Terres, de un solo
+   color, sube el contraste sobre el fondo claro. Con movimiento reducido el
+   marmol se queda quieto; al imprimir, texto normal. */
+.marble-text {
+  background-image: linear-gradient(rgb(63 43 46 / 0.4), rgb(63 43 46 / 0.4)), url('/images/titulo-marmol.jpg');
+  background-size: auto, 240% auto;
+  background-position: 0 0, 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-decoration-break: slice;
+  box-decoration-break: slice;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marble-text {
+    animation: marble-drift 36s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes marble-drift {
+  to {
+    background-position: 0 0, 100% 50%;
+  }
+}
+
+@media print {
+  .marble-text {
+    background: none;
+    color: #3f2b2e;
+  }
+}
+
 /* Seguro de la pantalla de carga: si JavaScript tarda en arrancar (movil
    lento, mala cobertura) o falla, se retira sola a los 2,5 s. */
 @keyframes loader-failsafe {

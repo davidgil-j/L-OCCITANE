@@ -14,8 +14,7 @@ export const loccitane = {
     // acento editorial. Debe aparecer literalmente dentro de `title`.
     titleAccent: 'a medida',
   },
-  intro:
-    'Cuatro piezas para 2027: agenda, calendario\u00A0de\u00A0sobremesa, bidón y merchandising para clientes. Pensadas para usarse todos los días en tienda, en oficina y en casa.',
+  intro: '¿Qué os proponemos para 2027?',
   products: [
     {
       id: 'agendas',

@@ -89,7 +89,8 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
   };
 
   const transition = { duration: 0.8, ease: EASE };
-  const logo = media.logo;
+  // Uno o varios logotipos (en negro o, con tone: 'white', en blanco).
+  const logos = media.logo ? [].concat(media.logo) : [];
 
   return (
     <figure>
@@ -131,14 +132,15 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
                 ) : (
                   <Image src={media.src} alt={alt} fill sizes={sizes} loading="eager" className="object-cover" />
                 )}
-                {logo && (
+                {logos.map((l, i) => (
                   <span
+                    key={i}
                     aria-hidden="true"
-                    className="absolute block mix-blend-multiply"
-                    style={{ ...place(logo), opacity: logo.opacity, transform: `translate(-50%, -50%) rotate(${logo.rotate ?? 0}deg)` }}
+                    className={`absolute block ${l.tone === 'white' ? '' : 'mix-blend-multiply'}`}
+                    style={{ ...place(l), opacity: l.opacity, transform: `translate(-50%, -50%) rotate(${l.rotate ?? 0}deg)` }}
                   >
                     <Image
-                      src="/images/brand/loccitane-logo-black.png"
+                      src={l.tone === 'white' ? '/images/brand/loccitane-logo-blanc.png' : '/images/brand/loccitane-logo-black.png'}
                       alt=""
                       width={2048}
                       height={512}
@@ -146,7 +148,7 @@ export default function ProductMedia({ media, alt, sizes, credit = false }) {
                       className="h-auto w-full"
                     />
                   </span>
-                )}
+                ))}
               </div>
             </motion.div>
           </motion.div>

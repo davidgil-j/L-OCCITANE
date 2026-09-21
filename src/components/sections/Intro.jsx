@@ -1,8 +1,8 @@
 import RevealLines from '@/components/animations/RevealLines';
 
 /**
- * Entrada breve entre el hero y los productos: que se sepa de un vistazo que
- * son cuatro piezas y para que. Alineada a la izquierda sobre el mismo borde
+ * Entrada breve entre el hero y los productos: una sola pregunta que abre
+ * las cuatro fichas. Alineada a la izquierda sobre el mismo borde
  * que las fichas, para que caiga en la rejilla de la pagina, y entrando linea
  * a linea tras su mascara.
  *
@@ -19,7 +19,7 @@ export default function Intro({ text }) {
       <div className="mx-auto max-w-6xl">
         <RevealLines
           text={text}
-          className="max-w-[42ch] text-balance font-body text-[clamp(1.375rem,1.8vw,1.5rem)] leading-[1.4] text-text"
+          className="max-w-[22ch] text-balance font-body text-[clamp(2rem,1.3rem+2.6vw,3.25rem)] leading-[1.12] tracking-[-0.01em] text-text"
         />
       </div>
     </section>

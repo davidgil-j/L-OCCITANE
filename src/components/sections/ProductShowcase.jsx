@@ -31,7 +31,15 @@ const PRODUCT_MEDIA = {
     src: '/images/productos/bidon.jpg',
     box: '1122 / 1402',
     window: { left: 0, top: 0, width: 100, height: 100 },
-    logo: { left: 41, top: 68, width: 15, opacity: 0.8 },
+    // Un logotipo por bidon, sobre el cuerpo de cada uno: negro en los claros
+    // (multiplicar, impreso en la pintura) y blanco en los oscuros (marron y
+    // verde), como un serigrafiado claro.
+    logo: [
+      { left: 19.4, top: 52, width: 11.5, opacity: 0.72, tone: 'white' },
+      { left: 41, top: 68, width: 15, opacity: 0.8 },
+      { left: 59.3, top: 47, width: 11.5, opacity: 0.7 },
+      { left: 79.8, top: 63, width: 12, opacity: 0.72, tone: 'white' },
+    ],
   },
   merchandising: {
     type: 'image',

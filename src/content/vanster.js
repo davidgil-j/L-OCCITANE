@@ -3,13 +3,12 @@
  * Los usan el CTA y el pie: se mantienen aqui para que no se desincronicen.
  */
 export const vanster = {
-  // "Quienes somos": bloque fucsia con el titular partido en silabas, como en
-  // vanster.design. Datos tomados de su web; pendiente de que Vanster valide la
+  // "Quienes somos": bloque fucsia con el titular en tres lineas. Datos tomados de su web; pendiente de que Vanster valide la
   // redaccion.
   about: {
     eyebrow: 'Quiénes somos',
     title: 'Del diseño a la producción.',
-    titleLines: ['Del di -', 'seño a la', 'produc -', 'ción.'],
+    titleLines: ['Del diseño', 'a la', 'producción.'],
     text: 'Somos Vänster, un estudio de diseño de Barcelona. Desde 2010 creamos identidades, publicaciones y las piezas físicas que llevan una marca a las manos de las personas.',
     claim: 'Your online & offline creative partner',
     columns: [

@@ -50,7 +50,7 @@ export default function ProductFeature({ item, index, media, id, reverse = false
             as="h2"
             className="mt-5 text-balance font-serif text-[clamp(2rem,3.4vw,3.25rem)] uppercase leading-[0.95] tracking-tight text-text"
           >
-            {item.name}
+            <span className="marble-text">{item.name}</span>
           </MaskReveal>
           <FadeIn delay={0.1}>
             <div className="mt-7 max-w-md space-y-4 text-pretty font-body text-base leading-relaxed text-text/85">
